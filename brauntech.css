@@ -1,0 +1,394 @@
+:root {
+    --green-dark: #003b1f;
+    --green-mid: #0f6d34;
+    --green-light: #59ff7a;
+    --green-neon: #39ff14;
+    --green-glow: rgba(57, 255, 20, 0.25);
+
+    --bt-text: #d8ffd8;
+    --bt-text-muted: #89a589;
+
+    --bt-bg: #050806;
+    --bt-bg-alt: #0b130e;
+
+    --bt-border: #1a2e1f;
+    --bt-header-height: 70px;
+    --bt-radius: 4px;
+
+    --bt-font-main: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --bt-font-mono: "Fira Code", Menlo, Consolas, monospace;
+}
+
+/* ---------------------------------------------------
+   Reset
+--------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: radial-gradient(circle at top, #050b06 0, #020503 50%, #000 100%);
+    color: var(--bt-text);
+    font-family: var(--bt-font-main);
+    padding-top: var(--bt-header-height);
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* ---------------------------------------------------
+   ANIMIERTES GRID (Darkmode, dezent)
+--------------------------------------------------- */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -60px;
+    z-index: -5;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(to right, rgba(57,255,20,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(57,255,20,0.06) 1px, transparent 1px),
+        linear-gradient(to right, rgba(89,255,122,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(89,255,122,0.03) 1px, transparent 1px);
+
+    background-size: 80px 80px, 80px 80px, 30px 30px, 30px 30px;
+    animation: bt-grid-move 70s linear infinite;
+    opacity: 0.35;
+    mix-blend-mode: screen;
+}
+
+@keyframes bt-grid-move {
+    0% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        background-position: 20px 40px, -40px -20px, 10px -10px, -15px 10px;
+        filter: hue-rotate(5deg);
+    }
+    50% {
+        background-position: -30px 15px, 25px -35px, -20px 20px, 25px -10px;
+        filter: hue-rotate(10deg);
+    }
+    75% {
+        background-position: 15px -20px, -10px 30px, 15px -25px, -30px 15px;
+        filter: hue-rotate(4deg);
+    }
+    100% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+        filter: hue-rotate(0deg);
+    }
+}
+
+/* ---------------------------------------------------
+   SCANLINES (dezent)
+--------------------------------------------------- */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0,
+        rgba(0,0,0,0.55) 1px,
+        transparent 6px
+    );
+    opacity: 0.18;
+}
+
+/* ---------------------------------------------------
+   RANDOM PUNKTE – Container & Ebenen
+--------------------------------------------------- */
+
+#bt-points {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    perspective: 1200px;
+}
+
+.bt-points-layer {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation: bt-point-fade 9s infinite ease-in-out;
+    will-change: transform, opacity;
+}
+
+/* Punkte: auftreten / verschwinden */
+@keyframes bt-point-fade {
+    0%, 8%   { opacity: 0; }
+    15%, 30% { opacity: 1; }
+    40%, 55% { opacity: 0.4; }
+    62%, 78% { opacity: 1; }
+    88%, 100%{ opacity: 0; }
+}
+
+/* ---------------------------------------------------
+   ROTIERENDE GLOW-KREISE – Container & Basis
+--------------------------------------------------- */
+
+#bt-glow-orbits {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+}
+
+.bt-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(57,255,20,0.3);
+    box-shadow: 0 0 18px rgba(57,255,20,0.35);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    transform-origin: center center;
+    animation-name: bt-orbit-rotate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+/* die eigentliche Rotations-/Drift-Animation;
+   Offsets werden pro Orbit über CSS-Variablen gesetzt */
+@keyframes bt-orbit-rotate {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate3d(var(--orbit-offset-x, 10px),
+                               var(--orbit-offset-y, -5px),
+                               0) rotate(180deg);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) rotate(360deg);
+    }
+}
+
+/* ---------------------------------------------------
+   Layout Container
+--------------------------------------------------- */
+
+.bt-container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+}
+
+/* ---------------------------------------------------
+   Header + Navigation
+--------------------------------------------------- */
+
+.bt-header {
+    position: fixed;
+    inset: 0 0 auto 0;
+    height: var(--bt-header-height);
+    background: linear-gradient(to right, #031109, #062815, #031109);
+    border-bottom: 1px solid var(--green-dark);
+    box-shadow: 0 0 20px rgba(0,0,0,0.7);
+    z-index: 1000;
+    backdrop-filter: blur(8px);
+}
+
+.bt-header-inner {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+/* Logo */
+.bt-logo img {
+    height: calc(var(--bt-header-height) - 16px);
+    opacity: 0.85;
+    transition: 0.2s ease;
+}
+
+.bt-logo:hover img {
+    opacity: 1;
+    transform: translateY(-1px);
+}
+
+/* Navigation */
+.bt-nav {
+    margin-left: auto;
+}
+
+.bt-nav-list {
+    list-style: none;
+    display: flex;
+    gap: 1.4rem;
+    margin: 0;
+    padding: 0;
+}
+
+.bt-nav-link {
+    color: var(--bt-text-muted);
+    font-family: var(--bt-font-mono);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    position: relative;
+    padding: 0.2rem 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.bt-nav-link:hover {
+    color: var(--green-light);
+    transform: translateY(-1px);
+}
+
+.bt-nav-link::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 2px;
+    background: var(--green-neon);
+    box-shadow: 0 0 10px var(--green-glow);
+    transition: width 0.2s ease;
+}
+
+.bt-nav-link:hover::after {
+    width: 100%;
+}
+
+.bt-nav-link.active {
+    color: var(--green-light);
+}
+
+.bt-nav-link.active::after {
+    width: 100%;
+}
+
+/* Dropdowns */
+.bt-nav-item {
+    position: relative;
+}
+
+.bt-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    min-width: 210px;
+    padding: 0.4rem 0;
+    background: #0a1e12ee;
+    border: 1px solid var(--green-dark);
+    border-radius: var(--bt-radius);
+    box-shadow: 0 10px 25px rgba(0,0,0,0.8);
+    backdrop-filter: blur(10px);
+
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(6px);
+    transition: 0.2s ease;
+    z-index: 1100;
+}
+
+.bt-nav-item:hover .bt-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.bt-dropdown-link {
+    display: block;
+    padding: 0.45rem 0.8rem;
+    font-family: var(--bt-font-mono);
+    color: var(--bt-text-muted);
+    text-decoration: none;
+    transition: 0.2s ease;
+}
+
+.bt-dropdown-link:hover {
+    color: var(--green-neon);
+    padding-left: 1.1rem;
+    background: rgba(57,255,20,0.08);
+}
+
+/* ---------------------------------------------------
+   Hauptbereich
+--------------------------------------------------- */
+
+.bt-main {
+    padding: 2rem 0 3rem;
+}
+
+.bt-main h1,
+.bt-main h2,
+.bt-main h3 {
+    font-family: var(--bt-font-mono);
+    color: var(--green-light);
+    text-shadow: 0 0 8px var(--green-glow);
+}
+
+/* ---------------------------------------------------
+   Footer
+--------------------------------------------------- */
+
+.bt-footer {
+    background: #021008;
+    border-top: 1px solid var(--green-dark);
+    padding: 1rem 0;
+}
+
+.bt-footer-inner {
+    display: flex;
+    justify-content: space-between;
+    color: var(--bt-text-muted);
+}
+
+.bt-footer-link {
+    color: var(--green-light);
+    text-decoration: none;
+}
+
+.bt-footer-link:hover {
+    color: var(--green-neon);
+}
+
+/* ---------------------------------------------------
+   Responsive
+--------------------------------------------------- */
+
+@media (max-width: 800px) {
+    .bt-nav-list {
+        gap: 0.8rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .bt-header-inner {
+        flex-wrap: wrap;
+    }
+
+    .bt-nav {
+        width: 100%;
+    }
+
+    .bt-nav-list {
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .bt-dropdown {
+        right: 0;
+        left: auto;
+    }
+}
