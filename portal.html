@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>BraunTech Solutions – Startseite</title>
+    <title>BraunTech Solutions – Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="brauntech.css">
 </head>
@@ -31,7 +31,7 @@
                     <ul class="bt-dropdown">
                         <li><a href="recycling.html" class="bt-dropdown-link">Recycling</a></li>
                         <li><a href="app-webdesign.html" class="bt-dropdown-link">App / Webdesign</a></li>
-						<li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
+                        <li><a href="portal.html" class="bt-dropdown-link active">Portal</a></li>
                         <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
                     </ul>
                 </li>
@@ -39,7 +39,7 @@
                 <li class="bt-nav-item bt-has-dropdown">
                     <a href="about.html" class="bt-nav-link">Über uns</a>
                     <ul class="bt-dropdown">
-                        <li><a href="standort.html" class="bt-dropdown-link active">Standort</a></li>
+                        <li><a href="standort.html" class="bt-dropdown-link">Standort</a></li>
                         <li><a href="kontakt.html" class="bt-dropdown-link">Kontakt</a></li>
                     </ul>
                 </li>
@@ -49,13 +49,14 @@
 </header>
 
 <main class="bt-main">
-    <div class="bt-container">
-        <h1>Willkommen bei BraunTech Solutions</h1>
-        <p>
-            Dies ist ein Platzhaltertext für den Inhalt der Seite.
-            Du kannst dieses Grundgerüst auf alle Unterseiten übertragen.
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        </p>
+    <div class="bt-container bt-portal">
+        <h1>Portal</h1>
+        <p>Sammlung hilfreicher Links, kuratiert von BraunTech Solutions.</p>
+
+        <!-- Container, den wir per JS aus der portal.conf füllen -->
+        <div id="bt-portal-groups" class="bt-portal-groups">
+            <p class="bt-portal-loading">Portal wird geladen …</p>
+        </div>
     </div>
 </main>
 
@@ -83,10 +84,7 @@
             const layer = document.createElement("div");
             layer.classList.add("bt-points-layer");
 
-            // leichte Helligkeitsvariation pro Layer (falls du das später nutzen willst)
             layer.style.setProperty('--layer-alpha', (0.5 + Math.random() * 0.5).toFixed(2));
-
-            // Delay – sorgt dafür, dass die Ebenen nicht gleichzeitig blinken
             layer.style.animationDelay = (Math.random() * 8).toFixed(2) + "s";
 
             const gradients = [];
@@ -102,7 +100,6 @@
             }
 
             layer.style.backgroundImage = gradients.join(",");
-            // Tiefe für Parallax
             layer.dataset.depth = (0.3 + (i / LAYER_COUNT) * 0.7).toFixed(2); // 0.3–1.0
 
             pointsContainer.appendChild(layer);
@@ -140,8 +137,6 @@
 
         /* ================================
            RANDOM GLOW-KREISE
-           - min. 3 Kreise
-           - Zufallsanzahl, Position, Größe, Dauer
         ================================ */
         const orbitContainer = document.getElementById("bt-glow-orbits");
         const ORBIT_MIN = 4;
@@ -152,29 +147,24 @@
             const orbit = document.createElement("div");
             orbit.classList.add("bt-orbit");
 
-            // Zufällige Größe
             const size = Math.random() * 300 + 260; // 260–560px
             orbit.style.width = size + "px";
             orbit.style.height = size + "px";
 
-            // Zufällige Position irgendwo im Viewport (leicht außerhalb erlaubt)
             const x = Math.random() * 80 + 5;  // 5%–85%
             const y = Math.random() * 80 + 5;  // 5%–85%
             orbit.style.left = x + "%";
             orbit.style.top = y + "%";
 
-            // Zufällige Offsets für die Orbit-Animation
-            const offsetX = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            const offsetY = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
+            const offsetX = (Math.random() * 20 - 10).toFixed(1);
+            const offsetY = (Math.random() * 20 - 10).toFixed(1);
             orbit.style.setProperty('--orbit-offset-x', offsetX + "px");
             orbit.style.setProperty('--orbit-offset-y', offsetY + "px");
 
-            // Zufällige Animationsdauer & Richtung
             const duration = (Math.random() * 25 + 35).toFixed(1); // 35–60s
             orbit.style.animationDuration = duration + "s";
             orbit.style.animationDirection = Math.random() > 0.5 ? "normal" : "reverse";
 
-            // leichte Variation in der Intensität
             const alphaBorder = (0.2 + Math.random() * 0.25).toFixed(2);
             const alphaGlow = (0.25 + Math.random() * 0.3).toFixed(2);
             orbit.style.borderColor = `rgba(57,255,20,${alphaBorder})`;
@@ -183,6 +173,102 @@
             orbitContainer.appendChild(orbit);
         }
     })();
+</script>
+
+<!-- Portal-Logik: portal.conf einlesen und Kacheln erzeugen -->
+<script>
+(function () {
+    const portalContainer = document.getElementById('bt-portal-groups');
+    if (!portalContainer) return;
+
+    // Hilfsfunktion: eine Kachel erzeugen
+    function createTile(tile) {
+        const a = document.createElement('a');
+        a.className = 'bt-portal-tile';
+        a.href = tile.url;
+        a.target = '_blank';
+        a.rel = 'noopener noreferrer';
+
+        // Hintergrund aus zwei Farben -> Gradient
+        if (tile.colorStart && tile.colorEnd) {
+            a.style.backgroundImage = `linear-gradient(135deg, ${tile.colorStart}, ${tile.colorEnd})`;
+        }
+
+        // Logo
+        if (tile.logo) {
+            const img = document.createElement('img');
+            img.className = 'bt-portal-tile-logo';
+            img.src = 'bilder/' + tile.logo;
+            img.alt = tile.label || '';
+            a.appendChild(img);
+        }
+
+        // Text / Bezeichnung
+        const label = document.createElement('div');
+        label.className = 'bt-portal-tile-label';
+        label.textContent = tile.label || '';
+        a.appendChild(label);
+
+        return a;
+    }
+
+    // Hilfsfunktion: Gruppe erzeugen
+    function createGroup(group) {
+        const groupEl = document.createElement('section');
+        groupEl.className = 'bt-portal-group';
+
+        if (group.title) {
+            const h2 = document.createElement('h2');
+            h2.className = 'bt-portal-group-title';
+            h2.textContent = group.title;
+            groupEl.appendChild(h2);
+        }
+
+        const grid = document.createElement('div');
+        grid.className = 'bt-portal-grid';
+
+        (group.tiles || []).forEach(tile => {
+            grid.appendChild(createTile(tile));
+        });
+
+        groupEl.appendChild(grid);
+        return groupEl;
+    }
+
+    function showError(msg) {
+        portalContainer.innerHTML = '';
+        const p = document.createElement('p');
+        p.className = 'bt-portal-error';
+        p.textContent = msg;
+        portalContainer.appendChild(p);
+    }
+
+    // Konfigurationsdatei laden
+    fetch('/conf/portal.conf')
+        .then(resp => {
+            if (!resp.ok) {
+                throw new Error('HTTP ' + resp.status);
+            }
+            return resp.json(); // portal.conf muss gültiges JSON sein
+        })
+        .then(data => {
+            portalContainer.innerHTML = '';
+
+            if (!data || !Array.isArray(data.groups) || data.groups.length === 0) {
+                showError('Keine Portaleinträge konfiguriert.');
+                return;
+            }
+
+            data.groups.forEach(group => {
+                portalContainer.appendChild(createGroup(group));
+            });
+        })
+        .catch(err => {
+            console.error('Fehler beim Laden der Portal-Konfiguration:', err);
+            showError('Portal-Konfiguration konnte nicht geladen werden.');
+        });
+
+})();
 </script>
 
 </body>
