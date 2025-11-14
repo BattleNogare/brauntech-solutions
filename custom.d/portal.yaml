@@ -1,4 +1,4 @@
-# conf/portal.yaml
+# custom.d/portal.yaml
 
 groups:
   - title: "Admin"
