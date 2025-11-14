@@ -244,7 +244,7 @@
     }
 
     // Konfigurationsdatei laden
-    fetch('/conf/portal.conf')
+    fetch('/conf/portal.yaml')
         .then(resp => {
             if (!resp.ok) {
                 throw new Error('HTTP ' + resp.status);
