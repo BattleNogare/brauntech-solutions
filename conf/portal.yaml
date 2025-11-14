@@ -1,56 +1,42 @@
-{
-  "groups": [
-    {
-      "title": "Allgemeine Tools",
-      "tiles": [
-        {
-          "label": "GoOgLe",
-          "url": "https://www.google.de",
-          "logo": "google-logo.png",
-          "colorStart": "#ff0000",
-          "colorEnd": "#ff8800"
-        },
-        {
-          "label": "YouTube",
-          "url": "https://www.youtube.com",
-          "logo": "youtube-logo.png",
-          "colorStart": "#ff0000",
-          "colorEnd": "#cc0000"
-        },
-        {
-          "label": "Wikipedia",
-          "url": "https://de.wikipedia.org",
-          "logo": "wikipedia-logo.png",
-          "colorStart": "#636363",
-          "colorEnd": "#111111"
-        },
-        {
-          "label": "GitHub",
-          "url": "https://github.com",
-          "logo": "github-logo.png",
-          "colorStart": "#24292e",
-          "colorEnd": "#111111"
-        }
-      ]
-    },
-    {
-      "title": "BraunTech intern",
-      "tiles": [
-        {
-          "label": "BraunTech Admin",
-          "url": "https://admin.brauntech.local",
-          "logo": "brauntech-admin.png",
-          "colorStart": "#39ff14",
-          "colorEnd": "#008a3a"
-        },
-        {
-          "label": "Ticket-System",
-          "url": "https://tickets.brauntech.local",
-          "logo": "tickets.png",
-          "colorStart": "#0066ff",
-          "colorEnd": "#00c6ff"
-        }
-      ]
-    }
-  ]
-}
+# conf/portal.yaml
+
+groups:
+  - title: "Admin"
+    tiles:
+      - label: "Admin-Portal"
+        url: "https://admin.brauntech.local"
+        logo: "admin-portal.png"
+        colorStart: "#39ff14"
+        colorEnd: "#008a3a"
+
+      - label: "Monitoring"
+        url: "https://monitor.brauntech.local"
+        logo: "monitoring.png"
+        colorStart: "#0066ff"
+        colorEnd: "#00c6ff"
+
+      - label: "Ticket-Übersicht"
+        url: "https://tickets.brauntech.local/admin"
+        logo: "tickets-admin.png"
+        colorStart: "#ff8800"
+        colorEnd: "#ff5500"
+
+  - title: "Kunden"
+    tiles:
+      - label: "Kunden-Portal"
+        url: "https://portal.brauntech.local"
+        logo: "kunden-portal.png"
+        colorStart: "#8a2be2"
+        colorEnd: "#4b0082"
+
+      - label: "Support-Bereich"
+        url: "https://support.brauntech.local"
+        logo: "support.png"
+        colorStart: "#00b894"
+        colorEnd: "#0984e3"
+
+      - label: "FAQ / Hilfe"
+        url: "https://help.brauntech.local"
+        logo: "faq.png"
+        colorStart: "#fdcb6e"
+        colorEnd: "#e17055"
