@@ -5,6 +5,9 @@
     <title>BraunTech Solutions – Portal</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="brauntech.css">
+
+    <!-- YAML Parser (für portal.yaml) -->
+    <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 </head>
 <body>
 
@@ -53,7 +56,7 @@
         <h1>Portal</h1>
         <p>Sammlung hilfreicher Links, kuratiert von BraunTech Solutions.</p>
 
-        <!-- Container, den wir per JS aus der portal.conf füllen -->
+        <!-- Container, den wir per JS aus der portal.yaml füllen -->
         <div id="bt-portal-groups" class="bt-portal-groups">
             <p class="bt-portal-loading">Portal wird geladen …</p>
         </div>
@@ -84,7 +87,10 @@
             const layer = document.createElement("div");
             layer.classList.add("bt-points-layer");
 
+            // leichte Helligkeitsvariation pro Layer
             layer.style.setProperty('--layer-alpha', (0.5 + Math.random() * 0.5).toFixed(2));
+
+            // Delay – sorgt dafür, dass die Ebenen nicht gleichzeitig blinken
             layer.style.animationDelay = (Math.random() * 8).toFixed(2) + "s";
 
             const gradients = [];
@@ -100,6 +106,7 @@
             }
 
             layer.style.backgroundImage = gradients.join(",");
+            // Tiefe für Parallax
             layer.dataset.depth = (0.3 + (i / LAYER_COUNT) * 0.7).toFixed(2); // 0.3–1.0
 
             pointsContainer.appendChild(layer);
@@ -137,6 +144,8 @@
 
         /* ================================
            RANDOM GLOW-KREISE
+           - min. 4 Kreise
+           - Zufallsanzahl, Position, Größe, Dauer
         ================================ */
         const orbitContainer = document.getElementById("bt-glow-orbits");
         const ORBIT_MIN = 4;
@@ -147,24 +156,29 @@
             const orbit = document.createElement("div");
             orbit.classList.add("bt-orbit");
 
+            // Zufällige Größe
             const size = Math.random() * 300 + 260; // 260–560px
             orbit.style.width = size + "px";
             orbit.style.height = size + "px";
 
+            // Zufällige Position irgendwo im Viewport (leicht außerhalb erlaubt)
             const x = Math.random() * 80 + 5;  // 5%–85%
             const y = Math.random() * 80 + 5;  // 5%–85%
             orbit.style.left = x + "%";
             orbit.style.top = y + "%";
 
-            const offsetX = (Math.random() * 20 - 10).toFixed(1);
-            const offsetY = (Math.random() * 20 - 10).toFixed(1);
+            // Zufällige Offsets für die Orbit-Animation
+            const offsetX = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
+            const offsetY = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
             orbit.style.setProperty('--orbit-offset-x', offsetX + "px");
             orbit.style.setProperty('--orbit-offset-y', offsetY + "px");
 
+            // Zufällige Animationsdauer & Richtung
             const duration = (Math.random() * 25 + 35).toFixed(1); // 35–60s
             orbit.style.animationDuration = duration + "s";
             orbit.style.animationDirection = Math.random() > 0.5 ? "normal" : "reverse";
 
+            // leichte Variation in der Intensität
             const alphaBorder = (0.2 + Math.random() * 0.25).toFixed(2);
             const alphaGlow = (0.25 + Math.random() * 0.3).toFixed(2);
             orbit.style.borderColor = `rgba(57,255,20,${alphaBorder})`;
@@ -175,7 +189,7 @@
     })();
 </script>
 
-<!-- Portal-Logik: portal.conf einlesen und Kacheln erzeugen -->
+<!-- Portal-Logik: portal.yaml einlesen und Kacheln erzeugen -->
 <script>
 (function () {
     const portalContainer = document.getElementById('bt-portal-groups');
@@ -243,15 +257,24 @@
         portalContainer.appendChild(p);
     }
 
-    // Konfigurationsdatei laden
+    // YAML-Konfigurationsdatei laden
     fetch('/conf/portal.yaml')
         .then(resp => {
             if (!resp.ok) {
                 throw new Error('HTTP ' + resp.status);
             }
-            return resp.json(); // portal.conf muss gültiges JSON sein
+            return resp.text(); // YAML als Text laden
         })
-        .then(data => {
+        .then(text => {
+            let data;
+            try {
+                data = jsyaml.load(text); // YAML -> JS-Objekt
+            } catch (e) {
+                console.error('YAML-Parsing-Fehler:', e);
+                showError('Portal-Konfiguration ist fehlerhaft (YAML).');
+                return;
+            }
+
             portalContainer.innerHTML = '';
 
             if (!data || !Array.isArray(data.groups) || data.groups.length === 0) {
