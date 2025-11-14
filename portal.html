@@ -258,7 +258,7 @@
     }
 
     // YAML-Konfigurationsdatei laden
-    fetch('/conf/portal.yaml')
+    fetch('/custom.d/portal.yaml')
         .then(resp => {
             if (!resp.ok) {
                 throw new Error('HTTP ' + resp.status);
