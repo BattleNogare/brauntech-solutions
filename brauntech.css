@@ -214,7 +214,7 @@ body::after {
 
 /* Logo */
 .bt-logo img {
-    height: calc(var(--bt-header-height) - 16px);
+    height: calc(var(--bt-header-height) - 5px);
     opacity: 0.85;
     transition: 0.2s ease;
 }
