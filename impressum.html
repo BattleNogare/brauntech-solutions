@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>Impressum – BraunTech Solutions</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="brauntech.css">
+
+    <!-- Impressum-spezifisches Tuning im BraunTech-Stil -->
+    <style>
+        .bt-main {
+            padding-top: 120px;
+            padding-bottom: 80px;
+        }
+
+        .bt-impressum-header {
+            max-width: 720px;
+            margin-bottom: 2rem;
+        }
+
+        .bt-impressum-header h1 {
+            font-size: 2.4rem;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+        }
+
+        .bt-impressum-subtitle {
+            color: var(--bt-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .bt-impressum-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .bt-impressum-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .bt-impressum-card {
+            position: relative;
+            padding: 1.6rem 1.8rem;
+            border-radius: var(--bt-radius);
+            border: 1px solid rgba(57, 255, 20, 0.16);
+            background:
+                radial-gradient(circle at top left, rgba(57, 255, 20, 0.08), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.05), transparent 55%),
+                var(--bt-bg-alt);
+            box-shadow:
+                0 0 24px rgba(0, 0, 0, 0.9),
+                0 0 28px var(--green-glow);
+            overflow: hidden;
+        }
+
+        .bt-impressum-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(57, 255, 20, 0.06);
+            pointer-events: none;
+        }
+
+        .bt-impressum-card h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            padding-left: 0.9rem;
+            border-left: 3px solid var(--green-light);
+        }
+
+        .bt-impressum-card p {
+            margin: 0.3rem 0;
+            line-height: 1.6;
+        }
+
+        .bt-impressum-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--green-light);
+            opacity: 0.85;
+        }
+
+        .bt-impressum-tagline-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--green-neon);
+            box-shadow: 0 0 10px var(--green-neon);
+        }
+
+        .bt-impressum-muted {
+            color: var(--bt-text-muted);
+            font-size: 0.9rem;
+        }
+
+        .bt-impressum-list {
+            margin: 0.4rem 0 0.2rem;
+            padding-left: 1.1rem;
+        }
+
+        .bt-impressum-list li {
+            margin-bottom: 0.2rem;
+        }
+
+        .bt-impressum-highlight {
+            font-family: var(--bt-font-mono);
+            font-size: 0.95rem;
+        }
+
+        .bt-impressum-legal h2 {
+            margin-top: 1.4rem;
+        }
+
+        .bt-impressum-legal p {
+            font-size: 0.95rem;
+            color: var(--bt-text-muted);
+        }
+
+        .bt-impressum-os-link {
+            font-family: var(--bt-font-mono);
+            font-size: 0.9rem;
+            word-break: break-all;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Rotierende Glow-Kreise (werden per JS gefüllt) -->
+<div id="bt-glow-orbits"></div>
+
+<!-- Random-Punkte-Layer (werden per JS gefüllt) -->
+<div id="bt-points"></div>
+
+<header class="bt-header">
+    <div class="bt-container bt-header-inner">
+        <a href="index.html" class="bt-logo">
+            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
+        </a>
+
+        <nav class="bt-nav" aria-label="Hauptnavigation">
+            <ul class="bt-nav-list">
+                <li class="bt-nav-item">
+                    <a href="index.html" class="bt-nav-link">Startseite</a>
+                </li>
+
+                <li class="bt-nav-item bt-has-dropdown">
+                    <a href="product.html" class="bt-nav-link">Produkte / Dienstleistungen</a>
+                    <ul class="bt-dropdown">
+                        <li><a href="recycling.html" class="bt-dropdown-link">Recycling</a></li>
+                        <li><a href="app-webdesign.html" class="bt-dropdown-link">App / Webdesign</a></li>
+                        <li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
+                        <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li class="bt-nav-item bt-has-dropdown">
+                    <a href="about.html" class="bt-nav-link">Über uns</a>
+                    <ul class="bt-dropdown">
+                        <li><a href="standort.html" class="bt-dropdown-link">Standort</a></li>
+                        <li><a href="kontakt.html" class="bt-dropdown-link">Kontakt</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main class="bt-main">
+    <div class="bt-container">
+        <div class="bt-impressum-header">
+            <div class="bt-impressum-tagline">
+                <span class="bt-impressum-tagline-dot"></span>
+                LEGAL CORE NODE
+            </div>
+            <h1>Impressum</h1>
+            <p class="bt-impressum-subtitle">
+                Rechtliche Informationen nach § 5 TMG für den Betrieb von BraunTech Solutions.
+            </p>
+        </div>
+
+        <div class="bt-impressum-grid">
+            <!-- Linke Spalte: Stammdaten / Kontakt -->
+            <section class="bt-impressum-card">
+                <h2>Stammdaten</h2>
+                <p class="bt-impressum-highlight">
+                    BraunTech Solutions<br>
+                    Inhaber: Marius Braun
+                </p>
+                <p>
+                    Ulmenweg 16-1<br>
+                    18573 Samtens<br>
+                    Deutschland
+                </p>
+
+                <h2>Kontakt</h2>
+                <p>
+                    Telefon: <span class="bt-impressum-muted">wird noch ergänzt</span><br>
+                    E-Mail: <span class="bt-impressum-muted">wird noch ergänzt</span><br>
+                    Webseite: <span class="bt-impressum-muted">wird noch ergänzt</span>
+                </p>
+
+                <h2>Rechtsform & Vertretung</h2>
+                <p>
+                    Rechtsform: Einzelunternehmen<br>
+                    Vertretungsberechtigter: Marius Braun (Inhaber)
+                </p>
+
+                <h2>Geschäftszweck</h2>
+                <p>
+                    Aufbereitung, Wiederverwertung und Handel mit elektronischen Bauteilen sowie
+                    Erbringung von Dienstleistungen in den Bereichen Softwareanpassung,
+                    Chip-Tuning und Webentwicklung.
+                </p>
+
+                <h2>Umsatzsteuer-ID</h2>
+                <p>
+                    Umsatzsteuer-Identifikationsnummer gemäß § 27a UStG:<br>
+                    <span class="bt-impressum-muted">wird nach Vergabe durch das Finanzamt ergänzt</span>
+                </p>
+
+                <h2>Aufsichtsbehörde</h2>
+                <p>
+                    Zuständige Behörde: Gewerbeamt / Ordnungsamt Samtens (Kreis Vorpommern-Rügen)<br>
+                    Interne Referenz / Aktenzeichen: <span class="bt-impressum-highlight">[082090]</span>
+                </p>
+            </section>
+
+            <!-- Rechte Spalte: Rechtstexte -->
+            <section class="bt-impressum-card bt-impressum-legal">
+                <h2>Haftung für Inhalte</h2>
+                <p>
+                    Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf
+                    diesen Seiten nach den allgemeinen Gesetzen verantwortlich. Nach den §§ 8
+                    bis 10 TMG sind wir als Diensteanbieter jedoch nicht verpflichtet,
+                    übermittelte oder gespeicherte fremde Informationen zu überwachen oder
+                    nach Umständen zu forschen, die auf eine rechtswidrige Tätigkeit hinweisen.
+                    Verpflichtungen zur Entfernung oder Sperrung der Nutzung von Informationen
+                    nach den allgemeinen Gesetzen bleiben hiervon unberührt.
+                </p>
+
+                <h2>Haftung für Links</h2>
+                <p>
+                    Unser Angebot enthält Links zu externen Websites Dritter, auf deren Inhalte
+                    wir keinen Einfluss haben. Deshalb können wir für diese fremden Inhalte
+                    auch keine Gewähr übernehmen. Für die Inhalte der verlinkten Seiten ist
+                    stets der jeweilige Anbieter oder Betreiber der Seiten verantwortlich.
+                </p>
+
+                <h2>Urheberrecht</h2>
+                <p>
+                    Die durch den Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten
+                    unterliegen dem deutschen Urheberrecht. Die Vervielfältigung, Bearbeitung,
+                    Verbreitung und jede Art der Verwertung außerhalb der Grenzen des
+                    Urheberrechts bedürfen der schriftlichen Zustimmung des jeweiligen Autors
+                    bzw. Erstellers.
+                </p>
+
+                <h2>EU-Streitschlichtung</h2>
+                <p>
+                    Die Europäische Kommission stellt eine Plattform zur Online-Streitbeilegung (OS) bereit:
+                </p>
+                <p class="bt-impressum-os-link">
+                    https://ec.europa.eu/consumers/odr
+                </p>
+                <p class="bt-impressum-muted">
+                    Unsere E-Mail-Adresse findest du oben in den Kontaktangaben.
+                </p>
+            </section>
+        </div>
+    </div>
+</main>
+
+<footer class="bt-footer">
+    <div class="bt-container bt-footer-inner">
+        <small>© <span id="bt-year"></span> BraunTech Solutions – All systems operational.</small>
+        <a href="impressum.html" class="bt-footer-link">Impressum</a>
+    </div>
+</footer>
+
+<script>
+    // Aktuelles Jahr im Footer setzen
+    document.getElementById('bt-year').textContent = new Date().getFullYear();
+
+    (function () {
+        /* ================================
+           RANDOM PUNKTE + PARALLAX
+        ================================ */
+        const LAYER_COUNT = 8;        // Anzahl Punkt-Ebenen
+        const POINTS_PER_LAYER = 22;  // Punkte pro Ebene
+        const pointsContainer = document.getElementById("bt-points");
+        const pointLayers = [];
+
+        for (let i = 0; i < LAYER_COUNT; i++) {
+            const layer = document.createElement("div");
+            layer.classList.add("bt-points-layer");
+
+            layer.style.setProperty('--layer-alpha', (0.5 + Math.random() * 0.5).toFixed(2));
+            layer.style.animationDelay = (Math.random() * 8).toFixed(2) + "s";
+
+            const gradients = [];
+            for (let p = 0; p < POINTS_PER_LAYER; p++) {
+                const size = (Math.random() * 6 + 2).toFixed(1); // 2–8px
+                const x = (Math.random() * 100).toFixed(1) + "%";
+                const y = (Math.random() * 100).toFixed(1) + "%";
+                const alpha = (Math.random() * 0.6 + 0.4).toFixed(2);
+
+                gradients.push(
+                    `radial-gradient(${size}px ${size}px at ${x} ${y}, rgba(70,255,120,${alpha}), transparent)`
+                );
+            }
+
+            layer.style.backgroundImage = gradients.join(",");
+            layer.dataset.depth = (0.3 + (i / LAYER_COUNT) * 0.7).toFixed(2); // 0.3–1.0
+
+            pointsContainer.appendChild(layer);
+            pointLayers.push(layer);
+        }
+
+        let mouseX = 0.5;
+        let mouseY = 0.5;
+        let scrollY = 0;
+
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX / window.innerWidth;
+            mouseY = e.clientY / window.innerHeight;
+        });
+
+        window.addEventListener('scroll', () => {
+            scrollY = window.scrollY || window.pageYOffset || 0;
+        });
+
+        function animateParallax() {
+            const h = window.innerHeight || 1;
+            pointLayers.forEach((layer) => {
+                const depth = parseFloat(layer.dataset.depth || 0.5);
+                const offsetX = (mouseX - 0.5) * depth * 40;
+                const offsetY =
+                    (mouseY - 0.5) * depth * 20 +
+                    (scrollY / h) * depth * 30;
+
+                layer.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+            });
+            requestAnimationFrame(animateParallax);
+        }
+        animateParallax();
+
+        /* ================================
+           RANDOM GLOW-KREISE
+        ================================ */
+        const orbitContainer = document.getElementById("bt-glow-orbits");
+        const ORBIT_MIN = 4;
+        const ORBIT_MAX = 15;
+        const orbitCount = ORBIT_MIN + Math.floor(Math.random() * (ORBIT_MAX - ORBIT_MIN + 1));
+
+        for (let i = 0; i < orbitCount; i++) {
+            const orbit = document.createElement("div");
+            orbit.classList.add("bt-orbit");
+
+            const size = Math.random() * 300 + 260; // 260–560px
+            orbit.style.width = size + "px";
+            orbit.style.height = size + "px";
+
+            const x = Math.random() * 80 + 5;  // 5%–85%
+            const y = Math.random() * 80 + 5;  // 5%–85%
+            orbit.style.left = x + "%";
+            orbit.style.top = y + "%";
+
+            const offsetX = (Math.random() * 20 - 10).toFixed(1);
+            const offsetY = (Math.random() * 20 - 10).toFixed(1);
+            orbit.style.setProperty('--orbit-offset-x', offsetX + "px");
+            orbit.style.setProperty('--orbit-offset-y', offsetY + "px");
+
+            const duration = (Math.random() * 25 + 35).toFixed(1); // 35–60s
+            orbit.style.animationDuration = duration + "s";
+            orbit.style.animationDirection = Math.random() > 0.5 ? "normal" : "reverse";
+
+            const alphaBorder = (0.2 + Math.random() * 0.25).toFixed(2);
+            const alphaGlow = (0.25 + Math.random() * 0.3).toFixed(2);
+            orbit.style.borderColor = `rgba(57,255,20,${alphaBorder})`;
+            orbit.style.boxShadow = `0 0 18px rgba(57,255,20,${alphaGlow})`;
+
+            orbitContainer.appendChild(orbit);
+        }
+    })();
+</script>
+
+</body>
+</html>
