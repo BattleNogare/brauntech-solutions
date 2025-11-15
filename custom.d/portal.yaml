@@ -20,10 +20,17 @@ groups:
         logo: "tickets-admin.png"
         colorStart: "#ff8800"
         colorEnd: "#ff5500"
+        
       - label: "Ticket-Übersicht2"
         url: "https://tickets.brauntech.local/admin2"
         logo: "tickets-admin.png"
         colorStart: "#ff8800"
+        colorEnd: "#ff55ff"
+
+      - label: "Ticket-Übersicht23"
+        url: "https://tickets.brauntech.local/admin23"
+        logo: "tickets-admin.png"
+        colorStart: "#ff0088"
         colorEnd: "#ff55ff"
 
   - title: "Kunden"
