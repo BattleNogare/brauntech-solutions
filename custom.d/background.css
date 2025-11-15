@@ -1,0 +1,145 @@
+/* =========================================
+   GLOBALER HINTERGRUND + EFFEKTE
+   (nutzt Variablen aus brauntech.css)
+========================================= */
+
+/* Grund-Hintergrund (Gradient) */
+body {
+    background: radial-gradient(circle at top, #050b06 0, #020503 50%, #000 100%);
+}
+
+/* ---------------------------------------------------
+   ANIMIERTES GRID (Darkmode, dezent)
+--------------------------------------------------- */
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: -60px;
+    z-index: -5;
+    pointer-events: none;
+
+    background-image:
+        linear-gradient(to right, rgba(57,255,20,0.06) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(57,255,20,0.06) 1px, transparent 1px),
+        linear-gradient(to right, rgba(89,255,122,0.03) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(89,255,122,0.03) 1px, transparent 1px);
+
+    background-size: 80px 80px, 80px 80px, 30px 30px, 30px 30px;
+    animation: bt-grid-move 70s linear infinite;
+    opacity: 0.35;
+    mix-blend-mode: screen;
+}
+
+@keyframes bt-grid-move {
+    0% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+        filter: hue-rotate(0deg);
+    }
+    25% {
+        background-position: 20px 40px, -40px -20px, 10px -10px, -15px 10px;
+        filter: hue-rotate(5deg);
+    }
+    50% {
+        background-position: -30px 15px, 25px -35px, -20px 20px, 25px -10px;
+        filter: hue-rotate(10deg);
+    }
+    75% {
+        background-position: 15px -20px, -10px 30px, 15px -25px, -30px 15px;
+        filter: hue-rotate(4deg);
+    }
+    100% {
+        background-position: 0 0, 0 0, 0 0, 0 0;
+        filter: hue-rotate(0deg);
+    }
+}
+
+/* ---------------------------------------------------
+   SCANLINES (dezent)
+--------------------------------------------------- */
+
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background: repeating-linear-gradient(
+        to bottom,
+        rgba(0,0,0,0.55) 0,
+        rgba(0,0,0,0.55) 1px,
+        transparent 6px
+    );
+    opacity: 0.18;
+}
+
+/* ---------------------------------------------------
+   RANDOM PUNKTE – Container & Ebenen
+--------------------------------------------------- */
+
+#bt-points {
+    position: fixed;
+    inset: 0;
+    z-index: -3;
+    pointer-events: none;
+    perspective: 1200px;
+}
+
+.bt-points-layer {
+    position: absolute;
+    inset: 0;
+    mix-blend-mode: screen;
+    opacity: 0;
+    animation: bt-point-fade 9s infinite ease-in-out;
+    will-change: transform, opacity;
+}
+
+/* Punkte: auftreten / verschwinden */
+@keyframes bt-point-fade {
+    0%, 8%   { opacity: 0; }
+    15%, 30% { opacity: 1; }
+    40%, 55% { opacity: 0.4; }
+    62%, 78% { opacity: 1; }
+    88%, 100%{ opacity: 0; }
+}
+
+/* ---------------------------------------------------
+   ROTIERENDE GLOW-KREISE – Container & Basis
+--------------------------------------------------- */
+
+#bt-glow-orbits {
+    position: fixed;
+    inset: 0;
+    z-index: -4;
+    pointer-events: none;
+}
+
+.bt-orbit {
+    position: absolute;
+    border-radius: 50%;
+    border: 1px solid rgba(57,255,20,0.3);
+    box-shadow: 0 0 18px rgba(57,255,20,0.35);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    transform-origin: center center;
+    animation-name: bt-orbit-rotate;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    will-change: transform;
+}
+
+/* Rotations-/Drift-Animation */
+@keyframes bt-orbit-rotate {
+    0% {
+        transform: translate3d(0, 0, 0) rotate(0deg);
+    }
+    50% {
+        transform: translate3d(var(--orbit-offset-x, 10px),
+                               var(--orbit-offset-y, -5px),
+                               0) rotate(180deg);
+    }
+    100% {
+        transform: translate3d(0, 0, 0) rotate(360deg);
+    }
+}
