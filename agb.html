@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>BraunTech Solutions – AGB</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hauptlayout -->
+    <link rel="stylesheet" href="brauntech.css">
+
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="custom.d/background.css">
+
+    <!-- Hintergrund-JS -->
+    <script src="custom.d/background.js" defer></script>
+
+    <!-- Include-System -->
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll("[data-include]").forEach(el => {
+                fetch(el.getAttribute("data-include"))
+                    .then(res => res.text())
+                    .then(data => el.innerHTML = data);
+            });
+        });
+    </script>
+</head>
+<body>
+
+<!-- Rotierende Glow-Kreise -->
+<div id="bt-glow-orbits"></div>
+
+<!-- Punkte-Layer -->
+<div id="bt-points"></div>
+
+<!-- NAVBAR automatisch laden -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
+
+<main class="bt-main">
+    <div class="bt-container">
+        <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
+        <p><strong>BraunTech Solutions</strong> – Stand: November 2025</p>
+
+        <p style="font-size:0.9rem; color:var(--bt-text-muted);">
+            Hinweis: Diese AGB sind ein allgemeines Muster und ersetzen keine individuelle Rechtsberatung.
+        </p>
+
+        <h2>1. Geltungsbereich</h2>
+        <p>
+            Diese AGB gelten für alle Verträge zwischen <strong>BraunTech Solutions</strong>,
+            Einzelunternehmen mit Sitz in Knuffingen, Hohenstein, und deren Kunden.
+        </p>
+
+        <h2>2. Vertragspartner</h2>
+        <p>
+            BraunTech Solutions<br>
+            Einzelunternehmen<br>
+            Sitz: Knuffingen, Hohenstein
+        </p>
+
+        <h2>3. Leistungen</h2>
+        <p>Wir bieten folgende Dienstleistungen an:</p>
+        <ul>
+            <li>Webentwicklung & App-/Webdesign</li>
+            <li>Softwareentwicklung</li>
+            <li>Hosting über GitHub / Google Drive</li>
+            <li>IT-Beratung & Schulungen</li>
+            <li>Recycling von Schrott</li>
+        </ul>
+
+        <h2>4. Vertragsschluss</h2>
+        <p>
+            Ein Vertrag kommt zustande, wenn der Kunde ein Angebot oder Pflichtenheft schriftlich oder mündlich akzeptiert.
+        </p>
+
+        <h2>5. Preise & Zahlung</h2>
+        <ul>
+            <li>Preise sind Brutto.</li>
+            <li>Zahlungsfrist: 14 Tage.</li>
+            <li>Bezahlung per Barzahlung.</li>
+            <li>Anzahlung nach Absprache (Standard: keine).</li>
+        </ul>
+
+        <h2>6. Leistungsumfang & Änderungen</h2>
+        <ul>
+            <li>Korrekturschleifen: zwei inklusive.</li>
+            <li>Weitere Änderungen kostenpflichtig.</li>
+            <li>Leistung nach Angebot/Pflichtenheft.</li>
+        </ul>
+
+        <h2>7. Nutzungsrechte</h2>
+        <ul>
+            <li>einfache Nutzung</li>
+            <li>zeitlich unbegrenzt</li>
+            <li>nicht kommerziell</li>
+            <li>Weitergabe verboten</li>
+            <li>Eigentum an Code/Layout bleibt bei BraunTech Solutions</li>
+        </ul>
+
+        <h2>8. Support & Wartung</h2>
+        <ul>
+            <li>Support 1 Woche kostenlos</li>
+            <li>danach kostenpflichtig</li>
+            <li>Wartungsverträge sind möglich</li>
+        </ul>
+
+        <h2>9. Hosting</h2>
+        <p>
+            Hosting erfolgt ausschließlich über GitHub oder Google Drive.
+            Wartung und Sicherheit verantwortet <strong>Marius Braun</strong>.
+        </p>
+
+        <h2>10. Haftung</h2>
+        <p>
+            Haftung besteht nur bei Vorsatz oder grober Fahrlässigkeit,
+            außer bei Schäden an Leben, Körper oder Gesundheit.
+        </p>
+
+        <h2>11. Recycling von Schrott</h2>
+        <p>
+            Kunden versichern, dass Materialien keine gefährlichen Stoffe enthalten.
+            BraunTech Solutions übernimmt keine Haftung für Wertangaben.
+        </p>
+
+        <h2>12. Vertragslaufzeit</h2>
+        <ul>
+            <li>Mindestlaufzeit: 1 Monat</li>
+            <li>Kündigungsfrist: 1 Tag</li>
+        </ul>
+
+        <h2>13. Datenschutz</h2>
+        <p>
+            Es gilt unsere <a href="datenschutz.html">Datenschutzerklärung</a>.
+        </p>
+
+        <h2>14. Schlichtung</h2>
+        <p>
+            Streitigkeiten werden möglichst einvernehmlich gelöst.
+        </p>
+
+        <h2>15. Schlussbestimmungen</h2>
+        <p>
+            Gerichtsstand ist <strong>Hohenstein</strong>.
+        </p>
+
+    </div>
+</main>
+
+<!-- FOOTER automatisch laden -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
+
+</body>
+</html>
