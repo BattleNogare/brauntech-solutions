@@ -2,19 +2,20 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>BraunTech Solutions – Standort & Anfahrt</title>
+    <title>BraunTech Solutions – Standort &amp; Anfahrt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
     <!-- Hintergrund / Effekte -->
     <link rel="stylesheet" href="custom.d/background.css">
-
-    <!-- Hintergrund-JS (Punkte, Orbits, Includes für Navbar/Footer, etc.) -->
     <script src="custom.d/background.js" defer></script>
 
-    <!-- Seiten-spezifisches Styling für moderne Box-Optik -->
     <style>
+        /* ===========================
+           Standortseite – Zusatzstyles
+        ============================ */
+
         .bt-page-standort {
             padding-top: 2.5rem;
             padding-bottom: 3.5rem;
@@ -304,10 +305,9 @@
 <!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<!-- NAVBAR wird automatisch geladen (ausgelagert) -->
+<!-- NAVBAR wird automatisch geladen -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
-<!-- HAUPTBEREICH -->
 <main class="bt-main">
     <div class="bt-container bt-page-standort">
 
@@ -456,14 +456,43 @@
                 </div>
             </div>
         </section>
+
     </div>
 </main>
 
-<!-- FOOTER wird automatisch geladen (ausgelagert) -->
+<!-- FOOTER wird automatisch geladen -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
-<!-- Slideshow-Script (einfache, eigenständige Logik) -->
 <script>
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
+
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
+
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    })();
+
+    // Slideshow-Script
     document.addEventListener('DOMContentLoaded', function () {
         const slideshows = document.querySelectorAll('.bt-slideshow');
 
@@ -508,7 +537,6 @@
                 }
             }
 
-            // Buttons
             if (prevBtn) {
                 prevBtn.addEventListener('click', function () {
                     stopAutoPlay();
@@ -525,7 +553,6 @@
                 });
             }
 
-            // Dots
             dots.forEach((dot, index) => {
                 dot.addEventListener('click', function () {
                     stopAutoPlay();
@@ -534,7 +561,6 @@
                 });
             });
 
-            // Initial
             setActive(0);
             startAutoPlay();
         });
