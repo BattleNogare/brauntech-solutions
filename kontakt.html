@@ -65,6 +65,40 @@
             opacity: 0.9;
         }
 
+        /* Bild mit Rahmen unter Kontaktinfos */
+        .bt-contact-image-wrapper {
+            margin-top: 1.4rem;
+            border-radius: var(--bt-radius);
+            border: 1px solid rgba(57, 255, 20, 0.35);
+            box-shadow:
+                0 0 18px rgba(57, 255, 20, 0.4),
+                0 0 35px rgba(0, 0, 0, 0.9);
+            overflow: hidden;
+            background: radial-gradient(circle at top, #07150c, #020604);
+        }
+
+        .bt-contact-image-wrapper img {
+            display: block;
+            width: 100%;
+            height: auto;
+            opacity: 0.95;
+            transition: transform 0.4s ease, opacity 0.2s ease;
+        }
+
+        .bt-contact-image-wrapper:hover img {
+            transform: scale(1.03);
+            opacity: 1;
+        }
+
+        .bt-contact-image-caption {
+            padding: 0.5rem 0.75rem;
+            font-size: 0.8rem;
+            color: var(--bt-text-muted);
+            font-family: var(--bt-font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+        }
+
         /* Formular */
         .bt-form-card h2 {
             font-size: 1.2rem;
@@ -236,6 +270,15 @@
                         </span>
                     </li>
                 </ul>
+
+                <!-- Bild mit Rahmen -->
+                <div class="bt-contact-image-wrapper">
+                    <!-- Pfad & Alt-Text anpassen -->
+                    <img src="bilder/kontakt-standort.jpg" alt="Standort von BraunTech Solutions">
+                    <div class="bt-contact-image-caption">
+                        Visualisierung unseres Standorts / Einsatzgebietes
+                    </div>
+                </div>
             </section>
 
             <!-- Kontaktformular -->
@@ -381,35 +424,42 @@
             submitBtn.textContent = "Wird gesendet …";
             setStatus("Nachricht wird an BraunTech Solutions übermittelt …", null);
 
+            // --- Vereinfachtes Payload, um 400-Fehler zu vermeiden ---
+            const contentLines = [
+                "**Neue Kontaktanfrage von der Website**",
+                "",
+                "**Name:** " + (name || "–"),
+                "**Betreff:** " + (betreff || "–"),
+                "",
+                "**Nachricht:**",
+                nachricht || "–",
+                "",
+                "Datenschutz: Akzeptiert ✅"
+            ];
+
             const payload = {
-                embeds: [
-                    {
-                        title: "Neue Kontaktanfrage über die Website",
-                        color: 0x39ff14,
-                        fields: [
-                            { name: "Name", value: name || "–", inline: false },
-                            { name: "Betreff", value: betreff || "–", inline: false },
-                            { name: "Nachricht", value: nachricht || "–", inline: false },
-                            { name: "Datenschutz", value: "Akzeptiert ✅", inline: true }
-                        ],
-                        timestamp: new Date().toISOString()
-                    }
-                ]
+                content: contentLines.join("\n")
             };
 
             fetch(WEBHOOK_URL, {
                 method: "POST",
-                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json"
                 },
                 body: JSON.stringify(payload)
-            }).then(function () {
+            })
+            .then(function (response) {
+                if (!response.ok) {
+                    throw new Error("HTTP " + response.status);
+                }
                 setStatus("Vielen Dank! Ihre Nachricht wurde übermittelt.", "success");
                 form.reset();
-            }).catch(function () {
+            })
+            .catch(function (err) {
+                console.error(err);
                 setStatus("Es ist ein Fehler beim Senden aufgetreten. Bitte versuchen Sie es später erneut.", "error");
-            }).finally(function () {
+            })
+            .finally(function () {
                 submitBtn.disabled = false;
                 submitBtn.textContent = "Senden";
             });
