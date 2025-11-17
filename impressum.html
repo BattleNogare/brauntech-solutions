@@ -2,27 +2,33 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Impressum – BraunTech Solutions</title>
+    <title>BraunTech Solutions – Impressum</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
     <!-- Hintergrund / Effekte -->
     <link rel="stylesheet" href="custom.d/background.css">
-
-    <!-- Hintergrund-JS (Punkte, Orbits, Parallax) -->
     <script src="custom.d/background.js" defer></script>
 
-    <!-- Impressum-spezifisches Tuning im BraunTech-Stil -->
     <style>
+        /* ===========================
+           Impressum – Zusatzstyles
+        ============================ */
+
         .bt-main {
             padding-top: 120px;
             padding-bottom: 80px;
         }
 
+        .bt-impressum-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
         .bt-impressum-header {
             max-width: 720px;
-            margin-bottom: 2rem;
         }
 
         .bt-impressum-header h1 {
@@ -35,6 +41,26 @@
         .bt-impressum-subtitle {
             color: var(--bt-text-muted);
             font-size: 0.95rem;
+        }
+
+        .bt-impressum-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--green-light);
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
+        }
+
+        .bt-impressum-tagline-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--green-neon);
+            box-shadow: 0 0 10px var(--green-neon);
         }
 
         .bt-impressum-grid {
@@ -88,25 +114,6 @@
             line-height: 1.6;
         }
 
-        .bt-impressum-tagline {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--green-light);
-            opacity: 0.85;
-        }
-
-        .bt-impressum-tagline-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: var(--green-neon);
-            box-shadow: 0 0 10px var(--green-neon);
-        }
-
         .bt-impressum-muted {
             color: var(--bt-text-muted);
             font-size: 0.9rem;
@@ -145,8 +152,8 @@
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="bt-container">
-        <div class="bt-impressum-header">
+    <div class="bt-container bt-impressum-layout">
+        <section class="bt-impressum-header">
             <div class="bt-impressum-tagline">
                 <span class="bt-impressum-tagline-dot"></span>
                 LEGAL CORE NODE
@@ -155,11 +162,11 @@
             <p class="bt-impressum-subtitle">
                 Rechtliche Informationen nach § 5 TMG für den Betrieb von BraunTech Solutions.
             </p>
-        </div>
+        </section>
 
-        <div class="bt-impressum-grid">
-            <!-- Linke Spalte: Stammdaten / Kontakt -->
-            <section class="bt-impressum-card">
+        <section class="bt-impressum-grid">
+            <!-- Linke Box: Stammdaten / Kontakt -->
+            <div class="bt-impressum-card">
                 <h2>Stammdaten</h2>
                 <p class="bt-impressum-highlight">
                     BraunTech Solutions<br>
@@ -207,10 +214,10 @@
                     Zuständige Behörde: Gewerbeamt / Ordnungsamt Samtens (Kreis Vorpommern-Rügen)<br>
                     Interne Referenz / Aktenzeichen: <span class="bt-impressum-highlight">[082090]</span>
                 </p>
-            </section>
+            </div>
 
-            <!-- Rechte Spalte: Rechtstexte -->
-            <section class="bt-impressum-card bt-impressum-legal">
+            <!-- Rechte Box: Rechtstexte -->
+            <div class="bt-impressum-card bt-impressum-legal">
                 <h2>Haftung für Inhalte</h2>
                 <p>
                     Als Diensteanbieter sind wir gemäß § 7 Abs. 1 TMG für eigene Inhalte auf diesen
@@ -248,40 +255,40 @@
                 <p class="bt-impressum-muted">
                     Unsere E-Mail-Adresse findest du oben in den Kontaktangaben.
                 </p>
-            </section>
-        </div>
+            </div>
+        </section>
     </div>
 </main>
 
 <!-- FOOTER wird automatisch geladen -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
-<!-- ============================================
-     INCLUDE-SYSTEM FÜR NAVBAR + FOOTER
-=============================================== -->
 <script>
-document.querySelectorAll("[data-include]").forEach(async (el) => {
-    const file = el.getAttribute("data-include");
-    if (!file) return;
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
-    try {
-        const response = await fetch(file);
-        if (!response.ok) {
-            console.error("Include failed:", file, response.status);
-            return;
-        }
-        const html = await response.text();
-        el.innerHTML = html;
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
 
-        // Jahr aktualisieren (falls Footer mit #bt-year geladen wurde)
-        const yearSpan = el.querySelector("#bt-year");
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
-        }
-    } catch (e) {
-        console.error("Include error:", file, e);
-    }
-});
+                    // bt-year im geladenen Snippet aktualisieren (z.B. im Footer)
+                    const yearEl = el.querySelector('#bt-year');
+                    if (yearEl) {
+                        yearEl.textContent = new Date().getFullYear();
+                    }
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
 </script>
 
 </body>

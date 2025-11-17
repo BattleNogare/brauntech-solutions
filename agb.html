@@ -9,12 +9,13 @@
     <link rel="stylesheet" href="brauntech.css">
     <!-- Hintergrund / Effekte -->
     <link rel="stylesheet" href="custom.d/background.css">
-
-    <!-- Hintergrund-JS (Punkte, Orbits, Includes für Navbar/Footer, etc.) -->
     <script src="custom.d/background.js" defer></script>
 
-    <!-- Seiten-spezifisches Styling im Stil von standort.html -->
     <style>
+        /* ===========================
+           AGB – Zusatzstyles (Box-Design)
+        ============================ */
+
         .bt-page-legal {
             padding-top: 2.5rem;
             padding-bottom: 3.5rem;
@@ -37,6 +38,17 @@
             gap: 0.75rem;
             align-items: center;
         }
+
+        .bt-page-legal-meta small {
+            color: var(--bt-text-muted, #89a589);
+        }
+
+        .bt-legal-intro {
+            max-width: 720px;
+            color: var(--bt-text-muted, #89a589);
+        }
+
+        /* Pill / Badge wie bei modernen Seiten */
 
         .bt-pill {
             display: inline-flex;
@@ -63,24 +75,15 @@
             box-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
         }
 
-        .bt-page-legal-meta small {
-            color: var(--bt-text-muted, #89a589);
-        }
-
-        .bt-legal-intro {
-            color: var(--bt-text-muted, #89a589);
-            max-width: 680px;
-        }
-
-        /* Karten / Boxen wie bei Standort */
+        /* Karten / moderner Box-Stil */
 
         .bt-card {
             position: relative;
             background: radial-gradient(circle at top left,
-                rgba(57, 255, 20, 0.14),
-                transparent 55%
-            ),
-            var(--bt-bg-alt, #0b130e);
+                    rgba(57, 255, 20, 0.14),
+                    transparent 55%
+                ),
+                var(--bt-bg-alt, #0b130e);
             border-radius: 14px;
             border: 1px solid var(--bt-border, #1a2e1f);
             padding: 1.6rem 1.8rem;
@@ -88,15 +91,6 @@
                 0 26px 60px rgba(0, 0, 0, 0.75),
                 0 0 0 1px rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(14px);
-        }
-
-        .bt-card h2,
-        .bt-card h3 {
-            margin-top: 0;
-        }
-
-        .bt-card + .bt-card {
-            margin-top: 1.2rem;
         }
 
         .bt-card-accent::before {
@@ -113,7 +107,16 @@
             overflow: hidden;
         }
 
-        /* Legal Content Layout */
+        .bt-card h2,
+        .bt-card h3 {
+            margin-top: 0;
+        }
+
+        .bt-card + .bt-card {
+            margin-top: 1.2rem;
+        }
+
+        /* Layout: Haupttext + Seitenleiste */
 
         .bt-legal-grid {
             display: grid;
@@ -127,11 +130,34 @@
             }
         }
 
+        .bt-legal-section + .bt-legal-section {
+            margin-top: 1.4rem;
+            padding-top: 1.1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .bt-legal-section h2 {
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        .bt-legal-section p {
+            margin-top: 0.25rem;
+            margin-bottom: 0.45rem;
+        }
+
+        .bt-legal-list {
+            padding-left: 1.2rem;
+            margin: 0.2rem 0 0.6rem;
+        }
+
+        /* Seitenleiste */
+
         .bt-legal-aside {
-            font-size: 0.9rem;
-            color: var(--bt-text-muted, #89a589);
             display: grid;
             gap: 1rem;
+            font-size: 0.9rem;
+            color: var(--bt-text-muted, #89a589);
         }
 
         .bt-legal-aside p {
@@ -143,27 +169,6 @@
             display: block;
             font-size: 0.8rem;
             opacity: 0.9;
-        }
-
-        .bt-legal-list {
-            padding-left: 1.2rem;
-            margin: 0.2rem 0 0.6rem;
-        }
-
-        .bt-legal-section + .bt-legal-section {
-            margin-top: 1.4rem;
-            padding-top: 1.2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.04);
-        }
-
-        .bt-legal-section h2 {
-            font-size: 1.1rem;
-            margin-bottom: 0.4rem;
-        }
-
-        .bt-legal-section p {
-            margin-top: 0.25rem;
-            margin-bottom: 0.45rem;
         }
     </style>
 </head>
@@ -178,12 +183,11 @@
 <!-- NAVBAR wird automatisch geladen -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
-<!-- HAUPTBEREICH -->
 <main class="bt-main">
     <div class="bt-container bt-page-legal">
 
-        <!-- Kopfbereich im Standort-Stil -->
-        <div class="bt-page-legal-header">
+        <!-- Kopfbereich mit Pill-Badge -->
+        <header class="bt-page-legal-header">
             <div class="bt-page-legal-meta">
                 <span class="bt-pill">
                     <span class="bt-pill-dot"></span>
@@ -193,18 +197,19 @@
             </div>
             <h1>Allgemeine Geschäftsbedingungen (AGB)</h1>
             <p class="bt-legal-intro">
-                Hier findest du die Vertragsbedingungen für Leistungen von BraunTech Solutions –
-                von Webentwicklung und Softwareentwicklung über Hosting bis hin zum Recycling von Schrott.
+                Die folgenden Bestimmungen regeln die Zusammenarbeit mit BraunTech Solutions –
+                von Web- und Softwareprojekten über Hosting bis hin zum Recycling von Schrott.
             </p>
-        </div>
+        </header>
 
-        <!-- Inhaltliche Boxen im Card-Design -->
+        <!-- Inhalt im modernen Box-Layout -->
         <section class="bt-section">
             <div class="bt-legal-grid">
 
-                <!-- Haupt-AGB-Text -->
+                <!-- Haupttext (große Karte) -->
                 <article class="bt-card bt-card-accent">
-                    <header class="bt-legal-section">
+
+                    <section class="bt-legal-section">
                         <h2>1. Geltungsbereich</h2>
                         <p>
                             Diese Allgemeinen Geschäftsbedingungen (AGB) gelten für alle Verträge zwischen
@@ -215,13 +220,11 @@
                             Abweichende oder entgegenstehende Geschäftsbedingungen des Kunden werden nur dann Vertragsbestandteil,
                             wenn BraunTech Solutions ihrer Geltung ausdrücklich schriftlich zustimmt.
                         </p>
-                    </header>
+                    </section>
 
                     <section class="bt-legal-section">
                         <h2>2. Vertragspartner</h2>
-                        <p>
-                            Vertragspartner ist:
-                        </p>
+                        <p>Vertragspartner ist:</p>
                         <p>
                             <strong>BraunTech Solutions</strong><br>
                             Einzelunternehmen<br>
@@ -237,7 +240,7 @@
                         <ul class="bt-legal-list">
                             <li>Webentwicklung und App-/Webdesign</li>
                             <li>Softwareentwicklung</li>
-                            <li>Hosting-Lösungen (u. a. über GitHub und Google Drive)</li>
+                            <li>Hosting-Lösungen (z. B. über GitHub und Google Drive)</li>
                             <li>IT-Beratung und Schulungen</li>
                             <li>Recycling von Schrott</li>
                         </ul>
@@ -477,31 +480,34 @@
                             unwirksamen Bestimmung am nächsten kommt.
                         </p>
                     </section>
+
                 </article>
 
-                <!-- Seitenleiste mit Kurzinfos / Meta -->
+                <!-- Seitenleiste (kleinere Boxen) -->
                 <aside class="bt-legal-aside">
                     <div class="bt-card">
-                        <h3>Kurzfassung</h3>
+                        <h3>In Kurzform</h3>
                         <p>
-                            • Du zahlst in der Regel bar innerhalb von 14 Tagen.<br>
-                            • Du darfst die erstellten Werke einfach, unbefristet, aber nicht kommerziell nutzen.<br>
-                            • Code und Layout bleiben im Eigentum von BraunTech Solutions.<br>
-                            • 1 Woche Support nach Projektabschluss ist inklusive, danach kostenpflichtig.
+                            • Zahlung in der Regel bar innerhalb von 14 Tagen.<br>
+                            • Einfache, unbefristete, nicht kommerzielle Nutzung der Ergebnisse.<br>
+                            • Code & Layout bleiben Eigentum von BraunTech Solutions.<br>
+                            • 1 Woche Support nach Projektabschluss inklusive, danach kostenpflichtig.<br>
+                            • Mindestlaufzeit bei laufenden Services: 1 Monat.
                         </p>
                         <small>
-                            Diese Zusammenfassung dient nur zur Orientierung. Verbindlich ist ausschließlich der vollständige AGB-Text.
+                            Diese Kurzfassung dient nur zur Orientierung. Verbindlich ist ausschließlich der vollständige Text der AGB.
                         </small>
                     </div>
 
                     <div class="bt-card">
                         <h3>Fragen zu den AGB?</h3>
                         <p>
-                            Wenn dir etwas unklar ist oder du eine individuelle Vereinbarung brauchst,
-                            melde dich gerne über die <a href="kontakt.html">Kontaktseite</a>.
+                            Wenn etwas unklar ist oder du eine individuelle Vereinbarung benötigst,
+                            erreichst du uns über die <a href="kontakt.html">Kontaktseite</a>.
                         </p>
                     </div>
                 </aside>
+
             </div>
         </section>
     </div>
@@ -509,6 +515,34 @@
 
 <!-- FOOTER wird automatisch geladen -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
+
+<script>
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
+
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+
+                    // Falls dein footer.html ein <span id="bt-year"> enthält:
+                    const yearEl = document.getElementById('bt-year');
+                    if (yearEl) {
+                        yearEl.textContent = new Date().getFullYear();
+                    }
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
+</script>
 
 </body>
 </html>
