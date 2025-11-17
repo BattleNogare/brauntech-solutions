@@ -8,8 +8,8 @@
     <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
     <!-- Hintergrund / Effekte -->
-    <link rel="stylesheet" href="background.css">
-    <script src="background.js" defer></script>
+    <link rel="stylesheet" href="custom.d/background.css">
+    <script src="custom.d/background.js" defer></script>
 
     <style>
         /* ===========================
@@ -208,39 +208,8 @@
 <!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<header class="bt-header">
-    <div class="bt-container bt-header-inner">
-        <a href="index.html" class="bt-logo">
-            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
-        </a>
-
-        <nav class="bt-nav" aria-label="Hauptnavigation">
-            <ul class="bt-nav-list">
-                <li class="bt-nav-item">
-                    <a href="index.html" class="bt-nav-link">Startseite</a>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="product.html" class="bt-nav-link">Produkte / Dienstleistungen</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="recycling.html" class="bt-dropdown-link">Recycling</a></li>
-                        <li><a href="app-webdesign.html" class="bt-dropdown-link">App / Webdesign</a></li>
-                        <li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
-                        <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
-                    </ul>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="about.html" class="bt-nav-link active">Über uns</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="standort.html" class="bt-dropdown-link">Standort</a></li>
-                        <li><a href="kontakt.html" class="bt-dropdown-link bt-nav-link active">Kontakt</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<!-- NAVBAR wird automatisch geladen -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
     <div class="bt-container">
@@ -342,16 +311,18 @@
     </div>
 </main>
 
-<footer class="bt-footer">
-    <div class="bt-container bt-footer-inner">
-        <small>© <span id="bt-year"></span> BraunTech Solutions – All systems operational.</small>
-        <a href="impressum.html" class="bt-footer-link">Impressum</a>
-    </div>
-</footer>
+<!-- FOOTER wird automatisch geladen -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <script>
-    // Aktuelles Jahr im Footer setzen
-    document.getElementById('bt-year').textContent = new Date().getFullYear();
+    // Falls dein Footer weiterhin ein <span id="bt-year"> enthält,
+    // setzt dieser Code wie gewohnt das aktuelle Jahr.
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    })();
 
     // Kontaktformular → Discord Webhook
     (function () {
@@ -409,7 +380,7 @@
 
             fetch(WEBHOOK_URL, {
                 method: "POST",
-                mode: "no-cors", // Request wird gesendet, Antwort ist "opaque" (CORS-Schutz)
+                mode: "no-cors",
                 headers: {
                     "Content-Type": "application/json"
                 },
