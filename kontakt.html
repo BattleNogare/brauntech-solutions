@@ -5,150 +5,426 @@
     <title>BraunTech Solutions – Kontakt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- Hauptlayout + Hintergrund bereits ausgelagert -->
+    <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
-    <link rel="stylesheet" href="custom.d/background.css">
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="background.css">
+    <script src="background.js" defer></script>
 
-    <!-- Hintergrund-JS (Punkte, Orbits, Parallax) -->
-    <script src="custom.d/background.js" defer></script>
+    <style>
+        /* ===========================
+           Kontaktseite – Zusatzstyles
+        ============================ */
+        .bt-contact-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
+            gap: 2rem;
+            align-items: flex-start;
+        }
+
+        .bt-contact-panel,
+        .bt-form-card {
+            background: rgba(3, 17, 9, 0.92);
+            border: 1px solid var(--bt-border);
+            border-radius: var(--bt-radius);
+            padding: 1.6rem 1.8rem;
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.9),
+                0 0 18px rgba(57, 255, 20, 0.08);
+            backdrop-filter: blur(10px);
+        }
+
+        .bt-contact-panel h1,
+        .bt-form-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.75rem;
+        }
+
+        .bt-contact-panel p {
+            margin-top: 0.25rem;
+            color: var(--bt-text-muted);
+        }
+
+        .bt-contact-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 0;
+        }
+
+        .bt-contact-list li {
+            margin-bottom: 0.45rem;
+            display: flex;
+            gap: 0.5rem;
+            align-items: baseline;
+            color: var(--bt-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .bt-contact-list span.bt-contact-icon {
+            font-size: 1.05rem;
+            opacity: 0.9;
+        }
+
+        /* Formular */
+        .bt-form-card h2 {
+            font-size: 1.2rem;
+        }
+
+        .bt-form {
+            margin-top: 1.1rem;
+        }
+
+        .bt-form-row {
+            margin-bottom: 1rem;
+        }
+
+        .bt-form-row label {
+            display: block;
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            font-family: var(--bt-font-mono);
+            color: var(--bt-text-muted);
+            margin-bottom: 0.3rem;
+        }
+
+        .bt-form-row label span.bt-required {
+            color: var(--green-light);
+            margin-left: 0.15rem;
+        }
+
+        .bt-input,
+        .bt-textarea {
+            width: 100%;
+            padding: 0.6rem 0.7rem;
+            border-radius: 4px;
+            border: 1px solid #163822;
+            background: #050b08;
+            color: var(--bt-text);
+            font: 0.95rem var(--bt-font-main);
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .bt-input:focus,
+        .bt-textarea:focus {
+            border-color: var(--green-light);
+            box-shadow:
+                0 0 0 1px rgba(57, 255, 20, 0.35),
+                0 0 18px rgba(57, 255, 20, 0.22);
+            background: #06130b;
+        }
+
+        .bt-textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .bt-checkbox-row {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .bt-checkbox-row input[type="checkbox"] {
+            margin-top: 0.08rem;
+        }
+
+        .bt-checkbox-label {
+            font-size: 0.85rem;
+            color: var(--bt-text-muted);
+        }
+
+        .bt-checkbox-label a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .bt-form-actions {
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .bt-btn-primary {
+            border: none;
+            border-radius: 999px;
+            padding: 0.55rem 1.4rem;
+            font-family: var(--bt-font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: radial-gradient(circle at top left, var(--green-light), var(--green-mid));
+            color: #021005;
+            box-shadow:
+                0 0 15px rgba(57, 255, 20, 0.5),
+                0 0 40px rgba(0, 0, 0, 0.9);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+
+        .bt-btn-primary:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 22px rgba(57, 255, 20, 0.7),
+                0 0 50px rgba(0, 0, 0, 1);
+            filter: brightness(1.05);
+        }
+
+        .bt-btn-primary:disabled {
+            cursor: wait;
+            opacity: 0.7;
+        }
+
+        .bt-form-status {
+            font-size: 0.8rem;
+            color: var(--bt-text-muted);
+            min-height: 1.1em;
+        }
+
+        .bt-form-status--success {
+            color: var(--green-light);
+        }
+
+        .bt-form-status--error {
+            color: #ff8f8f;
+        }
+
+        @media (max-width: 850px) {
+            .bt-contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+    </style>
 </head>
 <body>
 
-<!-- Glow-Kreise (per JS) -->
+<!-- Rotierende Glow-Kreise (werden per JS gefüllt) -->
 <div id="bt-glow-orbits"></div>
 
-<!-- Random-Punkte-Layer (per JS) -->
+<!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<header class="bt-header" data-include="custom.d/navbar.html"></header>
+<header class="bt-header">
+    <div class="bt-container bt-header-inner">
+        <a href="index.html" class="bt-logo">
+            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
+        </a>
+
+        <nav class="bt-nav" aria-label="Hauptnavigation">
+            <ul class="bt-nav-list">
+                <li class="bt-nav-item">
+                    <a href="index.html" class="bt-nav-link">Startseite</a>
+                </li>
+
+                <li class="bt-nav-item bt-has-dropdown">
+                    <a href="product.html" class="bt-nav-link">Produkte / Dienstleistungen</a>
+                    <ul class="bt-dropdown">
+                        <li><a href="recycling.html" class="bt-dropdown-link">Recycling</a></li>
+                        <li><a href="app-webdesign.html" class="bt-dropdown-link">App / Webdesign</a></li>
+                        <li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
+                        <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
+                    </ul>
+                </li>
+
+                <li class="bt-nav-item bt-has-dropdown">
+                    <a href="about.html" class="bt-nav-link active">Über uns</a>
+                    <ul class="bt-dropdown">
+                        <li><a href="standort.html" class="bt-dropdown-link">Standort</a></li>
+                        <li><a href="kontakt.html" class="bt-dropdown-link bt-nav-link active">Kontakt</a></li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
 
 <main class="bt-main">
     <div class="bt-container">
+        <div class="bt-contact-grid">
+            <!-- Kontakt-Infos -->
+            <section class="bt-contact-panel">
+                <h1>So erreichen Sie uns</h1>
+                <p>Schreiben Sie uns eine Nachricht oder greifen Sie direkt zum Hörer.</p>
 
-        <h1>Kontakt</h1>
+                <ul class="bt-contact-list">
+                    <li>
+                        <span class="bt-contact-icon">🏢</span>
+                        <span>
+                            <strong>BraunTech Solutions</strong><br>
+                            Knuffingen, Hohenstein<br>
+                            Deutschland
+                        </span>
+                    </li>
+                    <li>
+                        <span class="bt-contact-icon">📞</span>
+                        <span>
+                            <!-- TODO: echte Telefonnummer eintragen -->
+                            Telefon: <a href="tel:+491234567890">+49&nbsp;1234&nbsp;567890</a>
+                        </span>
+                    </li>
+                </ul>
+            </section>
 
-        <!-- ===============================
-             SO ERREICHEN SIE UNS
-        =============================== -->
-        <section class="bt-section">
-            <h2>So erreichen Sie uns</h2>
+            <!-- Kontaktformular -->
+            <section class="bt-form-card" aria-labelledby="kontakt-heading">
+                <h2 id="kontakt-heading">Wie dürfen wir Ihnen helfen?</h2>
 
-            <p>
-                <strong>BraunTech Solutions</strong><br>
-                Musterstraße 12<br>
-                72531 Hohenstein-Knuffingen<br>
-                Deutschland
-            </p>
+                <form id="kontakt-form" class="bt-form" novalidate>
+                    <div class="bt-form-row">
+                        <label for="kontakt-name">
+                            Name<span class="bt-required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="kontakt-name"
+                            name="name"
+                            class="bt-input"
+                            required
+                            autocomplete="name"
+                            placeholder="Ihr Name">
+                    </div>
 
-            <p>
-                Telefon: <a href="tel:+49123456789">+49 (0) 123 456789</a><br>
-                E-Mail: <a href="mailto:info@brauntech-solutions.de">info@brauntech-solutions.de</a>
-            </p>
-        </section>
+                    <div class="bt-form-row">
+                        <label for="kontakt-betreff">
+                            Betreff<span class="bt-required">*</span>
+                        </label>
+                        <input
+                            type="text"
+                            id="kontakt-betreff"
+                            name="betreff"
+                            class="bt-input"
+                            required
+                            placeholder="Worum geht es?">
+                    </div>
 
-        <!-- ===============================
-             KONTAKTFORMULAR
-        =============================== -->
-        <section class="bt-section">
-            <h2>Wie dürfen wir Ihnen helfen?</h2>
+                    <div class="bt-form-row">
+                        <label for="kontakt-nachricht">
+                            Nachricht<span class="bt-required">*</span>
+                        </label>
+                        <textarea
+                            id="kontakt-nachricht"
+                            name="nachricht"
+                            class="bt-textarea"
+                            required
+                            placeholder="Beschreiben Sie kurz Ihr Anliegen – je genauer, desto besser."></textarea>
+                    </div>
 
-            <form id="bt-contact-form" class="bt-card bt-form">
+                    <div class="bt-form-row">
+                        <div class="bt-checkbox-row">
+                            <input
+                                type="checkbox"
+                                id="kontakt-datenschutz"
+                                name="datenschutz"
+                                required>
+                            <label for="kontakt-datenschutz" class="bt-checkbox-label">
+                                Ich habe die
+                                <a href="datenschutz.html" target="_blank" rel="noopener">
+                                    Datenschutzbestimmungen
+                                </a>
+                                gelesen und akzeptiere diese.<span class="bt-required">*</span>
+                            </label>
+                        </div>
+                    </div>
 
-                <div class="bt-form-group">
-                    <label for="contact-name">Name *</label>
-                    <input type="text" id="contact-name" required placeholder="Ihr Name">
-                </div>
-
-                <div class="bt-form-group">
-                    <label for="contact-subject">Betreff *</label>
-                    <input type="text" id="contact-subject" required placeholder="Worum geht es?">
-                </div>
-
-                <div class="bt-form-group">
-                    <label for="contact-message">Nachricht *</label>
-                    <textarea id="contact-message" rows="6" required placeholder="Ihre Nachricht"></textarea>
-                </div>
-
-                <div class="bt-form-group bt-form-group-checkbox">
-                    <label>
-                        <input type="checkbox" id="contact-privacy" required>
-                        Ich habe die <a href="datenschutz.html" target="_blank">Datenschutzbestimmungen</a> gelesen und akzeptiere diese. *
-                    </label>
-                </div>
-
-                <button type="submit" class="bt-button bt-button-primary">Senden</button>
-
-                <p id="bt-contact-status" class="bt-form-status"></p>
-            </form>
-
-            <p class="bt-text-muted bt-small">* Alle Felder sind Pflichtfelder.</p>
-        </section>
-
+                    <div class="bt-form-actions">
+                        <button type="submit" class="bt-btn-primary" id="kontakt-submit">
+                            Senden
+                        </button>
+                        <div id="form-status" class="bt-form-status" aria-live="polite"></div>
+                    </div>
+                </form>
+            </section>
+        </div>
     </div>
 </main>
 
-<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
+<footer class="bt-footer">
+    <div class="bt-container bt-footer-inner">
+        <small>© <span id="bt-year"></span> BraunTech Solutions – All systems operational.</small>
+        <a href="impressum.html" class="bt-footer-link">Impressum</a>
+    </div>
+</footer>
 
 <script>
-/* ===============================
-   DISCORD WEBHOOK
-=============================== */
-const form = document.getElementById("bt-contact-form");
-const statusEl = document.getElementById("bt-contact-status");
+    // Aktuelles Jahr im Footer setzen
+    document.getElementById('bt-year').textContent = new Date().getFullYear();
 
-form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+    // Kontaktformular → Discord Webhook
+    (function () {
+        const form = document.getElementById('kontakt-form');
+        const submitBtn = document.getElementById('kontakt-submit');
+        const statusEl = document.getElementById('form-status');
 
-    const name = document.getElementById("contact-name").value.trim();
-    const subject = document.getElementById("contact-subject").value.trim();
-    const message = document.getElementById("contact-message").value.trim();
-    const privacy = document.getElementById("contact-privacy").checked;
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1409574315598544906/zyhruAAcS2YgKTAWFb4TzR3XnDgzVma3f44Hygdn5tFY7RsXHOMgtTiMzQSZMzb3fX_a";
 
-    if (!name || !subject || !message || !privacy) {
-        statusEl.textContent = "Bitte füllen Sie alle Felder aus.";
-        statusEl.classList.add("bt-status-error");
-        return;
-    }
+        if (!form) return;
 
-    statusEl.textContent = "Sende Nachricht …";
-    statusEl.classList.remove("bt-status-error");
-
-    const payload = {
-        username: "BraunTech Kontaktformular",
-        embeds: [
-            {
-                title: "Neue Kontaktanfrage",
-                color: 0x39ff14,
-                fields: [
-                    { name: "Name", value: name },
-                    { name: "Betreff", value: subject },
-                    { name: "Nachricht", value: message },
-                    { name: "Datenschutz akzeptiert", value: privacy ? "Ja" : "Nein" },
-                    { name: "Zeitpunkt", value: new Date().toLocaleString("de-DE") }
-                ]
+        function setStatus(message, type) {
+            statusEl.textContent = message || "";
+            statusEl.classList.remove('bt-form-status--success', 'bt-form-status--error');
+            if (type) {
+                statusEl.classList.add(
+                    type === 'success' ? 'bt-form-status--success' : 'bt-form-status--error'
+                );
             }
-        ]
-    };
-
-    try {
-        const res = await fetch("https://discord.com/api/webhooks/1409574315598544906/zyhruAAcS2YgKTAWFb4TzR3XnDgzVma3f44Hygdn5tFY7RsXHOMgtTiMzQSZMzb3fX_a", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(payload)
-        });
-
-        if (res.ok) {
-            statusEl.textContent = "Vielen Dank! Ihre Nachricht wurde erfolgreich gesendet.";
-            form.reset();
-        } else {
-            statusEl.textContent = "Fehler beim Senden. Bitte später erneut versuchen.";
-            statusEl.classList.add("bt-status-error");
         }
-    } catch (err) {
-        statusEl.textContent = "Verbindungsfehler. Bitte später erneut versuchen.";
-        statusEl.classList.add("bt-status-error");
-    }
-});
+
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            setStatus("", null);
+
+            // HTML5-Validierung anstoßen
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById('kontakt-name').value.trim();
+            const betreff = document.getElementById('kontakt-betreff').value.trim();
+            const nachricht = document.getElementById('kontakt-nachricht').value.trim();
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Wird gesendet …";
+            setStatus("Nachricht wird an BraunTech Solutions übermittelt …", null);
+
+            const payload = {
+                embeds: [
+                    {
+                        title: "Neue Kontaktanfrage über die Website",
+                        color: 0x39ff14,
+                        fields: [
+                            { name: "Name", value: name || "–", inline: false },
+                            { name: "Betreff", value: betreff || "–", inline: false },
+                            { name: "Nachricht", value: nachricht || "–", inline: false },
+                            { name: "Datenschutz", value: "Akzeptiert ✅", inline: true }
+                        ],
+                        timestamp: new Date().toISOString()
+                    }
+                ]
+            };
+
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                mode: "no-cors", // Request wird gesendet, Antwort ist "opaque" (CORS-Schutz)
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(payload)
+            }).then(function () {
+                setStatus("Vielen Dank! Ihre Nachricht wurde übermittelt.", "success");
+                form.reset();
+            }).catch(function () {
+                setStatus("Es ist ein Fehler beim Senden aufgetreten. Bitte versuchen Sie es später erneut.", "error");
+            }).finally(function () {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Senden";
+            });
+        });
+    })();
 </script>
 
 </body>
