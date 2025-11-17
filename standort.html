@@ -2,9 +2,16 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>BraunTech Solutions – Startseite</title>
+    <title>BraunTech Solutions – Standort & Anfahrt</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="custom.d/background.css">
+
+    <!-- Hintergrund-JS (Punkte, Orbits, Includes für Navbar/Footer, etc.) -->
+    <script src="custom.d/background.js" defer></script>
 </head>
 <body>
 
@@ -14,176 +21,265 @@
 <!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<header class="bt-header">
-    <div class="bt-container bt-header-inner">
-        <a href="index.html" class="bt-logo">
-            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
-        </a>
+<!-- NAVBAR wird automatisch geladen -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
 
-        <nav class="bt-nav" aria-label="Hauptnavigation">
-            <ul class="bt-nav-list">
-                <li class="bt-nav-item">
-                    <a href="index.html" class="bt-nav-link">Startseite</a>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="product.html" class="bt-nav-link">Produkte / Dienstleistungen</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="recycling.html" class="bt-dropdown-link">Recycling</a></li>
-                        <li><a href="app-webdesign.html" class="bt-dropdown-link">App / Webdesign</a></li>
-						<li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
-                        <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
-                    </ul>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="about.html" class="bt-nav-link active">Über uns</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="standort.html" class="bt-dropdown-link active">Standort</a></li>
-                        <li><a href="kontakt.html" class="bt-dropdown-link">Kontakt</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
+<!-- HAUPTBEREICH -->
 <main class="bt-main">
     <div class="bt-container">
-        <h1>Willkommen bei BraunTech Solutions</h1>
+        <h1>Standort &amp; Anfahrt</h1>
         <p>
-            Dies ist ein Platzhaltertext für den Inhalt der Seite.
-            Du kannst dieses Grundgerüst auf alle Unterseiten übertragen.
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            Hier finden Sie alle Informationen zu unserem Standort in Knuffingen (Hohenstein)
+            und wie Sie uns am besten erreichen.
         </p>
+
+        <!-- Standortbeschreibung -->
+        <section class="bt-section">
+            <h2>Unser Standort</h2>
+
+            <div class="standort-layout">
+                <div class="standort-text">
+                    <p>
+                        BraunTech Solutions hat seinen Sitz in
+                        <strong>Knuffingen, Hohenstein</strong>. Unser Büro befindet sich in
+                        einer ruhigen Seitenstraße mit guter Anbindung an die umliegenden Orte.
+                    </p>
+                    <p>
+                        Vor Ort verfügen wir über eine kleine Werkstatt für Projekte rund um
+                        <strong>Recycling von Schrott</strong> sowie einen Besprechungsbereich
+                        für Kundentermine und Beratungsgespräche.
+                    </p>
+                </div>
+
+                <div class="standort-box">
+                    <h3>Adresse</h3>
+                    <p>
+                        BraunTech Solutions<br>
+                        Musterstraße 12<br>
+                        72800 Knuffingen / Hohenstein
+                    </p>
+
+                    <h3>Vor Ort</h3>
+                    <ul>
+                        <li>Parkmöglichkeiten direkt an der Straße</li>
+                        <li>Gute Anbindung an die Bundesstraße</li>
+                        <li>Ruhige Lage, ideal für Besprechungen</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wegebeschreibung -->
+        <section class="bt-section">
+            <h2>Wegebeschreibung</h2>
+
+            <div class="weg-layout">
+                <div class="weg-block">
+                    <h3>Anfahrt mit dem Auto</h3>
+                    <p>
+                        Von Hohenstein oder der nächstgelegenen Bundesstraße folgen Sie der
+                        Beschilderung Richtung <strong>Knuffingen</strong>. In Knuffingen
+                        biegen Sie in die <em>Musterstraße</em> ein.
+                    </p>
+                    <p>
+                        Nach wenigen hundert Metern finden Sie unser Büro auf der rechten
+                        Straßenseite. In der Regel sind direkt vor dem Gebäude oder in den
+                        angrenzenden Seitenstraßen Parkplätze verfügbar.
+                    </p>
+                </div>
+
+                <div class="weg-block">
+                    <h3>Mit öffentlichen Verkehrsmitteln</h3>
+                    <p>
+                        Nutzen Sie die regionale Buslinie bis zur Haltestelle
+                        <strong>„Knuffingen Mitte“</strong>. Von dort aus sind es zu Fuß
+                        etwa 5–10 Minuten bis zu unseren Räumlichkeiten.
+                    </p>
+                    <p>
+                        Folgen Sie den Hinweisschildern Richtung <em>Musterstraße</em>.
+                        Unser Standort liegt leicht zurückversetzt von der Straße –
+                        bitte achten Sie auf das <strong>BraunTech Solutions</strong>-Logo
+                        am Eingang.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Diashow -->
+        <section class="bt-section">
+            <h2>Impressionen &amp; Umgebung</h2>
+            <p>
+                Ein paar Eindrücke von unserem Standort, der Werkstatt und der direkten Umgebung:
+            </p>
+
+            <div class="bt-slideshow" aria-label="Bilderslideshow zum Standort von BraunTech Solutions">
+                <div class="bt-slideshow-images">
+                    <!-- Bildpfade bei Bedarf anpassen -->
+                    <img src="bilder/standort-01.jpg" alt="Außenansicht des Standorts von BraunTech Solutions" class="is-active">
+                    <img src="bilder/standort-02.jpg" alt="Innenraum / Werkstatt von BraunTech Solutions">
+                    <img src="bilder/standort-03.jpg" alt="Besprechungsbereich von BraunTech Solutions">
+                    <img src="bilder/standort-04.jpg" alt="Umgebung rund um den Standort von BraunTech Solutions">
+                </div>
+
+                <button class="bt-slide-btn bt-slide-prev" type="button" aria-label="Vorheriges Bild">
+                    &#10094;
+                </button>
+                <button class="bt-slide-btn bt-slide-next" type="button" aria-label="Nächstes Bild">
+                    &#10095;
+                </button>
+
+                <div class="bt-slideshow-dots" aria-hidden="true">
+                    <button type="button" data-index="0" class="is-active"></button>
+                    <button type="button" data-index="1"></button>
+                    <button type="button" data-index="2"></button>
+                    <button type="button" data-index="3"></button>
+                </div>
+            </div>
+
+            <!-- Optional kurzer Hinweis für Besucher -->
+            <p class="bt-text-muted">
+                Tipp: Wenn Sie uns zum ersten Mal besuchen, planen Sie bitte ein paar Minuten
+                zusätzliche Zeit für die Parkplatzsuche ein.
+            </p>
+        </section>
     </div>
 </main>
 
-<footer class="bt-footer">
-    <div class="bt-container bt-footer-inner">
-        <small>© <span id="bt-year"></span> BraunTech Solutions – All systems operational.</small>
-        <a href="impressum.html" class="bt-footer-link">Impressum</a>
-    </div>
-</footer>
+<!-- FOOTER wird automatisch geladen -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
+<!-- Slideshow-Script (einfache, eigenständige Logik) -->
 <script>
-    // Aktuelles Jahr im Footer setzen
-    document.getElementById('bt-year').textContent = new Date().getFullYear();
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshows = document.querySelectorAll('.bt-slideshow');
 
-    (function () {
-        /* ================================
-           RANDOM PUNKTE + PARALLAX
-        ================================ */
-        const LAYER_COUNT = 8;        // Anzahl Punkt-Ebenen
-        const POINTS_PER_LAYER = 22;  // Punkte pro Ebene
-        const pointsContainer = document.getElementById("bt-points");
-        const pointLayers = [];
+        slideshows.forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.bt-slideshow-images img');
+            const dots = slideshow.querySelectorAll('.bt-slideshow-dots button');
+            const prevBtn = slideshow.querySelector('.bt-slide-prev');
+            const nextBtn = slideshow.querySelector('.bt-slide-next');
 
-        for (let i = 0; i < LAYER_COUNT; i++) {
-            const layer = document.createElement("div");
-            layer.classList.add("bt-points-layer");
+            if (!images.length) return;
 
-            // leichte Helligkeitsvariation pro Layer (falls du das später nutzen willst)
-            layer.style.setProperty('--layer-alpha', (0.5 + Math.random() * 0.5).toFixed(2));
+            let current = 0;
+            let autoTimer = null;
 
-            // Delay – sorgt dafür, dass die Ebenen nicht gleichzeitig blinken
-            layer.style.animationDelay = (Math.random() * 8).toFixed(2) + "s";
-
-            const gradients = [];
-            for (let p = 0; p < POINTS_PER_LAYER; p++) {
-                const size = (Math.random() * 6 + 2).toFixed(1); // 2–8px
-                const x = (Math.random() * 100).toFixed(1) + "%";
-                const y = (Math.random() * 100).toFixed(1) + "%";
-                const alpha = (Math.random() * 0.6 + 0.4).toFixed(2);
-
-                gradients.push(
-                    `radial-gradient(${size}px ${size}px at ${x} ${y}, rgba(70,255,120,${alpha}), transparent)`
-                );
+            function setActive(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === index);
+                });
+                current = index;
             }
 
-            layer.style.backgroundImage = gradients.join(",");
-            // Tiefe für Parallax
-            layer.dataset.depth = (0.3 + (i / LAYER_COUNT) * 0.7).toFixed(2); // 0.3–1.0
+            function showNext(step) {
+                const count = images.length;
+                const newIndex = (current + step + count) % count;
+                setActive(newIndex);
+            }
 
-            pointsContainer.appendChild(layer);
-            pointLayers.push(layer);
-        }
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoTimer = setInterval(function () {
+                    showNext(1);
+                }, 8000);
+            }
 
-        // Parallax (Maus + Scroll)
-        let mouseX = 0.5;
-        let mouseY = 0.5;
-        let scrollY = 0;
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
 
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth;
-            mouseY = e.clientY / window.innerHeight;
-        });
+            // Buttons
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(-1);
+                    startAutoPlay();
+                });
+            }
 
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY || window.pageYOffset || 0;
-        });
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(1);
+                    startAutoPlay();
+                });
+            }
 
-        function animateParallax() {
-            const h = window.innerHeight || 1;
-            pointLayers.forEach((layer) => {
-                const depth = parseFloat(layer.dataset.depth || 0.5);
-                const offsetX = (mouseX - 0.5) * depth * 40;
-                const offsetY =
-                    (mouseY - 0.5) * depth * 20 +
-                    (scrollY / h) * depth * 30;
-
-                layer.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
+            // Dots
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    stopAutoPlay();
+                    setActive(index);
+                    startAutoPlay();
+                });
             });
-            requestAnimationFrame(animateParallax);
-        }
-        animateParallax();
 
-        /* ================================
-           RANDOM GLOW-KREISE
-           - min. 3 Kreise
-           - Zufallsanzahl, Position, Größe, Dauer
-        ================================ */
-        const orbitContainer = document.getElementById("bt-glow-orbits");
-        const ORBIT_MIN = 4;
-        const ORBIT_MAX = 15;
-        const orbitCount = ORBIT_MIN + Math.floor(Math.random() * (ORBIT_MAX - ORBIT_MIN + 1));
-
-        for (let i = 0; i < orbitCount; i++) {
-            const orbit = document.createElement("div");
-            orbit.classList.add("bt-orbit");
-
-            // Zufällige Größe
-            const size = Math.random() * 300 + 260; // 260–560px
-            orbit.style.width = size + "px";
-            orbit.style.height = size + "px";
-
-            // Zufällige Position irgendwo im Viewport (leicht außerhalb erlaubt)
-            const x = Math.random() * 80 + 5;  // 5%–85%
-            const y = Math.random() * 80 + 5;  // 5%–85%
-            orbit.style.left = x + "%";
-            orbit.style.top = y + "%";
-
-            // Zufällige Offsets für die Orbit-Animation
-            const offsetX = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            const offsetY = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            orbit.style.setProperty('--orbit-offset-x', offsetX + "px");
-            orbit.style.setProperty('--orbit-offset-y', offsetY + "px");
-
-            // Zufällige Animationsdauer & Richtung
-            const duration = (Math.random() * 25 + 35).toFixed(1); // 35–60s
-            orbit.style.animationDuration = duration + "s";
-            orbit.style.animationDirection = Math.random() > 0.5 ? "normal" : "reverse";
-
-            // leichte Variation in der Intensität
-            const alphaBorder = (0.2 + Math.random() * 0.25).toFixed(2);
-            const alphaGlow = (0.25 + Math.random() * 0.3).toFixed(2);
-            orbit.style.borderColor = `rgba(57,255,20,${alphaBorder})`;
-            orbit.style.boxShadow = `0 0 18px rgba(57,255,20,${alphaGlow})`;
-
-            orbitContainer.appendChild(orbit);
-        }
-    })();
+            // Initial
+            setActive(0);
+            startAutoPlay();
+        });
+    });
 </script>
+
+<!--
+Hinweis für dein brauntech.css (damit die Slideshow wirklich wie eine Diashow wirkt):
+Füge dort z. B. in etwa folgendes hinzu:
+
+.bt-slideshow {
+    position: relative;
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+.bt-slideshow-images img {
+    display: none;
+    width: 100%;
+    border-radius: 6px;
+}
+
+.bt-slideshow-images img.is-active {
+    display: block;
+}
+
+.bt-slide-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    border: none;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 0.4rem 0.6rem;
+    cursor: pointer;
+}
+
+.bt-slide-prev { left: 0.5rem; }
+.bt-slide-next { right: 0.5rem; }
+
+.bt-slideshow-dots {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    margin-top: 0.75rem;
+}
+
+.bt-slideshow-dots button {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    border: none;
+    opacity: 0.4;
+    cursor: pointer;
+}
+
+.bt-slideshow-dots button.is-active {
+    opacity: 1;
+}
+-->
 
 </body>
 </html>
