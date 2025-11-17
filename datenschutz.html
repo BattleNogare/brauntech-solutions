@@ -4,7 +4,14 @@
     <meta charset="UTF-8">
     <title>Datenschutzerklärung – BraunTech Solutions</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="custom.d/background.css">
+
+    <!-- Hintergrund-JS (Punkte, Orbits, Parallax) -->
+    <script src="custom.d/background.js" defer></script>
 </head>
 <body>
 
@@ -14,38 +21,10 @@
 <!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<header class="bt-header">
-    <div class="bt-container bt-header-inner">
-        <a href="index.html" class="bt-logo">
-            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
-        </a>
+<!-- NAVBAR wird automatisch geladen -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
 
-        <nav class="bt-nav">
-            <ul>
-                <li><a href="index.html">Startseite</a></li>
-                <li class="bt-nav-has-dropdown">
-                    <button type="button">Produkte / Dienstleistungen</button>
-                    <ul class="bt-nav-dropdown">
-                        <li><a href="recycling.html">Recycling</a></li>
-                        <li><a href="app-webdesign.html">App / Webdesign</a></li>
-                        <li><a href="portal.html">Portal</a></li>
-                        <li><a href="faq.html">FAQ</a></li>
-                    </ul>
-                </li>
-                <li class="bt-nav-has-dropdown">
-                    <button type="button">Über uns</button>
-                    <ul class="bt-nav-dropdown">
-                        <li><a href="standort.html">Standort</a></li>
-                        <li><a href="kontakt.html">Kontakt</a></li>
-                    </ul>
-                </li>
-                <li><a href="impressum.html">Impressum</a></li>
-                <li class="bt-nav-active"><a href="datenschutz.html">Datenschutz</a></li>
-            </ul>
-        </nav>
-    </div>
-</header>
-
+<!-- HAUPTBEREICH -->
 <main class="bt-main">
     <div class="bt-container bt-content">
         <section class="bt-section bt-card">
@@ -407,19 +386,36 @@
     </div>
 </main>
 
-<footer class="bt-footer">
-    <div class="bt-container bt-footer-inner">
-        <div class="bt-footer-left">
-            <span>© BraunTech Solutions – All systems operational.</span>
-        </div>
-        <div class="bt-footer-right">
-            <a href="impressum.html">Impressum</a>
-            <span class="bt-footer-separator">|</span>
-            <a href="datenschutz.html">Datenschutz</a>
-        </div>
-    </div>
-</footer>
+<!-- FOOTER wird automatisch geladen -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
-<script src="brauntech.js"></script>
+<!-- ============================================
+     INCLUDE-SYSTEM FÜR NAVBAR + FOOTER
+=============================================== -->
+<script>
+document.querySelectorAll("[data-include]").forEach(async (el) => {
+    const file = el.getAttribute("data-include");
+    if (!file) return;
+
+    try {
+        const response = await fetch(file);
+        if (!response.ok) {
+            console.error("Include failed:", file, response.status);
+            return;
+        }
+        const html = await response.text();
+        el.innerHTML = html;
+
+        // Jahr aktualisieren (falls Footer mit #bt-year geladen wurde)
+        const yearSpan = el.querySelector("#bt-year");
+        if (yearSpan) {
+            yearSpan.textContent = new Date().getFullYear();
+        }
+    } catch (e) {
+        console.error("Include error:", file, e);
+    }
+});
+</script>
+
 </body>
 </html>
