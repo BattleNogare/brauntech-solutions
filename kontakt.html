@@ -315,8 +315,27 @@
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <script>
-    // Falls dein Footer weiterhin ein <span id="bt-year"> enthält,
-    // setzt dieser Code wie gewohnt das aktuelle Jahr.
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
+
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
+
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
     (function () {
         var yearEl = document.getElementById('bt-year');
         if (yearEl) {
@@ -348,7 +367,7 @@
             e.preventDefault();
             setStatus("", null);
 
-            // HTML5-Validierung anstoßen
+            // HTML5-Validierung
             if (!form.checkValidity()) {
                 form.reportValidity();
                 return;
