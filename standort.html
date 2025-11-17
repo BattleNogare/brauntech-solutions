@@ -12,6 +12,289 @@
 
     <!-- Hintergrund-JS (Punkte, Orbits, Includes für Navbar/Footer, etc.) -->
     <script src="custom.d/background.js" defer></script>
+
+    <!-- Seiten-spezifisches Styling für moderne Box-Optik -->
+    <style>
+        .bt-page-standort {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
+        }
+
+        .bt-page-standort-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+        }
+
+        .bt-page-standort-header h1 {
+            margin: 0;
+        }
+
+        .bt-page-standort-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .bt-pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(
+                135deg,
+                rgba(57, 255, 20, 0.18),
+                rgba(57, 255, 20, 0.02)
+            );
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .bt-pill-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 999px;
+            background: var(--green-light, #59ff7a);
+            box-shadow: 0 0 8px rgba(57, 255, 20, 0.8);
+        }
+
+        .bt-page-standort-meta small {
+            color: var(--bt-text-muted, #89a589);
+        }
+
+        /* Karten / Boxen */
+
+        .bt-card {
+            position: relative;
+            background: radial-gradient(circle at top left,
+                rgba(57, 255, 20, 0.14),
+                transparent 55%
+            ),
+            var(--bt-bg-alt, #0b130e);
+            border-radius: 14px;
+            border: 1px solid var(--bt-border, #1a2e1f);
+            padding: 1.6rem 1.8rem;
+            box-shadow:
+                0 26px 60px rgba(0, 0, 0, 0.75),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(14px);
+        }
+
+        .bt-card h2,
+        .bt-card h3 {
+            margin-top: 0;
+        }
+
+        .bt-card + .bt-card {
+            margin-top: 1.2rem;
+        }
+
+        .bt-card-accent::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(57, 255, 20, 0.32);
+            opacity: 0.85;
+            pointer-events: none;
+        }
+
+        .bt-card-accent {
+            overflow: hidden;
+        }
+
+        .bt-card-taglist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin-top: 0.75rem;
+        }
+
+        .bt-tag {
+            font-size: 0.75rem;
+            padding: 0.2rem 0.7rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--bt-text-muted, #89a589);
+            background: rgba(0, 0, 0, 0.25);
+        }
+
+        /* Grids */
+
+        .standort-grid,
+        .weg-grid {
+            display: grid;
+            gap: 1.6rem;
+        }
+
+        .standort-grid {
+            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+            margin-bottom: 2rem;
+        }
+
+        .weg-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            margin-bottom: 2.4rem;
+        }
+
+        @media (max-width: 900px) {
+            .standort-grid,
+            .weg-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .standort-address {
+            display: grid;
+            gap: 1rem;
+        }
+
+        .standort-address-block h3 {
+            margin-top: 0;
+            margin-bottom: 0.4rem;
+        }
+
+        .standort-address-block p {
+            margin-top: 0;
+        }
+
+        .standort-address-list {
+            padding-left: 1.2rem;
+            margin: 0.2rem 0 0;
+        }
+
+        /* Slideshow in Box */
+
+        .bt-section-slideshow {
+            margin-top: 2.5rem;
+        }
+
+        .bt-slideshow-card {
+            display: grid;
+            grid-template-columns: minmax(0, 1.7fr) minmax(0, 1.3fr);
+            gap: 1.6rem;
+            align-items: stretch;
+        }
+
+        @media (max-width: 900px) {
+            .bt-slideshow-card {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bt-slideshow-shell {
+            position: relative;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            background: radial-gradient(circle at top,
+                    rgba(57, 255, 20, 0.15),
+                    transparent 55%
+                ),
+                #020402;
+        }
+
+        .bt-slideshow-shell::before {
+            content: "";
+            display: block;
+            padding-top: 56%; /* 16:9 */
+        }
+
+        .bt-slideshow {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .bt-slideshow-images {
+            position: relative;
+            width: 100%;
+            height: 100%;
+        }
+
+        .bt-slideshow-images img {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transform: scale(1.03);
+            transition:
+                opacity 0.55s ease,
+                transform 0.9s ease;
+        }
+
+        .bt-slideshow-images img.is-active {
+            opacity: 1;
+            transform: scale(1);
+        }
+
+        .bt-slide-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            border: none;
+            background: radial-gradient(circle at center,
+                rgba(0, 0, 0, 0.8),
+                rgba(0, 0, 0, 0.3)
+            );
+            padding: 0.3rem 0.7rem;
+            cursor: pointer;
+            border-radius: 999px;
+            font-size: 1.1rem;
+            line-height: 1;
+            backdrop-filter: blur(10px);
+        }
+
+        .bt-slide-prev { left: 0.75rem; }
+        .bt-slide-next { right: 0.75rem; }
+
+        .bt-slideshow-dots {
+            position: absolute;
+            bottom: 0.65rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .bt-slideshow-dots button {
+            width: 9px;
+            height: 9px;
+            border-radius: 999px;
+            border: none;
+            opacity: 0.35;
+            cursor: pointer;
+            background: #ffffff;
+        }
+
+        .bt-slideshow-dots button.is-active {
+            opacity: 1;
+        }
+
+        .bt-slideshow-info h2 {
+            margin-top: 0;
+            margin-bottom: 0.6rem;
+        }
+
+        .bt-slideshow-info p {
+            margin-top: 0;
+        }
+
+        .bt-slideshow-info small {
+            display: inline-block;
+            margin-top: 0.75rem;
+            color: var(--bt-text-muted, #89a589);
+        }
+    </style>
 </head>
 <body>
 
@@ -26,55 +309,77 @@
 
 <!-- HAUPTBEREICH -->
 <main class="bt-main">
-    <div class="bt-container">
-        <h1>Standort &amp; Anfahrt</h1>
-        <p>
-            Hier finden Sie alle Informationen zu unserem Standort in Knuffingen (Hohenstein)
-            und wie Sie uns am besten erreichen.
-        </p>
+    <div class="bt-container bt-page-standort">
 
-        <!-- Standortbeschreibung -->
+        <!-- Kopfbereich mit Badge -->
+        <div class="bt-page-standort-header">
+            <div class="bt-page-standort-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Standort &amp; Anfahrt
+                </span>
+                <small>Knuffingen · Hohenstein · Baden-Württemberg</small>
+            </div>
+            <h1>So erreichen Sie BraunTech Solutions</h1>
+            <p class="bt-text-muted">
+                Alle Infos zu unserem Standort in Knuffingen (Hohenstein), der Anfahrt und ein paar Eindrücke vor Ort.
+            </p>
+        </div>
+
+        <!-- Standortbeschreibung in Boxen -->
         <section class="bt-section">
-            <h2>Unser Standort</h2>
-
-            <div class="standort-layout">
-                <div class="standort-text">
+            <div class="standort-grid">
+                <!-- Linke Karte: Beschreibung -->
+                <article class="bt-card bt-card-accent">
+                    <h2>Unser Standort</h2>
                     <p>
                         BraunTech Solutions hat seinen Sitz in
-                        <strong>Knuffingen, Hohenstein</strong>. Unser Büro befindet sich in
-                        einer ruhigen Seitenstraße mit guter Anbindung an die umliegenden Orte.
+                        <strong>Knuffingen, Hohenstein</strong>. Unser Büro liegt in einer ruhigen Seitenstraße
+                        mit guter Anbindung an die umliegenden Orte – ideal für Besprechungen und Projekte.
                     </p>
                     <p>
                         Vor Ort verfügen wir über eine kleine Werkstatt für Projekte rund um
-                        <strong>Recycling von Schrott</strong> sowie einen Besprechungsbereich
+                        <strong>Recycling von Schrott</strong> sowie einen modernen Besprechungsbereich
                         für Kundentermine und Beratungsgespräche.
                     </p>
-                </div>
 
-                <div class="standort-box">
-                    <h3>Adresse</h3>
-                    <p>
-                        BraunTech Solutions<br>
-                        Musterstraße 12<br>
-                        72800 Knuffingen / Hohenstein
-                    </p>
+                    <div class="bt-card-taglist">
+                        <span class="bt-tag">Ruhige Lage</span>
+                        <span class="bt-tag">Gute Erreichbarkeit</span>
+                        <span class="bt-tag">Werkstatt vor Ort</span>
+                        <span class="bt-tag">Beratungsbereich</span>
+                    </div>
+                </article>
 
-                    <h3>Vor Ort</h3>
-                    <ul>
-                        <li>Parkmöglichkeiten direkt an der Straße</li>
-                        <li>Gute Anbindung an die Bundesstraße</li>
-                        <li>Ruhige Lage, ideal für Besprechungen</li>
-                    </ul>
+                <!-- Rechte Spalte: Adresse / Infos als mehrere Boxen -->
+                <div class="standort-address">
+                    <div class="bt-card standort-address-block">
+                        <h3>Adresse</h3>
+                        <p>
+                            BraunTech Solutions<br>
+                            Musterstraße&nbsp;12<br>
+                            72800 Knuffingen / Hohenstein
+                        </p>
+                    </div>
+
+                    <div class="bt-card standort-address-block">
+                        <h3>Was Sie vor Ort erwartet</h3>
+                        <ul class="standort-address-list">
+                            <li>Parkmöglichkeiten direkt an der Straße</li>
+                            <li>Gute Anbindung an die Bundesstraße</li>
+                            <li>Kurzfristige Termine nach Absprache möglich</li>
+                            <li>Ruhige, konzentrierte Arbeitsatmosphäre</li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Wegebeschreibung -->
+        <!-- Wegebeschreibung in 2 Boxen -->
         <section class="bt-section">
             <h2>Wegebeschreibung</h2>
-
-            <div class="weg-layout">
-                <div class="weg-block">
+            <div class="weg-grid">
+                <article class="bt-card">
                     <h3>Anfahrt mit dem Auto</h3>
                     <p>
                         Von Hohenstein oder der nächstgelegenen Bundesstraße folgen Sie der
@@ -86,9 +391,9 @@
                         Straßenseite. In der Regel sind direkt vor dem Gebäude oder in den
                         angrenzenden Seitenstraßen Parkplätze verfügbar.
                     </p>
-                </div>
+                </article>
 
-                <div class="weg-block">
+                <article class="bt-card">
                     <h3>Mit öffentlichen Verkehrsmitteln</h3>
                     <p>
                         Nutzen Sie die regionale Buslinie bis zur Haltestelle
@@ -101,46 +406,55 @@
                         bitte achten Sie auf das <strong>BraunTech Solutions</strong>-Logo
                         am Eingang.
                     </p>
-                </div>
+                </article>
             </div>
         </section>
 
-        <!-- Diashow -->
-        <section class="bt-section">
-            <h2>Impressionen &amp; Umgebung</h2>
-            <p>
-                Ein paar Eindrücke von unserem Standort, der Werkstatt und der direkten Umgebung:
-            </p>
+        <!-- Diashow in moderner Box -->
+        <section class="bt-section bt-section-slideshow">
+            <div class="bt-card bt-slideshow-card">
+                <div class="bt-slideshow-shell">
+                    <div class="bt-slideshow" aria-label="Bilderslideshow zum Standort von BraunTech Solutions">
+                        <div class="bt-slideshow-images">
+                            <!-- Bildpfade bei Bedarf anpassen -->
+                            <img src="bilder/standort-01.jpg" alt="Außenansicht des Standorts von BraunTech Solutions" class="is-active">
+                            <img src="bilder/standort-02.jpg" alt="Innenraum / Werkstatt von BraunTech Solutions">
+                            <img src="bilder/standort-03.jpg" alt="Besprechungsbereich von BraunTech Solutions">
+                            <img src="bilder/standort-04.jpg" alt="Umgebung rund um den Standort von BraunTech Solutions">
+                        </div>
 
-            <div class="bt-slideshow" aria-label="Bilderslideshow zum Standort von BraunTech Solutions">
-                <div class="bt-slideshow-images">
-                    <!-- Bildpfade bei Bedarf anpassen -->
-                    <img src="bilder/standort-01.jpg" alt="Außenansicht des Standorts von BraunTech Solutions" class="is-active">
-                    <img src="bilder/standort-02.jpg" alt="Innenraum / Werkstatt von BraunTech Solutions">
-                    <img src="bilder/standort-03.jpg" alt="Besprechungsbereich von BraunTech Solutions">
-                    <img src="bilder/standort-04.jpg" alt="Umgebung rund um den Standort von BraunTech Solutions">
+                        <button class="bt-slide-btn bt-slide-prev" type="button" aria-label="Vorheriges Bild">
+                            &#10094;
+                        </button>
+                        <button class="bt-slide-btn bt-slide-next" type="button" aria-label="Nächstes Bild">
+                            &#10095;
+                        </button>
+
+                        <div class="bt-slideshow-dots" aria-hidden="true">
+                            <button type="button" data-index="0" class="is-active"></button>
+                            <button type="button" data-index="1"></button>
+                            <button type="button" data-index="2"></button>
+                            <button type="button" data-index="3"></button>
+                        </div>
+                    </div>
                 </div>
 
-                <button class="bt-slide-btn bt-slide-prev" type="button" aria-label="Vorheriges Bild">
-                    &#10094;
-                </button>
-                <button class="bt-slide-btn bt-slide-next" type="button" aria-label="Nächstes Bild">
-                    &#10095;
-                </button>
-
-                <div class="bt-slideshow-dots" aria-hidden="true">
-                    <button type="button" data-index="0" class="is-active"></button>
-                    <button type="button" data-index="1"></button>
-                    <button type="button" data-index="2"></button>
-                    <button type="button" data-index="3"></button>
+                <div class="bt-slideshow-info">
+                    <h2>Impressionen &amp; Umgebung</h2>
+                    <p>
+                        Ein paar Eindrücke von unserem Standort, der Werkstatt und der direkten Umgebung. So bekommen Sie schon
+                        vor Ihrem Besuch ein Gefühl dafür, wo Sie uns finden und wie es bei uns aussieht.
+                    </p>
+                    <p>
+                        Die Bilder zeigen unter anderem die Außenansicht, den Werkstattbereich für Projekte im Bereich
+                        <strong>Recycling von Schrott</strong> sowie unseren Besprechungsbereich.
+                    </p>
+                    <small>
+                        Tipp: Wenn Sie uns zum ersten Mal besuchen, planen Sie bitte ein paar Minuten zusätzliche Zeit
+                        für die Parkplatzsuche ein.
+                    </small>
                 </div>
             </div>
-
-            <!-- Optional kurzer Hinweis für Besucher -->
-            <p class="bt-text-muted">
-                Tipp: Wenn Sie uns zum ersten Mal besuchen, planen Sie bitte ein paar Minuten
-                zusätzliche Zeit für die Parkplatzsuche ein.
-            </p>
         </section>
     </div>
 </main>
@@ -226,60 +540,6 @@
         });
     });
 </script>
-
-<!--
-Hinweis für dein brauntech.css (damit die Slideshow wirklich wie eine Diashow wirkt):
-Füge dort z. B. in etwa folgendes hinzu:
-
-.bt-slideshow {
-    position: relative;
-    max-width: 800px;
-    margin: 2rem auto;
-}
-
-.bt-slideshow-images img {
-    display: none;
-    width: 100%;
-    border-radius: 6px;
-}
-
-.bt-slideshow-images img.is-active {
-    display: block;
-}
-
-.bt-slide-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    border: none;
-    background: rgba(0, 0, 0, 0.5);
-    padding: 0.4rem 0.6rem;
-    cursor: pointer;
-}
-
-.bt-slide-prev { left: 0.5rem; }
-.bt-slide-next { right: 0.5rem; }
-
-.bt-slideshow-dots {
-    display: flex;
-    justify-content: center;
-    gap: 0.5rem;
-    margin-top: 0.75rem;
-}
-
-.bt-slideshow-dots button {
-    width: 10px;
-    height: 10px;
-    border-radius: 50%;
-    border: none;
-    opacity: 0.4;
-    cursor: pointer;
-}
-
-.bt-slideshow-dots button.is-active {
-    opacity: 1;
-}
--->
 
 </body>
 </html>
