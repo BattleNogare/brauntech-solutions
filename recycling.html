@@ -2,9 +2,63 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>BraunTech Solutions – Startseite</title>
+    <title>BraunTech Solutions – Recycling & Materialaufbereitung</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="custom.d/background.css">
+    <script src="custom.d/background.js" defer></script>
+
+    <style>
+        /* =======================================
+           Recyclingseite – Zusatzstyles
+        ======================================== */
+
+        .bt-box h2 {
+            margin-top: 0;
+        }
+
+        .recycle-grid {
+            display: grid;
+            gap: 20px;
+        }
+
+        @media (min-width: 800px) {
+            .recycle-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .recycle-feature {
+            padding: 20px;
+            border: 1px solid var(--bt-border);
+            background: var(--bt-bg-alt);
+            border-radius: var(--bt-radius);
+            box-shadow: 0 0 15px rgba(57,255,20,0.08);
+        }
+
+        .recycle-feature h3 {
+            margin-top: 0;
+            color: var(--green-light);
+        }
+
+        .recycle-image-box {
+            margin-top: 30px;
+            border: 2px solid var(--green-mid);
+            border-radius: var(--bt-radius);
+            overflow: hidden;
+            box-shadow: 0 0 25px rgba(57,255,20,0.15);
+        }
+
+        .recycle-image-box img {
+            display: block;
+            width: 100%;
+            height: auto;
+        }
+
+    </style>
 </head>
 <body>
 
@@ -14,174 +68,123 @@
 <!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<header class="bt-header">
-    <div class="bt-container bt-header-inner">
-        <a href="index.html" class="bt-logo">
-            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
-        </a>
+<!-- NAVBAR wird automatisch geladen -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
 
-        <nav class="bt-nav" aria-label="Hauptnavigation">
-            <ul class="bt-nav-list">
-                <li class="bt-nav-item">
-                    <a href="index.html" class="bt-nav-link">Startseite</a>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="product.html" class="bt-nav-link active">Produkte / Dienstleistungen</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="recycling.html" class="bt-dropdown-link active">Recycling</a></li>
-                        <li><a href="app-webdesign.html" class="bt-dropdown-link">App / Webdesign</a></li>
-						<li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
-                        <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
-                    </ul>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="about.html" class="bt-nav-link">Über uns</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="standort.html" class="bt-dropdown-link">Standort</a></li>
-                        <li><a href="kontakt.html" class="bt-dropdown-link">Kontakt</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
 
 <main class="bt-main">
-    <div class="bt-container">
-        <h1>Willkommen bei BraunTech Solutions</h1>
+
+    <!-- Hauptbox -->
+    <section class="bt-box">
+        <h1>Recycling & Materialveredelung bei BraunTech Solutions</h1>
         <p>
-            Dies ist ein Platzhaltertext für den Inhalt der Seite.
-            Du kannst dieses Grundgerüst auf alle Unterseiten übertragen.
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+            BraunTech Solutions hat sich darauf spezialisiert, Materialien aus Schrottplätzen,
+            Industrieabfällen und Reststoffen zu retten, aufzubereiten und wieder in den 
+            Wertstoffkreislauf zu überführen.  
         </p>
-    </div>
+        <p>
+            Unser Ziel: **Müll reduzieren, Ressourcen zurückgewinnen und nachhaltige Wertstoffe
+            schaffen**, die erneut genutzt oder industriell weiterverarbeitet werden können.
+        </p>
+    </section>
+
+    <!-- Warum wir -->
+    <section class="bt-box">
+        <h2>Warum Recycling so wichtig ist</h2>
+        <p>
+            In einer Welt, in der Rohstoffe knapper werden und Müllberge wachsen, ist Recycling
+            längst kein optionaler Beitrag mehr – es ist eine Notwendigkeit.
+            BraunTech Solutions verbindet effiziente Schrottplatz-Aufbereitung mit moderner
+            Materialwissenschaft, um aus Abfall neue Werte zu schaffen.
+        </p>
+    </section>
+
+    <!-- Leistungen -->
+    <section class="bt-box">
+        <h2>Unsere Kernbereiche im Recycling</h2>
+
+        <div class="recycle-grid">
+
+            <div class="recycle-feature">
+                <h3>♻️ Metall-Recycling</h3>
+                <p>
+                    Abgetragene Stahlträger, Kupferkabel, Aluminiumreste oder Mischschrott –
+                    wir sortieren, reinigen und veredeln Metalle so, dass sie in 
+                    hochwertiger Industriequalität wieder einsetzbar sind.
+                </p>
+            </div>
+
+            <div class="recycle-feature">
+                <h3>🔧 Zerlegung & Sortierung</h3>
+                <p>
+                    Maschinen, Fahrzeuge oder Industrieanlagen werden fachgerecht demontiert,
+                    sortiert und nach Materialgruppen getrennt. Dadurch steigt die Reinheit
+                    der Rohstoffe erheblich.
+                </p>
+            </div>
+
+            <div class="recycle-feature">
+                <h3>🟢 Kunststoff-Aufbereitung</h3>
+                <p>
+                    Wir recyceln Kunststoffe, führen thermische Trennverfahren durch
+                    und bereiten sie so auf, dass sie wieder in Produktion oder 3D-Druck
+                    eingesetzt werden können.
+                </p>
+            </div>
+
+            <div class="recycle-feature">
+                <h3>🌍 Nachhaltige Veredelung</h3>
+                <p>
+                    BraunTech Solutions verwandelt Reststoffe in weiterverwendbare
+                    Materialien – z. B. recycelte Platten, granulierte Rohstoffe oder 
+                    veredelten Industrieabfall.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Bildbereich -->
+    <section class="bt-box">
+        <h2>Ein Blick in unsere Recycling-Prozesse</h2>
+        <p>
+            Moderne Maschinen, präzise Sortiersysteme und nachhaltige Prozesse bilden 
+            die Grundlage unserer täglichen Arbeit.
+        </p>
+
+        <div class="recycle-image-box">
+            <img src="bilder/recycling-anlage.jpg" alt="Recyclinganlage von BraunTech Solutions">
+        </div>
+    </section>
+
 </main>
 
-<footer class="bt-footer">
-    <div class="bt-container bt-footer-inner">
-        <small>© <span id="bt-year"></span> BraunTech Solutions – All systems operational.</small>
-        <a href="impressum.html" class="bt-footer-link">Impressum</a>
-    </div>
-</footer>
+<!-- FOOTER wird automatisch geladen -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
+
+<!-- Include-Loader -->
 <script>
-    // Aktuelles Jahr im Footer setzen
-    document.getElementById('bt-year').textContent = new Date().getFullYear();
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
+            fetch(file)
+                .then(response => {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(html => {
+                    el.innerHTML = html;
+                })
+                .catch(err => console.error(err));
+        });
+    });
+
+    // Footer-Jahr aktualisieren
     (function () {
-        /* ================================
-           RANDOM PUNKTE + PARALLAX
-        ================================ */
-        const LAYER_COUNT = 8;        // Anzahl Punkt-Ebenen
-        const POINTS_PER_LAYER = 22;  // Punkte pro Ebene
-        const pointsContainer = document.getElementById("bt-points");
-        const pointLayers = [];
-
-        for (let i = 0; i < LAYER_COUNT; i++) {
-            const layer = document.createElement("div");
-            layer.classList.add("bt-points-layer");
-
-            // leichte Helligkeitsvariation pro Layer (falls du das später nutzen willst)
-            layer.style.setProperty('--layer-alpha', (0.5 + Math.random() * 0.5).toFixed(2));
-
-            // Delay – sorgt dafür, dass die Ebenen nicht gleichzeitig blinken
-            layer.style.animationDelay = (Math.random() * 8).toFixed(2) + "s";
-
-            const gradients = [];
-            for (let p = 0; p < POINTS_PER_LAYER; p++) {
-                const size = (Math.random() * 6 + 2).toFixed(1); // 2–8px
-                const x = (Math.random() * 100).toFixed(1) + "%";
-                const y = (Math.random() * 100).toFixed(1) + "%";
-                const alpha = (Math.random() * 0.6 + 0.4).toFixed(2);
-
-                gradients.push(
-                    `radial-gradient(${size}px ${size}px at ${x} ${y}, rgba(70,255,120,${alpha}), transparent)`
-                );
-            }
-
-            layer.style.backgroundImage = gradients.join(",");
-            // Tiefe für Parallax
-            layer.dataset.depth = (0.3 + (i / LAYER_COUNT) * 0.7).toFixed(2); // 0.3–1.0
-
-            pointsContainer.appendChild(layer);
-            pointLayers.push(layer);
-        }
-
-        // Parallax (Maus + Scroll)
-        let mouseX = 0.5;
-        let mouseY = 0.5;
-        let scrollY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth;
-            mouseY = e.clientY / window.innerHeight;
-        });
-
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY || window.pageYOffset || 0;
-        });
-
-        function animateParallax() {
-            const h = window.innerHeight || 1;
-            pointLayers.forEach((layer) => {
-                const depth = parseFloat(layer.dataset.depth || 0.5);
-                const offsetX = (mouseX - 0.5) * depth * 40;
-                const offsetY =
-                    (mouseY - 0.5) * depth * 20 +
-                    (scrollY / h) * depth * 30;
-
-                layer.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
-            });
-            requestAnimationFrame(animateParallax);
-        }
-        animateParallax();
-
-        /* ================================
-           RANDOM GLOW-KREISE
-           - min. 3 Kreise
-           - Zufallsanzahl, Position, Größe, Dauer
-        ================================ */
-        const orbitContainer = document.getElementById("bt-glow-orbits");
-        const ORBIT_MIN = 4;
-        const ORBIT_MAX = 15;
-        const orbitCount = ORBIT_MIN + Math.floor(Math.random() * (ORBIT_MAX - ORBIT_MIN + 1));
-
-        for (let i = 0; i < orbitCount; i++) {
-            const orbit = document.createElement("div");
-            orbit.classList.add("bt-orbit");
-
-            // Zufällige Größe
-            const size = Math.random() * 300 + 260; // 260–560px
-            orbit.style.width = size + "px";
-            orbit.style.height = size + "px";
-
-            // Zufällige Position irgendwo im Viewport (leicht außerhalb erlaubt)
-            const x = Math.random() * 80 + 5;  // 5%–85%
-            const y = Math.random() * 80 + 5;  // 5%–85%
-            orbit.style.left = x + "%";
-            orbit.style.top = y + "%";
-
-            // Zufällige Offsets für die Orbit-Animation
-            const offsetX = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            const offsetY = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            orbit.style.setProperty('--orbit-offset-x', offsetX + "px");
-            orbit.style.setProperty('--orbit-offset-y', offsetY + "px");
-
-            // Zufällige Animationsdauer & Richtung
-            const duration = (Math.random() * 25 + 35).toFixed(1); // 35–60s
-            orbit.style.animationDuration = duration + "s";
-            orbit.style.animationDirection = Math.random() > 0.5 ? "normal" : "reverse";
-
-            // leichte Variation in der Intensität
-            const alphaBorder = (0.2 + Math.random() * 0.25).toFixed(2);
-            const alphaGlow = (0.25 + Math.random() * 0.3).toFixed(2);
-            orbit.style.borderColor = `rgba(57,255,20,${alphaBorder})`;
-            orbit.style.boxShadow = `0 0 18px rgba(57,255,20,${alphaGlow})`;
-
-            orbitContainer.appendChild(orbit);
-        }
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
     })();
 </script>
 
