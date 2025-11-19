@@ -16,105 +16,36 @@
     <!-- YAML Parser (für portal.yaml) -->
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4.1.0/dist/js-yaml.min.js"></script>
 
-    <!-- Portal-spezifische Styles -->
     <style>
-        /* Portal-Seite Grundlayout */
-        .bt-portal {
-            padding-top: 2rem;
-            padding-bottom: 3rem;
-        }
+        /* ===========================
+           Portal – Zusatzstyles (Header im Box-Stil)
+        ============================ */
 
-        /* Container aller Gruppen */
-        .bt-portal-groups {
+        .bt-page-portal-header {
             display: flex;
             flex-direction: column;
-            gap: 2.5rem;
-            margin-top: 1.5rem;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
         }
 
-        /* Gruppe eingerahmt / Card-Style */
-        .bt-portal-group {
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            border-radius: 10px;
-            padding: 1.5rem 1.75rem;
-            background:
-                radial-gradient(circle at top left, rgba(57, 255, 20, 0.06), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.04), transparent 55%),
-                #031009f2;
-            box-shadow:
-                0 18px 45px rgba(0, 0, 0, 0.7),
-                0 0 24px rgba(57, 255, 20, 0.12);
+        .bt-page-portal-header h1 {
+            margin: 0;
         }
 
-        /* Gruppen-Überschrift */
-        .bt-portal-group-title {
-            font-size: 1.2rem;
-            margin: 0 0 1.1rem 0;
-            font-family: var(--bt-font-mono);
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            color: var(--green-light);
-        }
-
-        /* Grid der Kacheln */
-        .bt-portal-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 1.2rem;
-        }
-
-        /* Kacheln */
-        .bt-portal-tile {
-            position: relative;
+        .bt-page-portal-meta {
             display: flex;
-            flex-direction: column;
-            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             align-items: center;
-            aspect-ratio: 1 / 1; /* quadratisch */
-            border-radius: 0.75rem;
-            text-decoration: none;
-            color: #ffffff;
-            background-image: linear-gradient(135deg, #444, #111);
-            overflow: hidden;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
-            transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
         }
 
-        .bt-portal-tile:hover {
-            transform: translateY(-4px) scale(1.02);
-            box-shadow: 0 16px 35px rgba(0, 0, 0, 0.5);
-            filter: brightness(1.05);
+        .bt-page-portal-meta small {
+            color: var(--bt-text-muted, #89a589);
         }
 
-        .bt-portal-tile-logo {
-            max-width: 60%;
-            max-height: 60%;
-            object-fit: contain;
-            margin-bottom: 0.5rem;
-        }
-
-        .bt-portal-tile-label {
-            font-weight: 600;
-            letter-spacing: 0.03em;
-            text-transform: uppercase;
-            font-size: 0.85rem;
-            text-align: center;
-        }
-
-        .bt-portal-loading,
-        .bt-portal-error {
-            opacity: 0.8;
-            font-size: 0.95rem;
-        }
-
-        .bt-portal-error {
-            color: #ff8080;
-        }
-
-        @media (max-width: 600px) {
-            .bt-portal-group {
-                padding: 1.25rem 1.4rem;
-            }
+        .bt-page-portal-intro {
+            max-width: 720px;
+            color: var(--bt-text-muted, #89a589);
         }
     </style>
 </head>
@@ -131,13 +62,30 @@
 
 <main class="bt-main">
     <div class="bt-container bt-portal">
-        <h1>Portal</h1>
-        <p>Sammlung hilfreicher Links, kuratiert von BraunTech Solutions.</p>
 
-        <!-- Container, den wir per JS aus der portal.yaml füllen -->
-        <div id="bt-portal-groups" class="bt-portal-groups">
-            <p class="bt-portal-loading">Portal wird geladen …</p>
-        </div>
+        <!-- Neuer, einheitlicher Kopfbereich im Box-Stil -->
+        <header class="bt-page-portal-header">
+            <div class="bt-page-portal-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Portal · Schnellzugriff
+                </span>
+                <small>BraunTech Solutions · Knuffingen · Hohenstein</small>
+            </div>
+            <h1>Portal</h1>
+            <p class="bt-page-portal-intro">
+                Sammlung hilfreicher Links, kuratiert von BraunTech Solutions – für schnellen Zugriff auf
+                Tools, Plattformen und Ressourcen rund um Projekte, Recycling &amp; Infrastruktur.
+            </p>
+        </header>
+
+        <!-- Portal-Gruppen bleiben im eigenen Kachel-Look -->
+        <section class="bt-section">
+            <!-- Container, den wir per JS aus der portal.yaml füllen -->
+            <div id="bt-portal-groups" class="bt-portal-groups">
+                <p class="bt-portal-loading">Portal wird geladen …</p>
+            </div>
+        </section>
     </div>
 </main>
 
@@ -145,31 +93,110 @@
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <!-- ============================================
-     INCLUDE-SYSTEM FÜR NAVBAR + FOOTER
+     INCLUDE-SYSTEM FÜR NAVBAR + FOOTER (wie auf anderen Seiten)
 =============================================== -->
 <script>
-document.querySelectorAll("[data-include]").forEach(async (el) => {
-    const file = el.getAttribute("data-include");
-    if (!file) return;
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
-    try {
-        const response = await fetch(file);
-        if (!response.ok) {
-            console.error("Include failed:", file, response.status);
-            return;
-        }
-        const html = await response.text();
-        el.innerHTML = html;
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
 
-        // Jahr aktualisieren (falls Footer mit #bt-year geladen wurde)
-        const yearSpan = el.querySelector("#bt-year");
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
         }
-    } catch (e) {
-        console.error("Include error:", file, e);
-    }
-});
+    })();
+
+    // Slideshow-Script (stört nicht, wenn keine .bt-slideshow auf der Seite ist)
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshows = document.querySelectorAll('.bt-slideshow');
+
+        slideshows.forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.bt-slideshow-images img');
+            const dots = slideshow.querySelectorAll('.bt-slideshow-dots button');
+            const prevBtn = slideshow.querySelector('.bt-slide-prev');
+            const nextBtn = slideshow.querySelector('.bt-slide-next');
+
+            if (!images.length) return;
+
+            let current = 0;
+            let autoTimer = null;
+
+            function setActive(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === index);
+                });
+                current = index;
+            }
+
+            function showNext(step) {
+                const count = images.length;
+                const newIndex = (current + step + count) % count;
+                setActive(newIndex);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoTimer = setInterval(function () {
+                    showNext(1);
+                }, 8000);
+            }
+
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(-1);
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(1);
+                    startAutoPlay();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    stopAutoPlay();
+                    setActive(index);
+                    startAutoPlay();
+                });
+            });
+
+            setActive(0);
+            startAutoPlay();
+        });
+    });
 </script>
 
 <!-- ============================================

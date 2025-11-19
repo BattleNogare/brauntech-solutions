@@ -12,14 +12,44 @@
     <script src="custom.d/background.js" defer></script>
 
     <style>
-        /* =======================================
-           Recyclingseite – Zusatzstyles
-        ======================================== */
+        /* ==================================================
+           Recyclingseite – Box-Stil + Anpassungen
+        ================================================== */
 
-        .bt-box h2 {
-            margin-top: 0;
+        .bt-page-recycling {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
         }
 
+        .bt-page-recycling-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            max-width: 740px;
+        }
+
+        .bt-page-recycling-header h1 {
+            margin: 0;
+        }
+
+        .bt-page-recycling-meta {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .bt-page-recycling-meta small {
+            color: var(--bt-text-muted);
+        }
+
+        .bt-recycling-intro {
+            color: var(--bt-text-muted);
+            max-width: 740px;
+        }
+
+        /* Grid wie bisher */
         .recycle-grid {
             display: grid;
             gap: 20px;
@@ -31,25 +61,34 @@
             }
         }
 
+        /* Featurebox – ersetzt eigenes kleines Card-Design */
         .recycle-feature {
-            padding: 20px;
+            padding: 1.4rem 1.5rem;
+            border-radius: 12px;
             border: 1px solid var(--bt-border);
-            background: var(--bt-bg-alt);
-            border-radius: var(--bt-radius);
-            box-shadow: 0 0 15px rgba(57,255,20,0.08);
+            background: radial-gradient(
+                circle at top left,
+                rgba(57,255,20,0.10),
+                transparent 55%
+            ), var(--bt-bg-alt);
+            box-shadow:
+                0 22px 40px rgba(0,0,0,0.7),
+                0 0 0 1px rgba(255,255,255,0.03);
         }
 
         .recycle-feature h3 {
             margin-top: 0;
+            margin-bottom: .4rem;
             color: var(--green-light);
         }
 
+        /* Bildbox */
         .recycle-image-box {
             margin-top: 30px;
-            border: 2px solid var(--green-mid);
-            border-radius: var(--bt-radius);
+            border-radius: 14px;
             overflow: hidden;
-            box-shadow: 0 0 25px rgba(57,255,20,0.15);
+            border: 1px solid var(--green-mid);
+            box-shadow: 0 0 25px rgba(57,255,20,0.13);
         }
 
         .recycle-image-box img {
@@ -57,139 +96,145 @@
             width: 100%;
             height: auto;
         }
-
     </style>
 </head>
 <body>
 
-<!-- Rotierende Glow-Kreise (werden per JS gefüllt) -->
+<!-- Glow-Orbits -->
 <div id="bt-glow-orbits"></div>
 
-<!-- Random-Punkte-Layer (werden per JS gefüllt) -->
+<!-- Floating Points -->
 <div id="bt-points"></div>
 
 <!-- NAVBAR wird automatisch geladen -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <!-- WICHTIG: Innen-Container, damit nichts full-width läuft -->
-    <div class="bt-container">
+    <div class="bt-container bt-page-recycling">
 
-        <!-- Hauptbox -->
-        <section class="bt-box">
-            <h1>Recycling & Materialveredelung bei BraunTech Solutions</h1>
-            <p>
-                BraunTech Solutions hat sich darauf spezialisiert, Materialien aus Schrottplätzen,
-                Industrieabfällen und Reststoffen zu retten, aufzubereiten und wieder in den 
-                Wertstoffkreislauf zu überführen.
-            </p>
-            <p>
-                Unser Ziel: Müll reduzieren, Ressourcen zurückgewinnen und nachhaltige Wertstoffe
-                schaffen, die erneut genutzt oder industriell weiterverarbeitet werden können.
-            </p>
-        </section>
-
-        <!-- Warum Recycling -->
-        <section class="bt-box">
-            <h2>Warum Recycling so wichtig ist</h2>
-            <p>
-                In einer Welt, in der Rohstoffe knapper werden und Müllberge wachsen, ist Recycling
-                längst kein optionaler Beitrag mehr – es ist eine Notwendigkeit.
-                BraunTech Solutions verbindet effiziente Schrottplatz-Aufbereitung mit moderner
-                Materialwissenschaft, um aus Abfall neue Werte zu schaffen.
-            </p>
-        </section>
-
-        <!-- Leistungen -->
-        <section class="bt-box">
-            <h2>Unsere Kernbereiche im Recycling</h2>
-
-            <div class="recycle-grid">
-
-                <div class="recycle-feature">
-                    <h3>♻️ Metall-Recycling</h3>
-                    <p>
-                        Abgetragene Stahlträger, Kupferkabel, Aluminiumreste oder Mischschrott –
-                        wir sortieren, reinigen und veredeln Metalle so, dass sie in 
-                        hochwertiger Industriequalität wieder einsetzbar sind.
-                    </p>
-                </div>
-
-                <div class="recycle-feature">
-                    <h3>🔧 Zerlegung & Sortierung</h3>
-                    <p>
-                        Maschinen, Fahrzeuge oder Industrieanlagen werden fachgerecht demontiert,
-                        sortiert und nach Materialgruppen getrennt. Dadurch steigt die Reinheit
-                        der Rohstoffe erheblich.
-                    </p>
-                </div>
-
-                <div class="recycle-feature">
-                    <h3>🟢 Kunststoff-Aufbereitung</h3>
-                    <p>
-                        Wir recyceln Kunststoffe, führen thermische Trennverfahren durch
-                        und bereiten sie so auf, dass sie wieder in Produktion oder 3D-Druck
-                        eingesetzt werden können.
-                    </p>
-                </div>
-
-                <div class="recycle-feature">
-                    <h3>🌍 Nachhaltige Veredelung</h3>
-                    <p>
-                        BraunTech Solutions verwandelt Reststoffe in weiterverwendbare
-                        Materialien – z. B. recycelte Platten, granulierte Rohstoffe oder 
-                        veredelten Industrieabfall.
-                    </p>
-                </div>
+        <!-- Einheitlicher Header mit Pill -->
+        <header class="bt-page-recycling-header">
+            <div class="bt-page-recycling-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Recycling · Materialaufbereitung
+                </span>
+                <small>BraunTech Solutions · Nachhaltige Ressourcen</small>
             </div>
+
+            <h1>Recycling & Materialveredelung</h1>
+
+            <p class="bt-recycling-intro">
+                BraunTech Solutions hat sich darauf spezialisiert, Materialien aus Schrottplätzen und Reststoffquellen zu retten,
+                aufzubereiten und hochwertig wieder in den Wertstoffkreislauf zurückzuführen.
+            </p>
+        </header>
+
+        <!-- Abschnitt 1 -->
+        <section class="bt-section">
+            <article class="bt-card bt-card-accent">
+                <h2>Unser Auftrag: Müll in Wertstoffe verwandeln</h2>
+                <p>
+                    In einer Zeit knapper Rohstoffe setzen wir auf effiziente Wiederverwertung.
+                    Durch nachhaltige Prozesse, professionelle Sortierung und moderne Technologien
+                    entsteht aus Abfall wieder etwas Wertvolles.
+                </p>
+            </article>
+        </section>
+
+        <!-- Abschnitt 2 -->
+        <section class="bt-section">
+            <article class="bt-card bt-card-accent">
+                <h2>Warum Recycling unverzichtbar ist</h2>
+                <p>
+                    Die Kombination aus Umweltschutz, Ressourcenrückgewinnung und industrieller
+                    Weiterverarbeitung macht Recycling zu einem zentralen Bestandteil moderner Wirtschaft.
+                    BraunTech Solutions verbindet Schrottplatz-Know-how mit professioneller Materialanalyse.
+                </p>
+            </article>
+        </section>
+
+        <!-- Kernbereiche -->
+        <section class="bt-section">
+            <article class="bt-card bt-card-accent">
+                <h2>Unsere Kernbereiche im Recycling</h2>
+
+                <div class="recycle-grid">
+
+                    <div class="recycle-feature">
+                        <h3>♻️ Metall-Recycling</h3>
+                        <p>
+                            Von Kupfer über Aluminium bis Mischschrott – wir sortieren, reinigen und veredeln
+                            Metalle für eine erneute Nutzung in Industriequalität.
+                        </p>
+                    </div>
+
+                    <div class="recycle-feature">
+                        <h3>🔧 Zerlegung & Sortierung</h3>
+                        <p>
+                            Präzise Demontage von Maschinen, Fahrzeugen und Anlagen.
+                            Materialgruppen werden sauber getrennt, was den Wert massiv steigert.
+                        </p>
+                    </div>
+
+                    <div class="recycle-feature">
+                        <h3>🟢 Kunststoff-Aufbereitung</h3>
+                        <p>
+                            Kunststoffe werden thermisch getrennt, gereinigt und für neue Produktionsprozesse
+                            oder 3D-Druckanwendungen wieder nutzbar gemacht.
+                        </p>
+                    </div>
+
+                    <div class="recycle-feature">
+                        <h3>🌍 Nachhaltige Veredelung</h3>
+                        <p>
+                            Aus vermeintlichem Abfall werden nutzbare Rohstoffe wie granulierte Stoffe,
+                            recycelte Platten oder industriell weiterverwendbare Materialien.
+                        </p>
+                    </div>
+
+                </div>
+            </article>
         </section>
 
         <!-- Bildbereich -->
-        <section class="bt-box">
-            <h2>Ein Blick in unsere Recycling-Prozesse</h2>
-            <p>
-                Moderne Maschinen, präzise Sortiersysteme und nachhaltige Prozesse bilden 
-                die Grundlage unserer täglichen Arbeit.
-            </p>
+        <section class="bt-section">
+            <article class="bt-card bt-card-accent">
+                <h2>Ein Blick in unsere Recycling-Prozesse</h2>
+                <p>
+                    Moderne Maschinen, saubere Sortiersysteme und nachhaltige Abläufe bilden das Rückgrat unserer Arbeit.
+                </p>
 
-            <div class="recycle-image-box">
-                <img src="bilder/recycling-anlage.jpg" alt="Recyclinganlage von BraunTech Solutions">
-            </div>
+                <div class="recycle-image-box">
+                    <img src="bilder/recycling-anlage.jpg" alt="Recyclinganlage von BraunTech Solutions">
+                </div>
+            </article>
         </section>
 
     </div>
 </main>
 
-<!-- FOOTER wird automatisch geladen -->
+<!-- FOOTER -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <script>
-    // --- Einfacher Include-Loader für Header/Footer ---
+    // Include Loader
     document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll("[data-include]").forEach(function (el) {
             const file = el.getAttribute("data-include");
             if (!file) return;
 
             fetch(file)
-                .then(function (response) {
-                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
-                    return response.text();
-                })
-                .then(function (html) {
-                    el.innerHTML = html;
-                })
-                .catch(function (err) {
-                    console.error(err);
-                });
+                .then(r => r.text())
+                .then(html => el.innerHTML = html)
+                .catch(e => console.error(e));
         });
     });
 
-    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    // Jahr aktualisieren
     (function () {
         var yearEl = document.getElementById('bt-year');
-        if (yearEl) {
-            yearEl.textContent = new Date().getFullYear();
-        }
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
     })();
 </script>
 

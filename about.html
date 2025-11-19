@@ -13,151 +13,169 @@
 
     <style>
         /* ===========================
-           About – Zusatzstyles
+           About – Zusatzstyles (Box-Design)
         ============================ */
 
-        .bt-about-wrapper {
-            max-width: 900px;
-            margin: 0 auto;
+        .bt-page-about {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
             display: flex;
             flex-direction: column;
-            gap: 30px;
+            gap: 2.2rem;
         }
 
-        .bt-box {
-            background: var(--bt-bg-alt);
-            border: 1px solid var(--bt-border);
-            padding: 30px;
-            border-radius: var(--bt-radius);
-            box-shadow: 0 0 25px rgba(57,255,20,0.08);
-            backdrop-filter: blur(4px);
-            animation: fadeIn 0.4s ease;
+        .bt-page-about-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            max-width: 820px;
         }
 
-        .bt-box h1,
-        .bt-box h2 {
-            margin-top: 0;
-            color: var(--green-light);
+        .bt-page-about-header h1 {
+            margin: 0;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+        .bt-page-about-meta {
+            display: flex;
+            gap: 0.75rem;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .bt-page-about-meta small {
+            color: var(--bt-text-muted);
+        }
+
+        .bt-about-intro {
+            color: var(--bt-text-muted);
+            max-width: 820px;
         }
 
         .bt-values-list {
             list-style: none;
             padding: 0;
-            margin: 0;
+            margin: 0.4rem 0 0.2rem;
         }
 
         .bt-values-list li {
-            padding: 8px 0;
+            padding: 0.25rem 0;
             display: flex;
-            gap: 10px;
+            gap: 0.7rem;
             align-items: flex-start;
         }
 
         .bt-values-list li::before {
             content: "✔";
-            color: var(--green-neon);
+            color: var(--green-light);
             font-weight: bold;
-            margin-top: 2px;
+            margin-top: 0.25rem;
         }
     </style>
 </head>
 <body>
 
-<!-- Rotierende Glow-Kreise -->
+<!-- Glow-Effekte -->
 <div id="bt-glow-orbits"></div>
-
-<!-- Random-Punkte-Layer -->
 <div id="bt-points"></div>
 
-<!-- NAVBAR -->
+<!-- NAVIGATION -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="bt-about-wrapper">
+    <div class="bt-container bt-page-about">
 
-        <!-- Section 1: Intro -->
-        <section class="bt-box">
+        <!-- Einheitlicher Pill-Header -->
+        <header class="bt-page-about-header">
+            <div class="bt-page-about-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Unternehmen · Über uns
+                </span>
+                <small>BraunTech Solutions – Recycling & Rohstoffaufbereitung</small>
+            </div>
             <h1>Über BraunTech Solutions</h1>
+            <p class="bt-about-intro">
+                BraunTech Solutions ist spezialisiert auf nachhaltige Rohstoffrückgewinnung,
+                Materialveredelung und professionelle Recyclingprozesse – direkt auf Schrottplätzen
+                und in industriellen Abfallströmen.
+            </p>
+        </header>
+
+        <!-- Intro -->
+        <section class="bt-card bt-card-accent">
+            <h2>Wer wir sind</h2>
             <p>
-                BraunTech Solutions ist ein innovatives Unternehmen im Bereich der nachhaltigen
-                Materialaufbereitung und Rohstoffrückgewinnung.  
-                Unser Schwerpunkt liegt auf der professionellen Verarbeitung, Sortierung und Veredelung 
-                von Wertstoffen, die auf Schrottplätzen und in industriellen Abfallströmen anfallen.
+                BraunTech Solutions ist ein innovativ arbeitendes Unternehmen im Bereich der
+                nachhaltigen Aufbereitung von Wertstoffen.  
+                Wir analysieren, sortieren und veredeln Materialien aus Industrie, Gewerbe und Schrottplätzen,
+                um sie der Wirtschaft als hochwertige Sekundärrohstoffe zurückzuführen.
             </p>
             <p>
-                Wir verwandeln scheinbaren Müll in hochwertige Sekundärrohstoffe – effizient,
-                ressourcenschonend und mit modernster Technologie.
+                Mit moderner Technik und effizienter Logistik verwandeln wir scheinbaren Müll in wertvolle Ressourcen.
             </p>
         </section>
 
-        <!-- Section 2: Mission -->
-        <section class="bt-box">
+        <!-- Mission -->
+        <section class="bt-card">
             <h2>Unsere Mission</h2>
             <p>
-                BraunTech Solutions verfolgt das Ziel, Ressourcen wieder in den Wertkreislauf zurückzuführen.
-                Durch innovative Verfahren ermöglichen wir eine nachhaltige und wirtschaftlich sinnvolle 
-                Wiederverwertung von Metallen, Kunststoffen und weiteren Wertstoffen.
+                Unser Ziel ist die wirtschaftlich und ökologisch sinnvolle Wiederverwertung von Metallen,
+                Kunststoffen und Verbundstoffen.  
+                Jedes Gramm, das zurückgewonnen wird, schont Ressourcen und reduziert Abfall.
             </p>
-
             <ul class="bt-values-list">
                 <li>Maximale Rückgewinnung von Rohstoffen</li>
-                <li>Nachhaltige und umweltbewusste Arbeitsweisen</li>
-                <li>Moderne Sortier-, Trenn- und Aufbereitungsverfahren</li>
-                <li>Effiziente Logistik und klare Prozessabläufe</li>
+                <li>Nachhaltige & energieeffiziente Arbeitsweisen</li>
+                <li>Moderne Sortier-, Trenn- & Aufbereitungsverfahren</li>
+                <li>Saubere Prozesse & hohe Materialreinheit</li>
             </ul>
         </section>
 
-        <!-- Section 3: Was wir tun -->
-        <section class="bt-box">
+        <!-- Was wir tun -->
+        <section class="bt-card">
             <h2>Was wir tun</h2>
             <p>
-                Unsere Arbeit beginnt dort, wo andere nur Abfall sehen. Mit moderner Technik und
-                fachkundigem Know-how veredeln wir unterschiedlichste Materialien und führen sie 
-                der Industrie als hochwertige Sekundärrohstoffe zurück.
+                Unsere Arbeit beginnt dort, wo andere nur Abfall sehen.  
+                Durch präzise Sortierung, Zerkleinerung, Aufbereitung und Weiterveredelung
+                machen wir Wertstoffe für die Industrie wieder nutzbar.
             </p>
             <ul class="bt-values-list">
                 <li>Sortierung und Trennung von Metallen, Kunststoffen und Verbundstoffen</li>
-                <li>Recycling von Schrott aus Industrie, Handwerk und Gewerbe</li>
-                <li>Schreddern, Pressen, Reinigen und Aufbereiten von Materialien</li>
-                <li>Veredelung zu verkaufsfähigen Rohstoffen</li>
+                <li>Recycling von Industrie-, Gewerbe- und Schrottplatzmaterial</li>
+                <li>Schreddern, Pressen, Reinigen und granulieren von Stoffen</li>
+                <li>Veredelung zu hochwertigen Sekundärrohstoffen</li>
             </ul>
         </section>
 
-        <!-- Section 4: Vision -->
-        <section class="bt-box">
+        <!-- Vision -->
+        <section class="bt-card bt-card-accent">
             <h2>Unsere Vision</h2>
             <p>
-                Wir glauben an eine Zukunft, in der Abfall kein Problem, sondern eine wertvolle Ressource ist.
-                Unser Ziel ist eine Kreislaufwirtschaft, in der jeder Stoff wiederverwendet wird und nichts verloren geht.
+                Wir glauben an eine Zukunft, in der Abfall als wertvolle Ressource gilt.
+                Unser Ziel ist eine funktionierende Kreislaufwirtschaft, in der Materialien
+                immer wieder genutzt werden – ohne Verlust von Wert oder Qualität.
             </p>
             <p>
-                Mit BraunTech Solutions leisten wir einen aktiven Beitrag zu einer sauberen,
-                verantwortungsvollen und ressourceneffizienten Welt.
+                Mit modernsten Technologien und nachhaltigen Verfahren leisten wir einen aktiven Beitrag
+                zu einer sauberen und ressourcenschonenden Zukunft.
             </p>
         </section>
 
-        <!-- Section 5: Warum BraunTech -->
-        <section class="bt-box">
+        <!-- Warum BraunTech -->
+        <section class="bt-card">
             <h2>Warum BraunTech?</h2>
             <p>
-                BraunTech Solutions steht für Zuverlässigkeit, moderne Verarbeitungstechniken
-                und nachhaltige Wertstoffaufbereitung.  
-                Wir liefern gleichbleibende Qualität, transparente Prozesse und einen verantwortungsvollen Umgang 
-                mit Ressourcen.
+                BraunTech Solutions steht für Konsistenz, Qualität und moderne Verarbeitungstechniken.
+                Unsere Prozesse sind darauf ausgelegt, Rohstoffe schnell, effizient und nachhaltig
+                zurückzugewinnen.
             </p>
-
             <ul class="bt-values-list">
-                <li>Hohe Reinheitsgrade der recycelten Materialien</li>
-                <li>Moderne Maschinen, Sortier- und Trenntechnologien</li>
-                <li>Kosteneffiziente Verarbeitung und schnelle Abwicklung</li>
+                <li>Hohe Reinheit recycelter Materialien</li>
+                <li>Moderne Maschinen & Trenntechnologien</li>
+                <li>Kosteneffiziente Verarbeitung & kurze Durchlaufzeiten</li>
                 <li>Langjährige Erfahrung im Recycling & Rohstoffhandel</li>
-                <li>Nachhaltige Verwertung statt reiner Entsorgung</li>
-                <li>Ein Partner, auf den man sich langfristig verlassen kann</li>
+                <li>Nachhaltige Wertstoffkreisläufe statt reiner Entsorgung</li>
+                <li>Zuverlässiger Partner für Industrie & Gewerbe</li>
             </ul>
         </section>
 
@@ -168,28 +186,20 @@
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <script>
-    // Include-Loader für Header/Footer
-    document.addEventListener("DOMContentLoaded", function () {
-        document.querySelectorAll("[data-include]").forEach(function (el) {
-            const file = el.getAttribute("data-include");
-            if (!file) return;
-
-            fetch(file)
-                .then(response => {
-                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
-                    return response.text();
-                })
-                .then(html => el.innerHTML = html)
+    // Include-Loader
+    document.addEventListener("DOMContentLoaded", () => {
+        document.querySelectorAll("[data-include]").forEach(el => {
+            fetch(el.getAttribute("data-include"))
+                .then(r => r.text())
+                .then(html => (el.innerHTML = html))
                 .catch(err => console.error(err));
         });
     });
 
-    // Footer Jahr aktualisieren
-    (function () {
-        var yearEl = document.getElementById('bt-year');
-        if (yearEl) {
-            yearEl.textContent = new Date().getFullYear();
-        }
+    // Jahr aktualisieren
+    (() => {
+        const yearEl = document.getElementById("bt-year");
+        if (yearEl) yearEl.textContent = new Date().getFullYear();
     })();
 </script>
 

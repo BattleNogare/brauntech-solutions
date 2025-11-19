@@ -15,6 +15,42 @@
         /* ===========================
            Kontaktseite – Zusatzstyles
         ============================ */
+
+        .bt-page-contact {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
+        }
+
+        .bt-page-contact-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            max-width: 720px;
+        }
+
+        .bt-page-contact-header h1 {
+            margin: 0;
+        }
+
+        .bt-page-contact-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .bt-page-contact-meta small {
+            color: var(--bt-text-muted);
+        }
+
+        .bt-contact-intro {
+            max-width: 720px;
+            color: var(--bt-text-muted);
+        }
+
+        /* Layout: Infos + Formular */
+
         .bt-contact-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
@@ -24,17 +60,10 @@
 
         .bt-contact-panel,
         .bt-form-card {
-            background: rgba(3, 17, 9, 0.92);
-            border: 1px solid var(--bt-border);
-            border-radius: var(--bt-radius);
-            padding: 1.6rem 1.8rem;
-            box-shadow:
-                0 0 30px rgba(0, 0, 0, 0.9),
-                0 0 18px rgba(57, 255, 20, 0.08);
-            backdrop-filter: blur(10px);
+            /* nutzen das globale Card-Design */
         }
 
-        .bt-contact-panel h1,
+        .bt-contact-panel h2,
         .bt-form-card h2 {
             margin-top: 0;
             margin-bottom: 0.75rem;
@@ -66,6 +95,7 @@
         }
 
         /* Bild mit Rahmen unter Kontaktinfos */
+
         .bt-contact-image-wrapper {
             margin-top: 1.4rem;
             border-radius: var(--bt-radius);
@@ -100,6 +130,7 @@
         }
 
         /* Formular */
+
         .bt-form-card h2 {
             font-size: 1.2rem;
         }
@@ -246,111 +277,134 @@
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="bt-container">
-        <div class="bt-contact-grid">
-            <!-- Kontakt-Infos -->
-            <section class="bt-contact-panel">
-                <h1>So erreichen Sie uns</h1>
-                <p>Schreiben Sie uns eine Nachricht oder greifen Sie direkt zum Hörer.</p>
+    <div class="bt-container bt-page-contact">
 
-                <ul class="bt-contact-list">
-                    <li>
-                        <span class="bt-contact-icon">🏢</span>
-                        <span>
-                            <strong>BraunTech Solutions</strong><br>
-                            Knuffingen, Hohenstein<br>
-                            Deutschland
-                        </span>
-                    </li>
-                    <li>
-                        <span class="bt-contact-icon">📞</span>
-                        <span>
-                            <!-- TODO: echte Telefonnummer eintragen -->
-                            Telefon: <a href="tel:+491234567890">+49&nbsp;1234&nbsp;567890</a>
-                        </span>
-                    </li>
-                </ul>
+        <!-- Einheitlicher Header mit Pill -->
+        <header class="bt-page-contact-header">
+            <div class="bt-page-contact-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Kontakt · Anfrage
+                </span>
+                <small>BraunTech Solutions · Knuffingen · Hohenstein</small>
+            </div>
+            <h1>So erreichen Sie BraunTech Solutions</h1>
+            <p class="bt-contact-intro">
+                Egal ob es um Recycling-Projekte, Materialaufbereitung oder digitale Lösungen geht –
+                über dieses Formular oder die Kontaktdaten erreichen Sie direkt BraunTech Solutions.
+            </p>
+        </header>
 
-                <!-- Bild mit Rahmen -->
-                <div class="bt-contact-image-wrapper">
-                    <!-- Pfad & Alt-Text anpassen -->
-                    <img src="bilder/kontakt-bild.png" alt="BraunTech Solutions Kontakt Bild">
-                    <div class="bt-contact-image-caption">
-                        Wir helfen Ihnen weiter
-                    </div>
-                </div>
-            </section>
+        <!-- Kontakt-Grid: Infos + Formular -->
+        <section class="bt-section">
+            <div class="bt-contact-grid">
 
-            <!-- Kontaktformular -->
-            <section class="bt-form-card" aria-labelledby="kontakt-heading">
-                <h2 id="kontakt-heading">Wie dürfen wir Ihnen helfen?</h2>
+                <!-- Kontakt-Infos -->
+                <section class="bt-card bt-card-accent bt-contact-panel">
+                    <h2>Direkter Kontakt</h2>
+                    <p>Schreiben Sie eine Nachricht oder greifen Sie direkt zum Hörer.</p>
 
-                <form id="kontakt-form" class="bt-form" novalidate>
-                    <div class="bt-form-row">
-                        <label for="kontakt-name">
-                            Name<span class="bt-required">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="kontakt-name"
-                            name="name"
-                            class="bt-input"
-                            required
-                            autocomplete="name"
-                            placeholder="Ihr Name">
-                    </div>
-
-                    <div class="bt-form-row">
-                        <label for="kontakt-betreff">
-                            Betreff<span class="bt-required">*</span>
-                        </label>
-                        <input
-                            type="text"
-                            id="kontakt-betreff"
-                            name="betreff"
-                            class="bt-input"
-                            required
-                            placeholder="Worum geht es?">
-                    </div>
-
-                    <div class="bt-form-row">
-                        <label for="kontakt-nachricht">
-                            Nachricht<span class="bt-required">*</span>
-                        </label>
-                        <textarea
-                            id="kontakt-nachricht"
-                            name="nachricht"
-                            class="bt-textarea"
-                            required
-                            placeholder="Beschreiben Sie kurz Ihr Anliegen – je genauer, desto besser."></textarea>
-                    </div>
-
-                    <div class="bt-form-row">
-                        <div class="bt-checkbox-row">
-                            <input
-                                type="checkbox"
-                                id="kontakt-datenschutz"
-                                name="datenschutz"
-                                required>
-                            <label for="kontakt-datenschutz" class="bt-checkbox-label">
-                                Ich habe die
-                                <a href="datenschutz.html" target="_blank" rel="noopener">
-                                    Datenschutzbestimmungen
+                    <ul class="bt-contact-list">
+                        <li>
+                            <span class="bt-contact-icon">🏢</span>
+                            <span>
+                                <strong>BraunTech Solutions</strong><br>
+                                Knuffingen, Hohenstein<br>
+                                Deutschland
+                            </span>
+                        </li>
+                        <li>
+                            <span class="bt-contact-icon">📞</span>
+                            <span>
+                                Telefon:
+                                <a href="tel:+491234567890">
+                                    +49&nbsp;1234&nbsp;567890
                                 </a>
-                                gelesen und akzeptiere diese.<span class="bt-required">*</span>
-                            </label>
+                            </span>
+                        </li>
+                    </ul>
+
+                    <!-- Bild mit Rahmen -->
+                    <div class="bt-contact-image-wrapper">
+                        <img src="bilder/kontakt-bild.png" alt="BraunTech Solutions Kontakt Bild">
+                        <div class="bt-contact-image-caption">
+                            Wir helfen Ihnen weiter
                         </div>
                     </div>
+                </section>
 
-                    <div class="bt-form-actions">
-                        <button type="submit" class="bt-btn-primary" id="kontakt-submit">
-                            Senden
-                        </button>
-                        <div id="form-status" class="bt-form-status" aria-live="polite"></div>
-                    </div>
-                </form>
-            </section>
-        </div>
+                <!-- Kontaktformular -->
+                <section class="bt-card bt-form-card" aria-labelledby="kontakt-heading">
+                    <h2 id="kontakt-heading">Wie dürfen wir Ihnen helfen?</h2>
+
+                    <form id="kontakt-form" class="bt-form" novalidate>
+                        <div class="bt-form-row">
+                            <label for="kontakt-name">
+                                Name<span class="bt-required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="kontakt-name"
+                                name="name"
+                                class="bt-input"
+                                required
+                                autocomplete="name"
+                                placeholder="Ihr Name">
+                        </div>
+
+                        <div class="bt-form-row">
+                            <label for="kontakt-betreff">
+                                Betreff<span class="bt-required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="kontakt-betreff"
+                                name="betreff"
+                                class="bt-input"
+                                required
+                                placeholder="Worum geht es?">
+                        </div>
+
+                        <div class="bt-form-row">
+                            <label for="kontakt-nachricht">
+                                Nachricht<span class="bt-required">*</span>
+                            </label>
+                            <textarea
+                                id="kontakt-nachricht"
+                                name="nachricht"
+                                class="bt-textarea"
+                                required
+                                placeholder="Beschreiben Sie kurz Ihr Anliegen – je genauer, desto besser."></textarea>
+                        </div>
+
+                        <div class="bt-form-row">
+                            <div class="bt-checkbox-row">
+                                <input
+                                    type="checkbox"
+                                    id="kontakt-datenschutz"
+                                    name="datenschutz"
+                                    required>
+                                <label for="kontakt-datenschutz" class="bt-checkbox-label">
+                                    Ich habe die
+                                    <a href="datenschutz.html" target="_blank" rel="noopener">
+                                        Datenschutzbestimmungen
+                                    </a>
+                                    gelesen und akzeptiere diese.<span class="bt-required">*</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bt-form-actions">
+                            <button type="submit" class="bt-btn-primary" id="kontakt-submit">
+                                Senden
+                            </button>
+                            <div id="form-status" class="bt-form-status" aria-live="polite"></div>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </section>
     </div>
 </main>
 
@@ -424,7 +478,7 @@
             submitBtn.textContent = "Wird gesendet …";
             setStatus("Nachricht wird an BraunTech Solutions übermittelt …", null);
 
-            // --- Vereinfachtes Payload, um 400-Fehler zu vermeiden ---
+            // Einfaches Payload für Discord (vermeidet 400-Fehler)
             const contentLines = [
                 "**Neue Kontaktanfrage von der Website brauntech-solutions/kontakt.html**",
                 "",

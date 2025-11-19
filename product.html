@@ -9,79 +9,335 @@
     <link rel="stylesheet" href="brauntech.css">
     <!-- Hintergrund / Effekte -->
     <link rel="stylesheet" href="custom.d/background.css">
-
-    <!-- Hintergrund-JS (Punkte, Orbits, Parallax) -->
     <script src="custom.d/background.js" defer></script>
+
+    <style>
+        /* =======================================
+           Produktseite – Zusatzstyles
+        ======================================== */
+
+        .bt-page-product {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
+        }
+
+        .bt-page-product-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            margin-bottom: 2rem;
+            max-width: 740px;
+        }
+
+        .bt-page-product-header h1 {
+            margin: 0;
+        }
+
+        .bt-page-product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .bt-page-product-meta small {
+            color: var(--bt-text-muted);
+        }
+
+        .bt-product-intro {
+            max-width: 740px;
+            color: var(--bt-text-muted);
+        }
+
+        /* Grid der Leistungs-Karten */
+        .bt-product-grid {
+            display: grid;
+            gap: 1.4rem;
+        }
+
+        @media (min-width: 860px) {
+            .bt-product-grid {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .bt-product-card h2 {
+            margin-top: 0;
+            margin-bottom: 0.4rem;
+            font-size: 1.1rem;
+        }
+
+        .bt-product-card p {
+            margin: 0.2rem 0 0.4rem;
+        }
+
+        .bt-product-taglist {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.3rem;
+            margin-top: 0.6rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .bt-product-tag {
+            padding: 0.15rem 0.65rem;
+            border-radius: 999px;
+            border: 1px solid var(--bt-border);
+            background: rgba(0, 0, 0, 0.35);
+            color: var(--bt-text-muted);
+        }
+
+        /* Prozessliste */
+        .bt-product-steps {
+            list-style: none;
+            padding-left: 0;
+            margin: 0.6rem 0 0;
+        }
+
+        .bt-product-steps li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.35rem;
+        }
+
+        .bt-product-steps li::before {
+            content: "•";
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            color: var(--green-light);
+        }
+    </style>
 </head>
 <body>
 
-<!-- Rotierende Glow-Kreise -->
+<!-- Rotierende Glow-Kreise (werden per JS gefüllt) -->
 <div id="bt-glow-orbits"></div>
 
-<!-- Random-Punkte-Layer -->
+<!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<!-- NAVBAR-Include -->
+<!-- NAVBAR wird automatisch geladen -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="bt-container">
-        <h1>Produkte & Dienstleistungen</h1>
-        <p>
-            BraunTech Solutions bietet modulare, skalierbare Lösungen für digitale Infrastruktur,
-            Prozessautomatisierung und spielinterne Services. Wähle einen Bereich, um mehr zu erfahren.
-        </p>
+    <div class="bt-container bt-page-product">
 
-        <section class="bt-panel" style="margin-top: 1.5rem;">
-            <h2>Unsere Schwerpunkte</h2>
-            <ul>
-                <li><strong>Recyclinglösungen</strong> – Automatisierte Sammel-, Sortier- und Verwertungsprozesse im Spiel.</li>
-                <li><strong>App- & Webdesign</strong> – In-Game-Portale, Dashboards und Management-Interfaces.</li>
-                <li><strong>Portal</strong> – Zentrales Zugriffssystem für interne Tools, Statistiken und Kundenbereiche.</li>
-                <li><strong>FAQ & Support</strong> – Dokumentation, Self-Service und Ticketing-Konzept.</li>
-            </ul>
+        <!-- Kopfbereich im einheitlichen Stil -->
+        <header class="bt-page-product-header">
+            <div class="bt-page-product-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Angebot · Produkte & Dienstleistungen
+                </span>
+                <small>BraunTech Solutions – Recycling & digitale Lösungen</small>
+            </div>
+            <h1>Was BraunTech Solutions anbietet</h1>
+            <p class="bt-product-intro">
+                Der Schwerpunkt von BraunTech Solutions liegt auf dem Recycling und der Veredelung von Materialien
+                aus Schrottplätzen. Ergänzend dazu entstehen digitale Lösungen – von Webauftritten bis hin zu
+                Portalen und Tools, die die Arbeit effizienter und transparenter machen.
+            </p>
+        </header>
+
+        <!-- Haupt-Produkt-Karten -->
+        <section class="bt-section">
+            <div class="bt-product-grid">
+
+                <!-- Recycling & Materialaufbereitung -->
+                <article class="bt-card bt-card-accent bt-product-card">
+                    <h2>Recycling & Materialaufbereitung</h2>
+                    <p>
+                        Kernbereich von BraunTech Solutions: Materialien aus Schrott, Restbeständen und
+                        Altanlagen werden sortiert, aufbereitet und in hochwertige Wertstoffe verwandelt.
+                    </p>
+                    <ul class="bt-product-steps">
+                        <li>Sortierung von Metallen, Kunststoffen & Mischschrott</li>
+                        <li>Demontage und Zerlegung von Maschinen & Anlagen</li>
+                        <li>Veredelung zu wiederverwertbaren Rohstoffen</li>
+                    </ul>
+                    <div class="bt-product-taglist">
+                        <span class="bt-product-tag">Schrottplatz</span>
+                        <span class="bt-product-tag">Rohstoff-Rückgewinnung</span>
+                        <span class="bt-product-tag">Nachhaltigkeit</span>
+                    </div>
+                </article>
+
+                <!-- App- & Webdesign -->
+                <article class="bt-card bt-product-card">
+                    <h2>App- & Webdesign</h2>
+                    <p>
+                        Entwicklung schlanker Websites und kleiner Web-Tools, die z.&nbsp;B. Recycling-Prozesse,
+                        Projektinformationen oder Kundenkommunikation digital begleiten.
+                    </p>
+                    <ul class="bt-product-steps">
+                        <li>Individuelle, leichte Webauftritte</li>
+                        <li>Fokus auf Klarheit, Performance & Funktion</li>
+                        <li>Integration mit bestehenden Abläufen vor Ort</li>
+                    </ul>
+                    <div class="bt-product-taglist">
+                        <span class="bt-product-tag">Web</span>
+                        <span class="bt-product-tag">Tools</span>
+                        <span class="bt-product-tag">Begleitende IT</span>
+                    </div>
+                </article>
+
+                <!-- Portal & interne Tools -->
+                <article class="bt-card bt-product-card">
+                    <h2>Portal & interne Tools</h2>
+                    <p>
+                        Zentrale Einstiegspunkte für Links, Konfigurationen und Helferlein – abgestimmt
+                        auf den praktischen Alltag von BraunTech Solutions.
+                    </p>
+                    <ul class="bt-product-steps">
+                        <li>Portal mit wichtigen Shortcuts & Ressourcen</li>
+                        <li>Verknüpfung externer Plattformen (z.&nbsp;B. GitHub, Drive)</li>
+                        <li>Interne Hilfstools für Organisation & Projekte</li>
+                    </ul>
+                    <div class="bt-product-taglist">
+                        <span class="bt-product-tag">Portal</span>
+                        <span class="bt-product-tag">Shortcuts</span>
+                        <span class="bt-product-tag">Organisation</span>
+                    </div>
+                </article>
+
+            </div>
         </section>
 
-        <section style="margin-top: 2rem;">
-            <h2>Direkte Navigation</h2>
-            <p>Springe direkt zu einem Bereich:</p>
-            <ul>
-                <li><a href="recycling.html">Recycling</a></li>
-                <li><a href="app-webdesign.html">App / Webdesign</a></li>
-                <li><a href="portal.html">Portal</a></li>
-                <li><a href="faq.html">FAQ</a></li>
-            </ul>
+        <!-- Zusammenarbeit / Wie es abläuft -->
+        <section class="bt-section">
+            <div class="bt-card">
+                <h2>So läuft die Zusammenarbeit</h2>
+                <p>
+                    Unabhängig davon, ob es um Recycling-Projekte oder digitale Unterstützung geht – die Zusammenarbeit
+                    mit BraunTech Solutions ist bewusst schlank und direkt gehalten.
+                </p>
+                <ul class="bt-product-steps">
+                    <li><strong>1. Kontaktaufnahme:</strong> Erste Anfrage über die <a href="kontakt.html">Kontaktseite</a>.</li>
+                    <li><strong>2. Klärung des Bedarfs:</strong> Kurze Abstimmung, welche Materialien, Anlagen oder
+                        digitalen Anforderungen im Fokus stehen.</li>
+                    <li><strong>3. Individuelles Vorgehen:</strong> Je nach Projekt wird ein pragmatischer Ablauf
+                        vereinbart – von der Abholung über die Sortierung bis zur Dokumentation oder digitalen Begleitung.</li>
+                </ul>
+                <p>
+                    Für Detailfragen zu einzelnen Leistungen stehen die Seiten
+                    <a href="recycling.html">Recycling</a>,
+                    <a href="app-webdesign.html">App / Webdesign</a> und das
+                    <a href="portal.html">Portal</a> zur Verfügung.
+                </p>
+            </div>
         </section>
+
     </div>
 </main>
 
-<!-- FOOTER-Include -->
+<!-- FOOTER wird automatisch geladen -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
-<!-- Include-System für Navbar + Footer -->
 <script>
-document.querySelectorAll("[data-include]").forEach(async (el) => {
-    const file = el.getAttribute("data-include");
-    if (!file) return;
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
-    try {
-        const response = await fetch(file);
-        if (!response.ok) {
-            console.error("Include failed:", file, response.status);
-            return;
-        }
-        const html = await response.text();
-        el.innerHTML = html;
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
 
-        // Jahr aktualisieren (falls Footer mit #bt-year geladen wurde)
-        const yearSpan = el.querySelector("#bt-year");
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
         }
-    } catch (e) {
-        console.error("Include error:", file, e);
-    }
-});
+    })();
+
+    // Slideshow-Script (stört nicht, wenn keine .bt-slideshow auf der Seite ist)
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshows = document.querySelectorAll('.bt-slideshow');
+
+        slideshows.forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.bt-slideshow-images img');
+            const dots = slideshow.querySelectorAll('.bt-slideshow-dots button');
+            const prevBtn = slideshow.querySelector('.bt-slide-prev');
+            const nextBtn = slideshow.querySelector('.bt-slide-next');
+
+            if (!images.length) return;
+
+            let current = 0;
+            let autoTimer = null;
+
+            function setActive(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === index);
+                });
+                current = index;
+            }
+
+            function showNext(step) {
+                const count = images.length;
+                const newIndex = (current + step + count) % count;
+                setActive(newIndex);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoTimer = setInterval(function () {
+                    showNext(1);
+                }, 8000);
+            }
+
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(-1);
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(1);
+                    startAutoPlay();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    stopAutoPlay();
+                    setActive(index);
+                    startAutoPlay();
+                });
+            });
+
+            setActive(0);
+            startAutoPlay();
+        });
+    });
 </script>
 
 </body>

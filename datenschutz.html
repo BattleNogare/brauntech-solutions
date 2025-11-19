@@ -13,90 +13,87 @@
 
     <style>
         /* ===========================
-           Datenschutz – Box-Layout
+           Datenschutz – Zusatzstyles (Box-Design)
         ============================ */
 
-        .ds-wrapper {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem 3rem;
+        .bt-page-privacy {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
         }
 
-        .ds-hero-box {
-            background: radial-gradient(circle at top left, rgba(57,255,20,0.08), transparent 55%),
-                        var(--bt-bg-alt);
-            border-radius: var(--bt-radius);
-            border: 1px solid var(--bt-border);
-            padding: 1.6rem 1.8rem;
-            box-shadow: 0 18px 45px rgba(0,0,0,0.75);
+        .bt-page-privacy-header {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
             margin-bottom: 2rem;
         }
 
-        .ds-hero-box h1 {
-            margin-top: 0;
-            margin-bottom: 0.5rem;
+        .bt-page-privacy-header h1 {
+            margin: 0;
         }
 
-        .ds-hero-meta {
+        .bt-page-privacy-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+
+        .bt-page-privacy-meta small {
+            color: var(--bt-text-muted, #89a589);
+        }
+
+        .bt-privacy-intro {
+            max-width: 720px;
+            color: var(--bt-text-muted, #89a589);
+        }
+
+        .bt-privacy-meta-small {
             font-size: 0.85rem;
-            color: var(--bt-text-muted);
-            font-family: var(--bt-font-mono);
-            text-transform: uppercase;
-            letter-spacing: 0.09em;
+            color: var(--bt-text-muted, #89a589);
         }
 
-        .ds-grid {
+        .bt-privacy-meta-small .bt-privacy-highlight {
+            color: var(--green-light);
+            font-family: var(--bt-font-mono);
+        }
+
+        /* Grid / Layout für die Boxen */
+
+        .bt-privacy-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.4fr) minmax(0, 1.4fr);
             gap: 1.5rem;
         }
 
-        .ds-box {
-            background: rgba(5, 12, 8, 0.96);
-            border-radius: var(--bt-radius);
-            border: 1px solid var(--bt-border);
-            padding: 1.3rem 1.4rem 1.4rem;
-            box-shadow: 0 8px 28px rgba(0,0,0,0.8);
+        .bt-privacy-full {
+            grid-column: 1 / -1;
         }
 
-        .ds-box h2 {
+        .bt-privacy-box h2 {
             margin-top: 0;
             margin-bottom: 0.6rem;
             font-size: 1.1rem;
         }
 
-        .ds-box + .ds-box {
-            margin-top: 0;
-        }
-
-        .ds-section-full {
-            grid-column: 1 / -1;
-        }
-
-        .ds-tagline {
-            font-size: 0.9rem;
-            color: var(--bt-text-muted);
-            margin-top: 0.4rem;
-        }
-
-        .ds-list-compact {
+        .bt-privacy-list {
             margin-top: 0.4rem;
             margin-bottom: 0.4rem;
             padding-left: 1.1rem;
         }
 
-        .ds-list-compact li {
+        .bt-privacy-list li {
             margin-bottom: 0.25rem;
         }
 
-        .ds-chip-row {
+        .bt-privacy-chip-row {
             display: flex;
             flex-wrap: wrap;
             gap: 0.4rem;
             margin: 0.6rem 0 0.4rem;
         }
 
-        .ds-chip {
+        .bt-privacy-chip {
             border-radius: 999px;
             border: 1px solid var(--bt-border);
             padding: 0.12rem 0.65rem;
@@ -108,35 +105,26 @@
             background: rgba(0,0,0,0.4);
         }
 
-        .ds-highlight {
+        .bt-privacy-inline-heading {
+            font-weight: 600;
             color: var(--green-light);
-            font-family: var(--bt-font-mono);
         }
 
-        .ds-meta-small {
+        .bt-privacy-meta-note {
             font-size: 0.8rem;
             color: var(--bt-text-muted);
             margin-top: 0.4rem;
         }
 
-        .ds-inline-heading {
-            font-weight: 600;
-            color: var(--green-light);
-        }
-
         @media (max-width: 900px) {
-            .ds-grid {
+            .bt-privacy-grid {
                 grid-template-columns: minmax(0, 1fr);
             }
         }
 
         @media (max-width: 600px) {
-            .ds-wrapper {
+            .bt-container.bt-page-privacy {
                 padding-inline: 1.1rem;
-            }
-
-            .ds-hero-box {
-                padding-inline: 1.2rem;
             }
         }
     </style>
@@ -153,364 +141,373 @@
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="ds-wrapper">
+    <div class="bt-container bt-page-privacy">
 
-        <!-- Hero / Intro-Box -->
-        <section class="ds-hero-box">
-            <div class="ds-hero-meta">Recht &amp; Compliance · BraunTech Solutions</div>
+        <!-- Kopfbereich mit Pill-Badge -->
+        <header class="bt-page-privacy-header">
+            <div class="bt-page-privacy-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Recht &amp; Compliance · Datenschutz
+                </span>
+                <small>BraunTech Solutions · Knuffingen · Hohenstein</small>
+            </div>
             <h1>Datenschutzerklärung</h1>
-            <p class="ds-tagline">
+            <p class="bt-privacy-intro">
                 Hier erklären wir, welche personenbezogenen Daten wir verarbeiten,
                 zu welchen Zwecken das geschieht und welche Rechte Sie dabei haben.
             </p>
-            <p class="ds-meta-small">
-                Verantwortlich: <span class="ds-highlight">BraunTech Solutions – Marius Braun</span><br>
-                Stand: <span class="ds-highlight">November 2025</span>
+            <p class="bt-privacy-meta-small">
+                Verantwortlich: <span class="bt-privacy-highlight">BraunTech Solutions – Marius Braun</span><br>
+                Stand: <span class="bt-privacy-highlight">November 2025</span>
             </p>
-        </section>
+        </header>
 
-        <!-- Boxen-Grid -->
-        <section class="ds-grid">
+        <!-- Inhalt im modernen Box-Layout -->
+        <section class="bt-section">
+            <div class="bt-privacy-grid">
 
-            <!-- Verantwortlicher -->
-            <article class="ds-box ds-section-full">
-                <h2>1. Verantwortlicher</h2>
-                <p>
-                    Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website
-                    im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
-                </p>
-                <p>
-                    <strong>BraunTech Solutions</strong><br>
-                    Inhaber: <strong>Marius Braun</strong> (Einzelunternehmen)<br>
-                    Funktion: Geschäftsführer<br>
-                    Ulmenweg 16-1<br>
-                    18573 Samtens<br>
-                    Deutschland<br>
-                    Telefon: wird noch ergänzt<br>
-                    E-Mail: wird noch ergänzt
-                </p>
-                <p>
-                    Webseite:
-                    <a href="https://battlenogare.github.io/brauntech-solutions/"
-                       target="_blank" rel="noopener">
-                        BraunTech Solutions
-                    </a>
-                </p>
-            </article>
+                <!-- 1. Verantwortlicher -->
+                <article class="bt-card bt-card-accent bt-privacy-box bt-privacy-full">
+                    <h2>1. Verantwortlicher</h2>
+                    <p>
+                        Verantwortlich für die Verarbeitung personenbezogener Daten auf dieser Website
+                        im Sinne der Datenschutz-Grundverordnung (DSGVO) ist:
+                    </p>
+                    <p>
+                        <strong>BraunTech Solutions</strong><br>
+                        Inhaber: <strong>Marius Braun</strong> (Einzelunternehmen)<br>
+                        Funktion: Geschäftsführer<br>
+                        Ulmenweg 16-1<br>
+                        18573 Samtens<br>
+                        Deutschland<br>
+                        Telefon: wird noch ergänzt<br>
+                        E-Mail: wird noch ergänzt
+                    </p>
+                    <p>
+                        Webseite:
+                        <a href="https://battlenogare.github.io/brauntech-solutions/"
+                           target="_blank" rel="noopener">
+                            BraunTech Solutions
+                        </a>
+                    </p>
+                </article>
 
-            <!-- Allgemeines -->
-            <article class="ds-box">
-                <h2>2. Allgemeines zur Datenverarbeitung</h2>
-                <p>
-                    Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Personenbezogene Daten
-                    sind alle Informationen, mit denen Sie persönlich identifiziert werden können,
-                    zum Beispiel Name, Kontaktdaten, Nutzerkonto oder IP-Adresse.
-                </p>
-                <p>Wir verarbeiten personenbezogene Daten nur, soweit dies erforderlich ist für:</p>
-                <ul class="ds-list-compact">
-                    <li>Bereitstellung dieser Website,</li>
-                    <li>Nutzung des Portals / Kundenbereichs,</li>
-                    <li>Beantwortung von Kontaktanfragen,</li>
-                    <li>Sicherstellung von Betrieb, Sicherheit und Stabilität der Systeme,</li>
-                    <li>Erfüllung gesetzlicher Pflichten.</li>
-                </ul>
-                <p>Rechtsgrundlagen der Verarbeitung sind insbesondere:</p>
-                <ul class="ds-list-compact">
-                    <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Erfüllung eines Vertrags
-                        oder vorvertraglicher Maßnahmen (z.&nbsp;B. Nutzung des Portals, Kundenkonto);</li>
-                    <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – berechtigtes Interesse 
-                        (z.&nbsp;B. technisch notwendige Logfiles, IT-Sicherheit, effiziente Verwaltung);</li>
-                    <li><strong>Art. 6 Abs. 1 lit. c DSGVO</strong> – rechtliche Verpflichtung
-                        (z.&nbsp;B. handels- und steuerrechtliche Aufbewahrung);</li>
-                    <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung, sofern wir
-                        diese im Einzelfall einholen.</li>
-                </ul>
-            </article>
+                <!-- 2. Allgemeines zur Datenverarbeitung -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>2. Allgemeines zur Datenverarbeitung</h2>
+                    <p>
+                        Der Schutz Ihrer personenbezogenen Daten ist uns wichtig. Personenbezogene Daten
+                        sind alle Informationen, mit denen Sie persönlich identifiziert werden können,
+                        zum Beispiel Name, Kontaktdaten, Nutzerkonto oder IP-Adresse.
+                    </p>
+                    <p>Wir verarbeiten personenbezogene Daten nur, soweit dies erforderlich ist für:</p>
+                    <ul class="bt-privacy-list">
+                        <li>Bereitstellung dieser Website,</li>
+                        <li>Nutzung des Portals / Kundenbereichs,</li>
+                        <li>Beantwortung von Kontaktanfragen,</li>
+                        <li>Sicherstellung von Betrieb, Sicherheit und Stabilität der Systeme,</li>
+                        <li>Erfüllung gesetzlicher Pflichten.</li>
+                    </ul>
+                    <p>Rechtsgrundlagen der Verarbeitung sind insbesondere:</p>
+                    <ul class="bt-privacy-list">
+                        <li><strong>Art. 6 Abs. 1 lit. b DSGVO</strong> – Erfüllung eines Vertrags
+                            oder vorvertraglicher Maßnahmen (z.&nbsp;B. Nutzung des Portals, Kundenkonto);</li>
+                        <li><strong>Art. 6 Abs. 1 lit. f DSGVO</strong> – berechtigtes Interesse 
+                            (z.&nbsp;B. technisch notwendige Logfiles, IT-Sicherheit, effiziente Verwaltung);</li>
+                        <li><strong>Art. 6 Abs. 1 lit. c DSGVO</strong> – rechtliche Verpflichtung
+                            (z.&nbsp;B. handels- und steuerrechtliche Aufbewahrung);</li>
+                        <li><strong>Art. 6 Abs. 1 lit. a DSGVO</strong> – Einwilligung, sofern wir
+                            diese im Einzelfall einholen.</li>
+                    </ul>
+                </article>
 
-            <!-- Hosting & Logfiles -->
-            <article class="ds-box">
-                <h2>3. Hosting &amp; Server-Logfiles</h2>
-                <p class="ds-chip-row">
-                    <span class="ds-chip">GitHub Pages</span>
-                    <span class="ds-chip">Google Drive</span>
-                    <span class="ds-chip">Server-Logs</span>
-                </p>
-                <p>
-                    Diese Website wird als statische Seite über <strong>GitHub Pages</strong>
-                    bereitgestellt. Beim Aufruf der Seite wird Ihre IP-Adresse zusammen
-                    mit weiteren technischen Daten (z.&nbsp;B. Browsertyp, Betriebssystem,
-                    Zeitpunkt des Zugriffs) an die Server des Anbieters übermittelt, um die
-                    Inhalte auszuliefern.
-                </p>
-                <p>
-                    Zusätzlich nutzen wir <strong>Google Drive</strong> (z.&nbsp;B. zur
-                    Ablage bestimmter Dateien oder Konfigurationen). Hierbei können
-                    ebenfalls technische Verbindungsdaten verarbeitet werden, wenn Inhalte
-                    von dort geladen werden.
-                </p>
-                <p>
-                    Beim Aufruf unserer Website werden technisch notwendige Daten automatisch
-                    in sogenannten Server-Logfiles gespeichert. Dies können insbesondere sein:
-                </p>
-                <ul class="ds-list-compact">
-                    <li>IP-Adresse des zugreifenden Endgeräts,</li>
-                    <li>Datum und Uhrzeit des Zugriffs,</li>
-                    <li>aufgerufene Seiten/Dateien und übertragene Datenmenge,</li>
-                    <li>Referrer-URL (die zuvor besuchte Seite),</li>
-                    <li>verwendeter Browsertyp und -version,</li>
-                    <li>verwendetes Betriebssystem.</li>
-                </ul>
-                <p>
-                    Diese Daten werden zur Sicherstellung des technischen Betriebs,
-                    zur Fehleranalyse und zur Abwehr von Angriffen genutzt. Eine
-                    Profilbildung zu Marketingzwecken findet nicht statt.
-                </p>
-                <p>
-                    Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>
-                    (berechtigtes Interesse an einem sicheren und stabilen Betrieb der Website).
-                    Die Logfiles werden in der Regel nach kurzer Zeit automatisch gelöscht,
-                    sofern keine weitere Aufbewahrung zu Beweiszwecken erforderlich ist.
-                </p>
-                <p class="ds-meta-small">
-                    Hinweis: Die genannten Anbieter können ihren Sitz außerhalb der EU haben
-                    (insbesondere in den USA). Eine Übermittlung personenbezogener Daten erfolgt
-                    nur bei Vorliegen geeigneter Garantien oder einer anderen zulässigen Grundlage.
-                </p>
-            </article>
+                <!-- 3. Hosting & Server-Logfiles -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>3. Hosting &amp; Server-Logfiles</h2>
+                    <p class="bt-privacy-chip-row">
+                        <span class="bt-privacy-chip">GitHub Pages</span>
+                        <span class="bt-privacy-chip">Google Drive</span>
+                        <span class="bt-privacy-chip">Server-Logs</span>
+                    </p>
+                    <p>
+                        Diese Website wird als statische Seite über <strong>GitHub Pages</strong>
+                        bereitgestellt. Beim Aufruf der Seite wird Ihre IP-Adresse zusammen
+                        mit weiteren technischen Daten (z.&nbsp;B. Browsertyp, Betriebssystem,
+                        Zeitpunkt des Zugriffs) an die Server des Anbieters übermittelt, um die
+                        Inhalte auszuliefern.
+                    </p>
+                    <p>
+                        Zusätzlich nutzen wir <strong>Google Drive</strong> (z.&nbsp;B. zur
+                        Ablage bestimmter Dateien oder Konfigurationen). Hierbei können
+                        ebenfalls technische Verbindungsdaten verarbeitet werden, wenn Inhalte
+                        von dort geladen werden.
+                    </p>
+                    <p>
+                        Beim Aufruf unserer Website werden technisch notwendige Daten automatisch
+                        in sogenannten Server-Logfiles gespeichert. Dies können insbesondere sein:
+                    </p>
+                    <ul class="bt-privacy-list">
+                        <li>IP-Adresse des zugreifenden Endgeräts,</li>
+                        <li>Datum und Uhrzeit des Zugriffs,</li>
+                        <li>aufgerufene Seiten/Dateien und übertragene Datenmenge,</li>
+                        <li>Referrer-URL (die zuvor besuchte Seite),</li>
+                        <li>verwendeter Browsertyp und -version,</li>
+                        <li>verwendetes Betriebssystem.</li>
+                    </ul>
+                    <p>
+                        Diese Daten werden zur Sicherstellung des technischen Betriebs,
+                        zur Fehleranalyse und zur Abwehr von Angriffen genutzt. Eine
+                        Profilbildung zu Marketingzwecken findet nicht statt.
+                    </p>
+                    <p>
+                        Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>
+                        (berechtigtes Interesse an einem sicheren und stabilen Betrieb der Website).
+                        Die Logfiles werden in der Regel nach kurzer Zeit automatisch gelöscht,
+                        sofern keine weitere Aufbewahrung zu Beweiszwecken erforderlich ist.
+                    </p>
+                    <p class="bt-privacy-meta-note">
+                        Hinweis: Die genannten Anbieter können ihren Sitz außerhalb der EU haben
+                        (insbesondere in den USA). Eine Übermittlung personenbezogener Daten erfolgt
+                        nur bei Vorliegen geeigneter Garantien oder einer anderen zulässigen Grundlage.
+                    </p>
+                </article>
 
-            <!-- Cookies -->
-            <article class="ds-box">
-                <h2>4. Cookies &amp; ähnliche Technologien</h2>
-                <p>
-                    Auf dieser Website setzen wir aktuell
-                    <span class="ds-inline-heading">keine Tracking-Cookies und keine Analyse-Tools</span> ein.
-                    Es werden ausschließlich technisch notwendige Mechanismen genutzt,
-                    die für die Bereitstellung der Seite oder die Funktion des Portals
-                    erforderlich sind.
-                </p>
-                <p>
-                    Ein separates Cookie-Banner oder Consent-Tool ist daher aktuell nicht im Einsatz,
-                    da wir keine einwilligungspflichtigen Tracking-Technologien verwenden.
-                </p>
-            </article>
+                <!-- 4. Cookies -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>4. Cookies &amp; ähnliche Technologien</h2>
+                    <p>
+                        Auf dieser Website setzen wir aktuell
+                        <span class="bt-privacy-inline-heading">keine Tracking-Cookies und keine Analyse-Tools</span> ein.
+                        Es werden ausschließlich technisch notwendige Mechanismen genutzt,
+                        die für die Bereitstellung der Seite oder die Funktion des Portals
+                        erforderlich sind.
+                    </p>
+                    <p>
+                        Ein separates Cookie-Banner oder Consent-Tool ist daher aktuell nicht im Einsatz,
+                        da wir keine einwilligungspflichtigen Tracking-Technologien verwenden.
+                    </p>
+                </article>
 
-            <!-- Nutzerkonto -->
-            <article class="ds-box">
-                <h2>5. Nutzerkonto &amp; Portal / Kundenbereich</h2>
-                <p>
-                    Auf unserer Website besteht die Möglichkeit, einen
-                    <strong>Login- bzw. Kundenbereich (Portal)</strong> zu nutzen.
-                    Hierfür verarbeiten wir die Daten, die Sie im Rahmen der Registrierung
-                    bzw. Nutzung angeben, zum Beispiel:
-                </p>
-                <ul class="ds-list-compact">
-                    <li>Benutzername oder E-Mail-Adresse,</li>
-                    <li>ein von Ihnen gewähltes Passwort (nur in verschlüsselter/hashed Form gespeichert),</li>
-                    <li>ggf. weitere Profildaten, die für die Nutzung des Portals erforderlich sind
-                        (z.&nbsp;B. Einstellungen, Projektdaten, interne Notizen).</li>
-                </ul>
-                <p>
-                    Diese Daten verwenden wir, um Ihnen den Zugang zum Portal zu ermöglichen,
-                    Ihre Anfragen und Projekte zu verwalten sowie um die Nutzung des Portals
-                    technisch bereitzustellen.
-                </p>
-                <p>
-                    Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>
-                    (Vertragserfüllung bzw. vorvertragliche Maßnahmen).
-                </p>
-                <p>
-                    Wir führen im Rahmen des Portals einfache <strong>Profile</strong>, z.&nbsp;B.
-                    zur Verwaltung Ihres Kontos, Ihrer Projekte und Ihrer Einstellungen.
-                    Es findet jedoch <strong>keine automatisierte Entscheidungsfindung
-                    im Sinne von Art. 22 DSGVO</strong> statt, insbesondere kein automatisiertes Scoring.
-                </p>
-                <p>
-                    Die Daten werden grundsätzlich so lange gespeichert, wie Ihr Nutzerkonto
-                    aktiv ist. Wenn Sie Ihr Konto löschen lassen, werden Ihre personenbezogenen
-                    Daten – soweit keine gesetzlichen Aufbewahrungsfristen entgegenstehen –
-                    gelöscht oder anonymisiert.
-                </p>
-            </article>
+                <!-- 5. Nutzerkonto / Portal -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>5. Nutzerkonto &amp; Portal / Kundenbereich</h2>
+                    <p>
+                        Auf unserer Website besteht die Möglichkeit, einen
+                        <strong>Login- bzw. Kundenbereich (Portal)</strong> zu nutzen.
+                        Hierfür verarbeiten wir die Daten, die Sie im Rahmen der Registrierung
+                        bzw. Nutzung angeben, zum Beispiel:
+                    </p>
+                    <ul class="bt-privacy-list">
+                        <li>Benutzername oder E-Mail-Adresse,</li>
+                        <li>ein von Ihnen gewähltes Passwort (nur in verschlüsselter/hashed Form gespeichert),</li>
+                        <li>ggf. weitere Profildaten, die für die Nutzung des Portals erforderlich sind
+                            (z.&nbsp;B. Einstellungen, Projektdaten, interne Notizen).</li>
+                    </ul>
+                    <p>
+                        Diese Daten verwenden wir, um Ihnen den Zugang zum Portal zu ermöglichen,
+                        Ihre Anfragen und Projekte zu verwalten sowie um die Nutzung des Portals
+                        technisch bereitzustellen.
+                    </p>
+                    <p>
+                        Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>
+                        (Vertragserfüllung bzw. vorvertragliche Maßnahmen).
+                    </p>
+                    <p>
+                        Wir führen im Rahmen des Portals einfache <strong>Profile</strong>, z.&nbsp;B.
+                        zur Verwaltung Ihres Kontos, Ihrer Projekte und Ihrer Einstellungen.
+                        Es findet jedoch <strong>keine automatisierte Entscheidungsfindung
+                        im Sinne von Art. 22 DSGVO</strong> statt, insbesondere kein automatisiertes Scoring.
+                    </p>
+                    <p>
+                        Die Daten werden grundsätzlich so lange gespeichert, wie Ihr Nutzerkonto
+                        aktiv ist. Wenn Sie Ihr Konto löschen lassen, werden Ihre personenbezogenen
+                        Daten – soweit keine gesetzlichen Aufbewahrungsfristen entgegenstehen – 
+                        gelöscht oder anonymisiert.
+                    </p>
+                </article>
 
-            <!-- Kontakt / Discord -->
-            <article class="ds-box">
-                <h2>6. Kontaktformular &amp; Kommunikation</h2>
-                <p class="ds-chip-row">
-                    <span class="ds-chip">Kontaktformular</span>
-                    <span class="ds-chip">Discord Webhook</span>
-                </p>
-                <p>
-                    Wenn Sie uns über das <strong>Kontaktformular</strong> auf der Website
-                    eine Nachricht senden, verarbeiten wir die von Ihnen eingegebenen Daten
-                    (z.&nbsp;B. Name, Kontaktdaten, Inhalt der Nachricht), um Ihr Anliegen
-                    zu bearbeiten und zu beantworten.
-                </p>
-                <p>
-                    Die Nachrichten werden über einen <strong>Discord Webhook</strong>
-                    an unseren internen Kommunikationskanal weitergeleitet. Dabei können
-                    personenbezogene Daten (z.&nbsp;B. Ihre Nachricht und Ihre
-                    angegebenen Kontaktdaten) an Discord übermittelt und dort verarbeitet werden.
-                </p>
-                <p>
-                    Rechtsgrundlage für die Verarbeitung Ihrer Kontaktanfrage ist
-                    <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>, sofern sich Ihre Anfrage
-                    auf ein Vertragsverhältnis bezieht oder darauf abzielt, sowie im Übrigen
-                    <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (unser berechtigtes Interesse
-                    an einer effizienten Bearbeitung von Anfragen).
-                </p>
-                <p>
-                    Die in diesem Zusammenhang anfallenden Daten speichern wir grundsätzlich,
-                    solange dies für die Bearbeitung der Anfrage erforderlich ist. Im Anschluss
-                    können sie für weitere Nachfragen oder zur Erfüllung gesetzlicher Pflichten
-                    für einen angemessenen Zeitraum aufbewahrt werden.
-                </p>
-            </article>
+                <!-- 6. Kontakt & Discord -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>6. Kontaktformular &amp; Kommunikation</h2>
+                    <p class="bt-privacy-chip-row">
+                        <span class="bt-privacy-chip">Kontaktformular</span>
+                        <span class="bt-privacy-chip">Discord Webhook</span>
+                    </p>
+                    <p>
+                        Wenn Sie uns über das <strong>Kontaktformular</strong> auf der Website
+                        eine Nachricht senden, verarbeiten wir die von Ihnen eingegebenen Daten
+                        (z.&nbsp;B. Name, Kontaktdaten, Inhalt der Nachricht), um Ihr Anliegen
+                        zu bearbeiten und zu beantworten.
+                    </p>
+                    <p>
+                        Die Nachrichten werden über einen <strong>Discord Webhook</strong>
+                        an unseren internen Kommunikationskanal weitergeleitet. Dabei können
+                        personenbezogene Daten (z.&nbsp;B. Ihre Nachricht und Ihre
+                        angegebenen Kontaktdaten) an Discord übermittelt und dort verarbeitet werden.
+                    </p>
+                    <p>
+                        Rechtsgrundlage für die Verarbeitung Ihrer Kontaktanfrage ist
+                        <strong>Art. 6 Abs. 1 lit. b DSGVO</strong>, sofern sich Ihre Anfrage
+                        auf ein Vertragsverhältnis bezieht oder darauf abzielt, sowie im Übrigen
+                        <strong>Art. 6 Abs. 1 lit. f DSGVO</strong> (unser berechtigtes Interesse
+                        an einer effizienten Bearbeitung von Anfragen).
+                    </p>
+                    <p>
+                        Die in diesem Zusammenhang anfallenden Daten speichern wir grundsätzlich,
+                        solange dies für die Bearbeitung der Anfrage erforderlich ist. Im Anschluss
+                        können sie für weitere Nachfragen oder zur Erfüllung gesetzlicher Pflichten
+                        für einen angemessenen Zeitraum aufbewahrt werden.
+                    </p>
+                </article>
 
-            <!-- Videos & Fonts -->
-            <article class="ds-box">
-                <h2>7. Eingebettete Videos &amp; Webfonts</h2>
-                <p class="ds-chip-row">
-                    <span class="ds-chip">YouTube</span>
-                    <span class="ds-chip">Google Fonts</span>
-                </p>
-                <p class="ds-inline-heading">Eingebettete Videos (z.&nbsp;B. YouTube)</p>
-                <p>
-                    Auf unserer Website können Videos externer Plattformen (z.&nbsp;B.
-                    <strong>YouTube</strong>) eingebunden sein. Beim Aufruf einer Seite mit
-                    einem eingebetteten Video wird in der Regel eine Verbindung zu den Servern
-                    des jeweiligen Anbieters hergestellt. Dabei können Daten wie Ihre IP-Adresse
-                    und Informationen über die aufgerufene Seite übermittelt werden.
-                </p>
-                <p>
-                    Soweit möglich, binden wir solche Inhalte datenschutzfreundlich ein
-                    (z.&nbsp;B. über eine „erweiterte Datenschutzfunktion“ oder eine
-                    Zwei-Klick-Lösung), sodass Daten erst übertragen werden, wenn Sie das
-                    Video aktiv abspielen.
-                </p>
-                <p>
-                    Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>
-                    (berechtigtes Interesse an einer ansprechenden Darstellung unserer Online-Angebote).
-                    Sofern wir im Einzelfall Ihre Einwilligung einholen, ist
-                    <strong>Art. 6 Abs. 1 lit. a DSGVO</strong> maßgeblich.
-                </p>
+                <!-- 7. Videos & Webfonts -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>7. Eingebettete Videos &amp; Webfonts</h2>
+                    <p class="bt-privacy-chip-row">
+                        <span class="bt-privacy-chip">YouTube</span>
+                        <span class="bt-privacy-chip">Google Fonts</span>
+                    </p>
 
-                <p class="ds-inline-heading" style="margin-top:0.9rem;">Webfonts (Google Fonts)</p>
-                <p>
-                    Für eine einheitliche Darstellung von Schriftarten nutzen wir
-                    <strong>Google Fonts</strong>. Beim Aufruf unserer Seiten lädt Ihr Browser
-                    die benötigten Webfonts von den Servern von Google. Hierbei kann Ihre IP-Adresse
-                    zusammen mit technischen Informationen an Google übermittelt werden.
-                </p>
-                <p>
-                    Die Nutzung von Google Fonts erfolgt auf Grundlage von
-                    <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>. Unser berechtigtes Interesse
-                    liegt in einer technisch zuverlässigen, schnellen und einheitlichen
-                    Darstellung unserer Website.
-                </p>
-            </article>
+                    <p class="bt-privacy-inline-heading">Eingebettete Videos (z.&nbsp;B. YouTube)</p>
+                    <p>
+                        Auf unserer Website können Videos externer Plattformen (z.&nbsp;B.
+                        <strong>YouTube</strong>) eingebunden sein. Beim Aufruf einer Seite mit
+                        einem eingebetteten Video wird in der Regel eine Verbindung zu den Servern
+                        des jeweiligen Anbieters hergestellt. Dabei können Daten wie Ihre IP-Adresse
+                        und Informationen über die aufgerufene Seite übermittelt werden.
+                    </p>
+                    <p>
+                        Soweit möglich, binden wir solche Inhalte datenschutzfreundlich ein
+                        (z.&nbsp;B. über eine „erweiterte Datenschutzfunktion“ oder eine
+                        Zwei-Klick-Lösung), sodass Daten erst übertragen werden, wenn Sie das
+                        Video aktiv abspielen.
+                    </p>
+                    <p>
+                        Rechtsgrundlage ist <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>
+                        (berechtigtes Interesse an einer ansprechenden Darstellung unserer Online-Angebote).
+                        Sofern wir im Einzelfall Ihre Einwilligung einholen, ist
+                        <strong>Art. 6 Abs. 1 lit. a DSGVO</strong> maßgeblich.
+                    </p>
 
-            <!-- Weitere Dienste / Auftragsverarbeitung -->
-            <article class="ds-box">
-                <h2>8. Weitere Dienste &amp; Datenempfänger</h2>
-                <p>
-                    Zusätzlich zu den oben genannten Diensten können wir bei Bedarf weitere
-                    externe Tools oder Plattformen (z.&nbsp;B. Chat- oder Support-Systeme,
-                    Terminbuchungstools oder ähnliche SaaS-Angebote) einsetzen, um unsere
-                    Dienstleistungen effizient bereitzustellen.
-                </p>
-                <p>
-                    Bei der Einbindung solcher Dienste achten wir darauf, dass eine
-                    Verarbeitung personenbezogener Daten nur auf einer zulässigen
-                    Rechtsgrundlage erfolgt (z.&nbsp;B. berechtigtes Interesse,
-                    Vertragserfüllung oder Ihre Einwilligung).
-                </p>
-                <p>
-                    Soweit wir Dienstleister mit der Verarbeitung personenbezogener Daten
-                    beauftragen (z.&nbsp;B. Hosting, technische Wartung oder Kommunikationsdienste),
-                    geschieht dies nur auf Grundlage geeigneter vertraglicher Vereinbarungen.
-                </p>
-                <p>
-                    Externe Plattformen wie GitHub, Google oder Discord verarbeiten Daten
-                    im Rahmen ihrer eigenen Verantwortlichkeit, soweit sie Dienste zur
-                    Bereitstellung unserer Website oder Kommunikation anbieten.
-                </p>
-            </article>
+                    <p class="bt-privacy-inline-heading" style="margin-top:0.9rem;">Webfonts (Google Fonts)</p>
+                    <p>
+                        Für eine einheitliche Darstellung von Schriftarten nutzen wir
+                        <strong>Google Fonts</strong>. Beim Aufruf unserer Seiten lädt Ihr Browser
+                        die benötigten Webfonts von den Servern von Google. Hierbei kann Ihre IP-Adresse
+                        zusammen mit technischen Informationen an Google übermittelt werden.
+                    </p>
+                    <p>
+                        Die Nutzung von Google Fonts erfolgt auf Grundlage von
+                        <strong>Art. 6 Abs. 1 lit. f DSGVO</strong>. Unser berechtigtes Interesse
+                        liegt in einer technisch zuverlässigen, schnellen und einheitlichen
+                        Darstellung unserer Website.
+                    </p>
+                </article>
 
-            <!-- Speicherdauer -->
-            <article class="ds-box">
-                <h2>9. Speicherdauer</h2>
-                <p>
-                    Wir speichern personenbezogene Daten nur so lange, wie es für die jeweils
-                    genannten Zwecke erforderlich ist oder wir gesetzlich zur Aufbewahrung
-                    verpflichtet sind.
-                </p>
-                <ul class="ds-list-compact">
-                    <li>Kontaktanfragen: solange für die Bearbeitung erforderlich und
-                        darüber hinaus, solange Ansprüche geltend gemacht werden können
-                        (in der Regel bis zu 3 Jahre nach Abschluss der Kommunikation);</li>
-                    <li>Nutzerkonten und Portaldaten: solange das Konto aktiv ist bzw.
-                        das Vertragsverhältnis besteht;</li>
-                    <li>Server-Logfiles: in der Regel für wenige Wochen, es sei denn, eine
-                        längere Aufbewahrung ist aus Sicherheits- oder Beweisgründen nötig.</li>
-                </ul>
-                <p>
-                    Nach Ablauf der jeweiligen Fristen werden die Daten gelöscht oder anonymisiert.
-                </p>
-            </article>
+                <!-- 8. Weitere Dienste -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>8. Weitere Dienste &amp; Datenempfänger</h2>
+                    <p>
+                        Zusätzlich zu den oben genannten Diensten können wir bei Bedarf weitere
+                        externe Tools oder Plattformen (z.&nbsp;B. Chat- oder Support-Systeme,
+                        Terminbuchungstools oder ähnliche SaaS-Angebote) einsetzen, um unsere
+                        Dienstleistungen effizient bereitzustellen.
+                    </p>
+                    <p>
+                        Bei der Einbindung solcher Dienste achten wir darauf, dass eine
+                        Verarbeitung personenbezogener Daten nur auf einer zulässigen
+                        Rechtsgrundlage erfolgt (z.&nbsp;B. berechtigtes Interesse,
+                        Vertragserfüllung oder Ihre Einwilligung).
+                    </p>
+                    <p>
+                        Soweit wir Dienstleister mit der Verarbeitung personenbezogener Daten
+                        beauftragen (z.&nbsp;B. Hosting, technische Wartung oder Kommunikationsdienste),
+                        geschieht dies nur auf Grundlage geeigneter vertraglicher Vereinbarungen.
+                    </p>
+                    <p>
+                        Externe Plattformen wie GitHub, Google oder Discord verarbeiten Daten
+                        im Rahmen ihrer eigenen Verantwortlichkeit, soweit sie Dienste zur
+                        Bereitstellung unserer Website oder Kommunikation anbieten.
+                    </p>
+                </article>
 
-            <!-- Rechte -->
-            <article class="ds-box">
-                <h2>10. Ihre Rechte</h2>
-                <p>
-                    Als betroffene Person stehen Ihnen im Zusammenhang mit der Verarbeitung
-                    Ihrer personenbezogenen Daten insbesondere folgende Rechte zu:
-                </p>
-                <ul class="ds-list-compact">
-                    <li><strong>Auskunft</strong> über die von uns verarbeiteten Daten,</li>
-                    <li><strong>Berichtigung</strong> unrichtiger oder Vervollständigung
-                        unvollständiger Daten,</li>
-                    <li><strong>Löschung</strong> Ihrer Daten, sofern keine
-                        Aufbewahrungspflichten entgegenstehen,</li>
-                    <li><strong>Einschränkung</strong> der Verarbeitung unter bestimmten
-                        Voraussetzungen,</li>
-                    <li><strong>Datenübertragbarkeit</strong>, soweit die Verarbeitung auf
-                        Ihrer Einwilligung oder einem Vertrag beruht und automatisiert erfolgt,</li>
-                    <li><strong>Widerspruch</strong> gegen die Verarbeitung Ihrer Daten,
-                        soweit diese auf Art. 6 Abs. 1 lit. f DSGVO beruht,</li>
-                    <li><strong>Widerruf</strong> einer erteilten Einwilligung mit Wirkung
-                        für die Zukunft.</li>
-                </ul>
-                <p>
-                    Zur Ausübung Ihrer Rechte können Sie sich jederzeit an uns als
-                    Verantwortlichen wenden (siehe Kontaktdaten oben).
-                </p>
-                <p>
-                    Darüber hinaus haben Sie das Recht, sich bei einer zuständigen
-                    <strong>Datenschutzaufsichtsbehörde</strong> zu beschweren, wenn Sie der
-                    Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten
-                    gegen die DSGVO verstößt.
-                </p>
-            </article>
+                <!-- 9. Speicherdauer -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>9. Speicherdauer</h2>
+                    <p>
+                        Wir speichern personenbezogene Daten nur so lange, wie es für die jeweils
+                        genannten Zwecke erforderlich ist oder wir gesetzlich zur Aufbewahrung
+                        verpflichtet sind.
+                    </p>
+                    <ul class="bt-privacy-list">
+                        <li>Kontaktanfragen: solange für die Bearbeitung erforderlich und
+                            darüber hinaus, solange Ansprüche geltend gemacht werden können
+                            (in der Regel bis zu 3 Jahre nach Abschluss der Kommunikation);</li>
+                        <li>Nutzerkonten und Portaldaten: solange das Konto aktiv ist bzw.
+                            das Vertragsverhältnis besteht;</li>
+                        <li>Server-Logfiles: in der Regel für wenige Wochen, es sei denn, eine
+                            längere Aufbewahrung ist aus Sicherheits- oder Beweisgründen nötig.</li>
+                    </ul>
+                    <p>
+                        Nach Ablauf der jeweiligen Fristen werden die Daten gelöscht oder anonymisiert.
+                    </p>
+                </article>
 
-            <!-- Datenschutzbeauftragter & Stand -->
-            <article class="ds-box">
-                <h2>11. Datenschutzbeauftragter &amp; Änderungen</h2>
-                <p>
-                    Für BraunTech Solutions ist derzeit <strong>kein Datenschutzbeauftragter
-                    benannt</strong>, da die gesetzlichen Voraussetzungen hierfür aktuell
-                    nicht erfüllt sind. Ansprechpartner für alle Datenschutzfragen ist
-                    der oben genannte Verantwortliche.
-                </p>
-                <p>
-                    Diese Datenschutzerklärung ist aktuell gültig und wird bei Bedarf
-                    angepasst, wenn wir neue Funktionen, Dienste oder rechtliche Anforderungen
-                    berücksichtigen müssen.
-                </p>
-                <p class="ds-meta-small">
-                    Letzte Aktualisierung: <span class="ds-highlight">November 2025</span>
-                </p>
-            </article>
+                <!-- 10. Rechte der Betroffenen -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>10. Ihre Rechte</h2>
+                    <p>
+                        Als betroffene Person stehen Ihnen im Zusammenhang mit der Verarbeitung
+                        Ihrer personenbezogenen Daten insbesondere folgende Rechte zu:
+                    </p>
+                    <ul class="bt-privacy-list">
+                        <li><strong>Auskunft</strong> über die von uns verarbeiteten Daten,</li>
+                        <li><strong>Berichtigung</strong> unrichtiger oder Vervollständigung
+                            unvollständiger Daten,</li>
+                        <li><strong>Löschung</strong> Ihrer Daten, sofern keine
+                            Aufbewahrungspflichten entgegenstehen,</li>
+                        <li><strong>Einschränkung</strong> der Verarbeitung unter bestimmten
+                            Voraussetzungen,</li>
+                        <li><strong>Datenübertragbarkeit</strong>, soweit die Verarbeitung auf
+                            Ihrer Einwilligung oder einem Vertrag beruht und automatisiert erfolgt,</li>
+                        <li><strong>Widerspruch</strong> gegen die Verarbeitung Ihrer Daten,
+                            soweit diese auf Art. 6 Abs. 1 lit. f DSGVO beruht,</li>
+                        <li><strong>Widerruf</strong> einer erteilten Einwilligung mit Wirkung
+                            für die Zukunft.</li>
+                    </ul>
+                    <p>
+                        Zur Ausübung Ihrer Rechte können Sie sich jederzeit an uns als
+                        Verantwortlichen wenden (siehe Kontaktdaten oben).
+                    </p>
+                    <p>
+                        Darüber hinaus haben Sie das Recht, sich bei einer zuständigen
+                        <strong>Datenschutzaufsichtsbehörde</strong> zu beschweren, wenn Sie der
+                        Ansicht sind, dass die Verarbeitung Ihrer personenbezogenen Daten
+                        gegen die DSGVO verstößt.
+                    </p>
+                </article>
 
+                <!-- 11. Datenschutzbeauftragter & Änderungen -->
+                <article class="bt-card bt-privacy-box">
+                    <h2>11. Datenschutzbeauftragter &amp; Änderungen</h2>
+                    <p>
+                        Für BraunTech Solutions ist derzeit <strong>kein Datenschutzbeauftragter
+                        benannt</strong>, da die gesetzlichen Voraussetzungen hierfür aktuell
+                        nicht erfüllt sind. Ansprechpartner für alle Datenschutzfragen ist
+                        der oben genannte Verantwortliche.
+                    </p>
+                    <p>
+                        Diese Datenschutzerklärung ist aktuell gültig und wird bei Bedarf
+                        angepasst, wenn wir neue Funktionen, Dienste oder rechtliche Anforderungen
+                        berücksichtigen müssen.
+                    </p>
+                    <p class="bt-privacy-meta-note">
+                        Letzte Aktualisierung: <span class="bt-privacy-highlight">November 2025</span>
+                    </p>
+                </article>
+
+            </div>
         </section>
     </div>
 </main>
@@ -532,16 +529,92 @@
                 })
                 .then(function (html) {
                     el.innerHTML = html;
-
-                    // Jahr im Footer aktualisieren (falls vorhanden)
-                    const yearEl = el.querySelector('#bt-year');
-                    if (yearEl) {
-                        yearEl.textContent = new Date().getFullYear();
-                    }
                 })
                 .catch(function (err) {
                     console.error(err);
                 });
+        });
+    });
+
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    })();
+
+    // Slideshow-Script (stört nicht, wenn keine .bt-slideshow auf der Seite ist)
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshows = document.querySelectorAll('.bt-slideshow');
+
+        slideshows.forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.bt-slideshow-images img');
+            const dots = slideshow.querySelectorAll('.bt-slideshow-dots button');
+            const prevBtn = slideshow.querySelector('.bt-slide-prev');
+            const nextBtn = slideshow.querySelector('.bt-slide-next');
+
+            if (!images.length) return;
+
+            let current = 0;
+            let autoTimer = null;
+
+            function setActive(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === index);
+                });
+                current = index;
+            }
+
+            function showNext(step) {
+                const count = images.length;
+                const newIndex = (current + step + count) % count;
+                setActive(newIndex);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoTimer = setInterval(function () {
+                    showNext(1);
+                }, 8000);
+            }
+
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(-1);
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(1);
+                    startAutoPlay();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    stopAutoPlay();
+                    setActive(index);
+                    startAutoPlay();
+                });
+            });
+
+            setActive(0);
+            startAutoPlay();
         });
     });
 </script>

@@ -13,55 +13,43 @@
 
     <style>
         /* ===========================
-           App- & Webdesign – Zusatzstyles
+           App- & Webdesign – Zusatzstyles (Box-Design)
         ============================ */
 
-        .bt-main {
-            padding-top: 120px;
-            padding-bottom: 80px;
+        .bt-page-app {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
         }
 
-        .bt-app-layout {
+        .bt-page-app-header {
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-        }
-
-        .bt-app-header {
+            gap: 0.75rem;
+            margin-bottom: 2rem;
             max-width: 780px;
         }
 
-        .bt-app-header h1 {
-            font-size: 2.4rem;
-            letter-spacing: 0.04em;
-            text-transform: uppercase;
-            margin-bottom: 0.5rem;
+        .bt-page-app-header h1 {
+            margin: 0;
         }
 
-        .bt-app-subtitle {
-            color: var(--bt-text-muted);
-            font-size: 0.95rem;
-        }
-
-        .bt-app-tagline {
-            display: inline-flex;
+        .bt-page-app-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
             align-items: center;
-            gap: 0.35rem;
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 0.18em;
-            color: var(--green-light);
-            opacity: 0.85;
-            margin-bottom: 0.5rem;
         }
 
-        .bt-app-tagline-dot {
-            width: 6px;
-            height: 6px;
-            border-radius: 999px;
-            background: var(--green-neon);
-            box-shadow: 0 0 10px var(--green-neon);
+        .bt-page-app-meta small {
+            color: var(--bt-text-muted);
         }
+
+        .bt-app-intro {
+            color: var(--bt-text-muted);
+            max-width: 780px;
+        }
+
+        /* Grid für die zwei Hauptkarten */
 
         .bt-app-grid {
             display: grid;
@@ -75,43 +63,14 @@
             }
         }
 
-        .bt-app-card {
-            position: relative;
-            padding: 1.6rem 1.8rem;
-            border-radius: var(--bt-radius);
-            border: 1px solid rgba(57, 255, 20, 0.16);
-            background:
-                radial-gradient(circle at top left, rgba(57, 255, 20, 0.08), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.05), transparent 55%),
-                var(--bt-bg-alt);
-            box-shadow:
-                0 0 24px rgba(0, 0, 0, 0.9),
-                0 0 28px var(--green-glow);
-            overflow: hidden;
-        }
-
-        .bt-app-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            border: 1px solid rgba(57, 255, 20, 0.06);
-            pointer-events: none;
-        }
-
         .bt-app-card h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
+            font-size: 1.05rem;
             margin-top: 0;
-            margin-bottom: 0.8rem;
-            padding-left: 0.9rem;
-            border-left: 3px solid var(--green-light);
+            margin-bottom: 0.7rem;
         }
 
         .bt-app-card p {
             margin: 0.3rem 0;
-            line-height: 1.6;
         }
 
         .bt-app-muted {
@@ -142,40 +101,6 @@
             margin-bottom: 0.45rem;
         }
 
-        .bt-app-fullwidth-card {
-            position: relative;
-            padding: 1.8rem 2rem;
-            border-radius: var(--bt-radius);
-            border: 1px solid rgba(57, 255, 20, 0.16);
-            background:
-                radial-gradient(circle at top left, rgba(57, 255, 20, 0.08), transparent 55%),
-                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.05), transparent 55%),
-                var(--bt-bg-alt);
-            box-shadow:
-                0 0 24px rgba(0, 0, 0, 0.9),
-                0 0 28px var(--green-glow);
-            overflow: hidden;
-        }
-
-        .bt-app-fullwidth-card::before {
-            content: "";
-            position: absolute;
-            inset: 0;
-            border-radius: inherit;
-            border: 1px solid rgba(57, 255, 20, 0.06);
-            pointer-events: none;
-        }
-
-        .bt-app-fullwidth-card h2 {
-            font-size: 1.1rem;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-            margin-top: 0;
-            margin-bottom: 0.8rem;
-            padding-left: 0.9rem;
-            border-left: 3px solid var(--green-light);
-        }
-
         .bt-app-cta-link {
             color: var(--green-light);
             text-decoration: none;
@@ -199,132 +124,145 @@
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="bt-container bt-app-layout">
+    <div class="bt-container bt-page-app">
 
-        <!-- Kopfbereich -->
-        <section class="bt-app-header">
-            <div class="bt-app-tagline">
-                <span class="bt-app-tagline-dot"></span>
-                DIGITAL TOOL NODE
+        <!-- Kopfbereich im einheitlichen Stil -->
+        <header class="bt-page-app-header">
+            <div class="bt-page-app-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Digital · App &amp; Webdesign
+                </span>
+                <small>BraunTech Solutions – Ergänzung zum Recycling-Fokus</small>
             </div>
-            <h1>App- & Webdesign</h1>
-            <p class="bt-app-subtitle">
-                Individuelle, technische Lösungen als Nebentätigkeit – überall dort, wo digitale Werkzeuge
-                unsere Kernarbeit im Recycling sinnvoll ergänzen.
+            <h1>App- &amp; Webdesign</h1>
+            <p class="bt-app-intro">
+                Individuelle, technische Lösungen als <strong>Nebentätigkeit</strong> – überall dort,
+                wo digitale Werkzeuge die Kernarbeit von BraunTech Solutions im Bereich
+                Recycling &amp; Materialaufbereitung sinnvoll ergänzen.
             </p>
+        </header>
+
+        <!-- Grid mit zwei Hauptkarten -->
+        <section class="bt-section">
+            <div class="bt-app-grid">
+
+                <!-- Linke Karte: Leistungen -->
+                <article class="bt-card bt-card-accent bt-app-card">
+                    <h2>Leistungen im App-Bereich</h2>
+                    <p>
+                        Der Schwerpunkt von BraunTech Solutions liegt im
+                        <strong>Recycling und der Veredelung von Materialien</strong> auf Schrottplätzen.
+                        App-Entwicklung ist bewusst eine <strong>Nebentätigkeit</strong> – fokussiert auf
+                        <span class="bt-app-highlight">kleine, robuste Werkzeuge</span>, die den Alltag erleichtern.
+                    </p>
+                    <p class="bt-app-muted">
+                        Typische Beispiele:
+                    </p>
+                    <ul class="bt-app-list">
+                        <li>Interne <strong>Erfassungs-Apps</strong> für Materialeingang, Fotos &amp; Notizen</li>
+                        <li>Schlanke <strong>Inventur- &amp; Bestands-Tools</strong> für Lager und Schrottplätze</li>
+                        <li>Einfache <strong>Mitarbeiter-Apps</strong> für wiederkehrende Aufgaben</li>
+                        <li>Webbasierte <strong>Dashboards &amp; Auswertungen</strong></li>
+                    </ul>
+
+                    <h2>Individuelles Webdesign</h2>
+                    <p>
+                        Für ausgewählte Projekte entstehen passende Weboberflächen – ohne Baukastensysteme,
+                        mit Fokus auf Technik, Klarheit und eine saubere Umsetzung.
+                    </p>
+                    <ul class="bt-app-list">
+                        <li>Schlanke <strong>Projekt- oder Produktseiten</strong></li>
+                        <li>Interne <strong>Portale &amp; Übersichtsseiten</strong> für Teams</li>
+                        <li>Einfache <strong>Kunden- &amp; Partnerinformationen</strong></li>
+                        <li>Umsetzung in <strong>HTML, CSS &amp; JavaScript</strong></li>
+                    </ul>
+                    <p class="bt-app-muted">
+                        Webdesign verstehen wir als <strong>Werkzeug</strong> – nicht als Marketing-Showbühne.
+                    </p>
+                </article>
+
+                <!-- Rechte Karte: Nebentätigkeit & Eignung -->
+                <article class="bt-card bt-app-card">
+                    <h2>Nebentätigkeit mit klarer Ausrichtung</h2>
+                    <p>
+                        App- &amp; Webdesign ist bei BraunTech Solutions <strong>kein Hauptgeschäft</strong>,
+                        sondern eine <strong>gezielte Ergänzung</strong> zum Recycling-Fokus.
+                    </p>
+                    <p class="bt-app-muted">
+                        Wir passen gut zu Ihnen, wenn Sie:
+                    </p>
+                    <ul class="bt-app-list">
+                        <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem haben,</li>
+                        <li><strong>praxisnahe Tools</strong> statt großer Agentur-Projekte suchen,</li>
+                        <li>Wert auf <strong>Technik, Nachhaltigkeit und Robustheit</strong> legen,</li>
+                        <li>direkten Kontakt zum Entwickler bevorzugen.</li>
+                    </ul>
+
+                    <p class="bt-app-muted">
+                        Wir sind eher nicht die richtige Wahl, wenn Sie:
+                    </p>
+                    <ul class="bt-app-list">
+                        <li>eine große <strong>Marketing-/Werbeagentur</strong> mit Full-Service suchen,</li>
+                        <li>laufendes <strong>Content-Management &amp; Social Media</strong> erwarten,</li>
+                        <li>Standard-Baukasten-Websites in großer Anzahl benötigen.</li>
+                    </ul>
+
+                    <h2>Typische Einsatzszenarien</h2>
+                    <ul class="bt-app-list">
+                        <li><strong>Schrottplatz &amp; Recycling</strong> – Materialbewegungen digital erfassen</li>
+                        <li><strong>Lager &amp; Logistik</strong> – Bestände und Bewegungen im Blick behalten</li>
+                        <li><strong>Interne Tools</strong> – kleine Helfer für Teams &amp; Mitarbeiter</li>
+                        <li><strong>Projektseiten</strong> – gezielte Infos für Kunden und Partner</li>
+                    </ul>
+                </article>
+
+            </div>
         </section>
 
-        <!-- Grid mit Boxen -->
-        <section class="bt-app-grid">
-            <!-- Linke Box: Leistungen -->
-            <div class="bt-app-card">
-                <h2>Leistungen im App-Bereich</h2>
+        <!-- Vollbreite Karte: Ablauf & Kontakt -->
+        <section class="bt-section">
+            <article class="bt-card bt-card-accent">
+                <h2>Projektablauf &amp; Kontakt</h2>
                 <p>
-                    Der Schwerpunkt von BraunTech Solutions liegt im
-                    <strong>Recycling und der Veredelung von Materialien</strong> auf Schrottplätzen.
-                    App-Entwicklung ist eine <strong>Nebentätigkeit</strong> – fokussiert auf
-                    <span class="bt-app-highlight">kleine, robuste Werkzeuge</span>, die Ihren Alltag vereinfachen.
+                    App- &amp; Webprojekte laufen bei BraunTech Solutions bewusst schlank und direkt –
+                    ohne unnötigen Overhead oder großes Agentur-Brimborium.
                 </p>
-                <p class="bt-app-muted">
-                    Typische Beispiele:
-                </p>
-                <ul class="bt-app-list">
-                    <li>Interne <strong>Erfassungs-Apps</strong> für Materialeingang, Fotos & Notizen</li>
-                    <li>Schlanke <strong>Inventur- & Bestands-Tools</strong> für Lager und Schrottplätze</li>
-                    <li>Einfache <strong>Mitarbeiter-Apps</strong> für wiederkehrende Aufgaben</li>
-                    <li>Webbasierte <strong>Dashboards & Auswertungen</strong></li>
-                </ul>
+                <ol class="bt-app-steps">
+                    <li>
+                        <strong>1. Kurzgespräch &amp; Zieldefinition</strong><br>
+                        Sie schildern Vorhaben, Abläufe und was die digitale Lösung leisten soll.
+                    </li>
+                    <li>
+                        <strong>2. Grobes Konzept</strong><br>
+                        Die Lösung wird in klaren Punkten skizziert – reduziert auf die Funktionen,
+                        die wirklich gebraucht werden.
+                    </li>
+                    <li>
+                        <strong>3. Umsetzung &amp; Test im Alltag</strong><br>
+                        Eine erste Version wird umgesetzt und von Ihnen im Betrieb getestet.
+                        Feedback fließt direkt ein.
+                    </li>
+                    <li>
+                        <strong>4. Feinschliff &amp; optionale Erweiterung</strong><br>
+                        Nach der Stabilisierung kann das System bei Bedarf erweitert oder angepasst werden.
+                    </li>
+                </ol>
 
-                <h2>Individuelles Webdesign</h2>
+                <p class="bt-app-muted">
+                    Wenn Ihre Idee zu unserem technischen Profil passt, ist eine kleine, zielgerichtete Lösung
+                    meist effizienter als ein großes Agenturprojekt.
+                </p>
+
                 <p>
-                    Für ausgewählte Projekte erstellen wir passende Weboberflächen – ohne Baukastensysteme,
-                    mit Fokus auf Technik und klare Inhalte.
+                    Sie haben eine konkrete Idee oder ein Problem, bei dem eine
+                    <strong>App</strong> oder ein <strong>Web-Tool</strong> helfen könnte?<br>
+                    Schreiben Sie uns über die
+                    <a href="kontakt.html" class="bt-app-cta-link">Kontaktseite</a>
+                    ein paar Stichpunkte – wir melden uns mit einer ehrlichen Einschätzung,
+                    ob und wie wir Sie im Rahmen unserer Nebentätigkeit unterstützen können.
                 </p>
-                <ul class="bt-app-list">
-                    <li>Schlanke <strong>Projekt- oder Produktseiten</strong></li>
-                    <li>Interne <strong>Portale & Übersichtsseiten</strong> für Teams</li>
-                    <li>Einfache <strong>Kunden- & Partnerinfos</strong></li>
-                    <li>Saubere Umsetzung in <strong>HTML, CSS & JavaScript</strong></li>
-                </ul>
-                <p class="bt-app-muted">
-                    Webdesign verstehen wir als <strong>Werkzeug</strong>, nicht als Marketing-Showbühne.
-                </p>
-            </div>
-
-            <!-- Rechte Box: Nebentätigkeit / Passend / Einsatz -->
-            <div class="bt-app-card">
-                <h2>Nebentätigkeit mit klarer Ausrichtung</h2>
-                <p>
-                    App- & Webdesign ist bei BraunTech Solutions <strong>kein Hauptgeschäft</strong>, sondern
-                    eine <strong>gezielte Ergänzung</strong> zu unserem Recycling-Fokus.
-                </p>
-                <p class="bt-app-muted">
-                    Wir passen gut zu Ihnen, wenn Sie:
-                </p>
-                <ul class="bt-app-list">
-                    <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem haben,</li>
-                    <li><strong>praxisnahe Tools</strong> statt großer Agentur-Projekte suchen,</li>
-                    <li>Wert auf <strong>Technik, Nachhaltigkeit und Robustheit</strong> legen,</li>
-                    <li>direkten Kontakt zum Entwickler bevorzugen.</li>
-                </ul>
-
-                <p class="bt-app-muted">
-                    Wir sind eher nicht die richtige Wahl, wenn Sie:
-                </p>
-                <ul class="bt-app-list">
-                    <li>eine große <strong>Marketing-/Werbeagentur</strong> mit Full-Service suchen,</li>
-                    <li>laufendes <strong>Content-Management & Social Media</strong> erwarten,</li>
-                    <li>Standard-Baukasten-Websites in großer Anzahl benötigen.</li>
-                </ul>
-
-                <h2>Typische Einsatzszenarien</h2>
-                <ul class="bt-app-list">
-                    <li><strong>Schrottplatz & Recycling</strong> – Materialbewegungen digital erfassen</li>
-                    <li><strong>Lager & Logistik</strong> – Bestände und Bewegungen im Blick behalten</li>
-                    <li><strong>Interne Tools</strong> – kleine Helfer für Teams & Mitarbeiter</li>
-                    <li><strong>Projektseiten</strong> – gezielte Infos für Kunden und Partner</li>
-                </ul>
-            </div>
-        </section>
-
-        <!-- Vollbreite Box: Ablauf & Kontakt -->
-        <section class="bt-app-fullwidth-card">
-            <h2>Projektablauf & Kontakt</h2>
-            <p>
-                App- & Webprojekte laufen bei uns bewusst schlank und direkt – ohne unnötigen Overhead.
-            </p>
-            <ol class="bt-app-steps">
-                <li>
-                    <strong>1. Kurzgespräch & Zieldefinition</strong><br>
-                    Sie schildern uns Ihr Vorhaben, Ihre Abläufe und was die digitale Lösung leisten soll.
-                </li>
-                <li>
-                    <strong>2. Grobes Konzept</strong><br>
-                    Wir skizzieren die Lösung in klaren Punkten – reduziert auf die Funktionen, die wirklich gebraucht werden.
-                </li>
-                <li>
-                    <strong>3. Umsetzung & Test im Alltag</strong><br>
-                    Eine erste Version wird umgesetzt und von Ihnen im Betrieb getestet. Feedback fließt direkt ein.
-                </li>
-                <li>
-                    <strong>4. Feinschliff & optionale Erweiterung</strong><br>
-                    Nach der Stabilisierung kann das System bei Bedarf erweitert oder angepasst werden.
-                </li>
-            </ol>
-
-            <p class="bt-app-muted">
-                Wenn Ihre Idee zu unserem technischen Profil passt, ist eine kleine, zielgerichtete Lösung meist
-                effizienter als ein großes Agenturprojekt.
-            </p>
-
-            <p>
-                Sie haben eine konkrete Idee oder ein Problem, bei dem eine
-                <strong>App</strong> oder ein <strong>Web-Tool</strong> helfen könnte?<br>
-                Schreiben Sie uns über die
-                <a href="kontakt.html" class="bt-app-cta-link">Kontaktseite</a>
-                einige Stichpunkte – wir melden uns mit einer ehrlichen Einschätzung, ob und wie wir Sie im Rahmen
-                unserer Nebentätigkeit unterstützen können.
-            </p>
+            </article>
         </section>
 
     </div>
@@ -347,18 +285,20 @@
                 })
                 .then(function (html) {
                     el.innerHTML = html;
-
-                    // bt-year im geladenen Snippet aktualisieren (z.B. im Footer)
-                    const yearEl = el.querySelector('#bt-year');
-                    if (yearEl) {
-                        yearEl.textContent = new Date().getFullYear();
-                    }
                 })
                 .catch(function (err) {
                     console.error(err);
                 });
         });
     });
+
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    })();
 </script>
 
 </body>

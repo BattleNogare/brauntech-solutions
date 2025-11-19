@@ -48,7 +48,7 @@
             color: var(--bt-text-muted, #89a589);
         }
 
-        /* Pill / Badge wie bei modernen Seiten */
+        /* Pill / Badge */
 
         .bt-pill {
             display: inline-flex;
@@ -530,16 +530,92 @@
                 })
                 .then(function (html) {
                     el.innerHTML = html;
-
-                    // Falls dein footer.html ein <span id="bt-year"> enthält:
-                    const yearEl = document.getElementById('bt-year');
-                    if (yearEl) {
-                        yearEl.textContent = new Date().getFullYear();
-                    }
                 })
                 .catch(function (err) {
                     console.error(err);
                 });
+        });
+    });
+
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    })();
+
+    // Slideshow-Script (stört nicht, wenn keine .bt-slideshow auf der Seite ist)
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshows = document.querySelectorAll('.bt-slideshow');
+
+        slideshows.forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.bt-slideshow-images img');
+            const dots = slideshow.querySelectorAll('.bt-slideshow-dots button');
+            const prevBtn = slideshow.querySelector('.bt-slide-prev');
+            const nextBtn = slideshow.querySelector('.bt-slide-next');
+
+            if (!images.length) return;
+
+            let current = 0;
+            let autoTimer = null;
+
+            function setActive(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === index);
+                });
+                current = index;
+            }
+
+            function showNext(step) {
+                const count = images.length;
+                const newIndex = (current + step + count) % count;
+                setActive(newIndex);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoTimer = setInterval(function () {
+                    showNext(1);
+                }, 8000);
+            }
+
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(-1);
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(1);
+                    startAutoPlay();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    stopAutoPlay();
+                    setActive(index);
+                    startAutoPlay();
+                });
+            });
+
+            setActive(0);
+            startAutoPlay();
         });
     });
 </script>

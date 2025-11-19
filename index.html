@@ -9,62 +9,551 @@
     <link rel="stylesheet" href="brauntech.css">
     <!-- Hintergrund / Effekte -->
     <link rel="stylesheet" href="custom.d/background.css">
-
-    <!-- Hintergrund-JS (Punkte, Orbits, Parallax) -->
     <script src="custom.d/background.js" defer></script>
+
+    <style>
+        /* =====================================
+           Startseite / Landing – Zusatzstyles
+        ====================================== */
+
+        .bt-page-home {
+            padding-top: 2.5rem;
+            padding-bottom: 3.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 2.8rem;
+        }
+
+        /* Hero-Bereich */
+
+        .bt-hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.6fr) minmax(0, 1.2fr);
+            gap: 2.2rem;
+            align-items: center;
+        }
+
+        @media (max-width: 900px) {
+            .bt-hero {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .bt-hero-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.35rem 0.9rem;
+            border-radius: 999px;
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            background: linear-gradient(
+                135deg,
+                rgba(57, 255, 20, 0.18),
+                rgba(57, 255, 20, 0.02)
+            );
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-bottom: 0.9rem;
+        }
+
+        .bt-hero-eyebrow-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 999px;
+            background: var(--green-light);
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.9);
+        }
+
+        .bt-hero-title {
+            font-size: clamp(2.1rem, 3vw, 2.8rem);
+            letter-spacing: 0.03em;
+            text-transform: uppercase;
+            margin: 0 0 0.7rem 0;
+        }
+
+        .bt-hero-subtitle {
+            color: var(--bt-text-muted);
+            max-width: 32rem;
+            margin-bottom: 1.3rem;
+        }
+
+        .bt-hero-highlight {
+            color: var(--green-light);
+            font-weight: 600;
+        }
+
+        .bt-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .bt-btn-primary,
+        .bt-btn-ghost {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.4rem;
+            padding: 0.55rem 1.4rem;
+            border-radius: 999px;
+            font-family: var(--bt-font-mono);
+            font-size: 0.8rem;
+            letter-spacing: 0.09em;
+            text-transform: uppercase;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease, background 0.15s ease;
+        }
+
+        .bt-btn-primary {
+            border: none;
+            background: radial-gradient(circle at top left, var(--green-light), var(--green-mid));
+            color: #021005;
+            box-shadow:
+                0 0 15px rgba(57, 255, 20, 0.5),
+                0 0 40px rgba(0, 0, 0, 0.9);
+        }
+
+        .bt-btn-ghost {
+            border: 1px solid var(--bt-border);
+            background: rgba(0, 0, 0, 0.45);
+            color: var(--bt-text);
+        }
+
+        .bt-btn-primary:hover,
+        .bt-btn-ghost:hover {
+            transform: translateY(-1px);
+            filter: brightness(1.05);
+            box-shadow:
+                0 0 22px rgba(57, 255, 20, 0.7),
+                0 0 50px rgba(0, 0, 0, 1);
+        }
+
+        .bt-hero-note {
+            font-size: 0.85rem;
+            color: var(--bt-text-muted);
+            max-width: 30rem;
+        }
+
+        /* Hero – rechte Seite (Card + Mini-Liste) */
+
+        .bt-hero-card {
+            position: relative;
+            padding: 1.7rem 1.8rem;
+            border-radius: 14px;
+            border: 1px solid var(--bt-border);
+            background:
+                radial-gradient(circle at top left, rgba(57,255,20,0.16), transparent 55%),
+                var(--bt-bg-alt);
+            box-shadow:
+                0 24px 55px rgba(0,0,0,0.85),
+                0 0 0 1px rgba(255,255,255,0.03);
+            overflow: hidden;
+        }
+
+        .bt-hero-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(57, 255, 20, 0.25);
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .bt-hero-card-title {
+            font-size: 0.95rem;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            margin: 0 0 0.6rem 0;
+            color: var(--green-light);
+        }
+
+        .bt-hero-card p {
+            margin: 0.25rem 0;
+            color: var(--bt-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .bt-hero-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.7rem 0 0;
+            font-size: 0.9rem;
+        }
+
+        .bt-hero-list li {
+            padding: 0.18rem 0;
+            display: flex;
+            gap: 0.5rem;
+            align-items: flex-start;
+        }
+
+        .bt-hero-list li::before {
+            content: "▸";
+            color: var(--green-light);
+            margin-top: 0.1rem;
+        }
+
+        .bt-hero-tagline {
+            margin-top: 0.9rem;
+            font-size: 0.8rem;
+            color: var(--bt-text-muted);
+            font-family: var(--bt-font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        /* Feature-Grid darunter */
+
+        .bt-home-features {
+            display: grid;
+            gap: 1.3rem;
+        }
+
+        @media (min-width: 900px) {
+            .bt-home-features {
+                grid-template-columns: repeat(3, minmax(0, 1fr));
+            }
+        }
+
+        .bt-home-feature-card h2 {
+            font-size: 1rem;
+            margin-top: 0;
+            margin-bottom: 0.4rem;
+        }
+
+        .bt-home-feature-card p {
+            margin: 0.2rem 0 0.6rem;
+            font-size: 0.92rem;
+        }
+
+        .bt-home-feature-meta {
+            font-size: 0.78rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--bt-text-muted);
+            font-family: var(--bt-font-mono);
+        }
+
+        /* Warum BraunTech – eigene Section */
+
+        .bt-home-why {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.2fr);
+            gap: 1.8rem;
+        }
+
+        @media (max-width: 900px) {
+            .bt-home-why {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .bt-home-list {
+            list-style: none;
+            padding: 0;
+            margin: 0.4rem 0 0.2rem;
+        }
+
+        .bt-home-list li {
+            padding: 0.25rem 0;
+            display: flex;
+            gap: 0.7rem;
+            align-items: flex-start;
+            font-size: 0.95rem;
+        }
+
+        .bt-home-list li::before {
+            content: "✔";
+            color: var(--green-light);
+            font-weight: bold;
+            margin-top: 0.12rem;
+        }
+
+        .bt-home-note {
+            font-size: 0.85rem;
+            color: var(--bt-text-muted);
+            margin-top: 0.5rem;
+        }
+    </style>
 </head>
 <body>
 
-<!-- Rotierende Glow-Kreise (werden per JS gefüllt) -->
+<!-- Rotierende Glow-Kreise -->
 <div id="bt-glow-orbits"></div>
 
-<!-- Random-Punkte-Layer (werden per JS gefüllt) -->
+<!-- Random-Punkte-Layer -->
 <div id="bt-points"></div>
 
 <!-- NAVBAR wird automatisch geladen -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
-<!-- HAUPTBEREICH -->
 <main class="bt-main">
-    <div class="bt-container">
-        <h1>Willkommen bei BraunTech Solutions</h1>
-        <p>
-            Dies ist ein Platzhaltertext für den Inhalt der Seite.<br>
-            Du kannst dieses Grundgerüst auf alle Unterseiten übertragen.
-            <br><br><br><br><br><br><br><br><br><br><br><br>
-        </p>
+    <div class="bt-container bt-page-home">
+
+        <!-- HERO / LANDING -->
+        <section class="bt-hero">
+            <!-- Linke Seite: Titel & CTAs -->
+            <div>
+                <div class="bt-hero-eyebrow">
+                    <span class="bt-hero-eyebrow-dot"></span>
+                    Recycling · Materialaufbereitung · Digitale Tools
+                </div>
+                <h1 class="bt-hero-title">
+                    Aus Schrott<br>werden Ressourcen.
+                </h1>
+                <p class="bt-hero-subtitle">
+                    BraunTech Solutions konzentriert sich auf die
+                    <span class="bt-hero-highlight">Veredelung von Materialien aus Schrottplätzen</span>
+                    und industriellen Reststoffen – unterstützt von schlanken, selbst entwickelten digitalen Werkzeugen.
+                </p>
+
+                <div class="bt-hero-actions">
+                    <a href="recycling.html" class="bt-btn-primary">
+                        Recycling entdecken
+                    </a>
+                    <a href="product.html" class="bt-btn-ghost">
+                        Produkte &amp; Dienstleistungen
+                    </a>
+                    <a href="kontakt.html" class="bt-btn-ghost">
+                        Kontakt aufnehmen
+                    </a>
+                </div>
+
+                <p class="bt-hero-note">
+                    Schwerpunkt ist immer das <strong>physische Recycling</strong> –
+                    Apps, Webauftritte und Portale sind gezielte Ergänzungen, keine Agentur-Dienstleistung.
+                </p>
+            </div>
+
+            <!-- Rechte Seite: kompakte Übersicht -->
+            <aside class="bt-hero-card">
+                <div class="bt-hero-card-title">
+                    Kernbereiche von BraunTech Solutions
+                </div>
+                <ul class="bt-hero-list">
+                    <li>
+                        <span>
+                            <strong>Recycling &amp; Materialaufbereitung</strong><br>
+                            Sortierung, Trennung und Veredelung von Metallen, Kunststoffen und Mischschrott.
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <strong>Schrottplatz-Prozesse</strong><br>
+                            Praktische Abläufe, effiziente Logistik und saubere Materialströme.
+                        </span>
+                    </li>
+                    <li>
+                        <span>
+                            <strong>Digitale Unterstützung</strong><br>
+                            Kleine Tools, Portale und Weboberflächen, die die reale Arbeit unterstützen.
+                        </span>
+                    </li>
+                </ul>
+                <p class="bt-hero-tagline">
+                    Fokus: Nachhaltige Rohstoffrückgewinnung &amp; funktionale Technik – kein Agentur-Overhead.
+                </p>
+            </aside>
+        </section>
+
+        <!-- Feature-Karten: 3 Spalten -->
+        <section class="bt-section">
+            <div class="bt-home-features">
+                <article class="bt-card bt-card-accent bt-home-feature-card">
+                    <h2>Recycling &amp; Veredelung</h2>
+                    <p>
+                        Vom scheinbaren Abfall zum hochwertigen Sekundärrohstoff:
+                        BraunTech Solutions verarbeitet Materialien so, dass sie direkt wieder dem Kreislauf
+                        zugeführt werden können.
+                    </p>
+                    <div class="bt-home-feature-meta">
+                        Metalle · Kunststoffe · Verbundstoffe
+                    </div>
+                </article>
+
+                <article class="bt-card bt-home-feature-card">
+                    <h2>Digitale Werkzeuge</h2>
+                    <p>
+                        Apps, Weboberflächen und Portale entstehen dort, wo sie wirklich gebraucht werden –
+                        zur Dokumentation, Übersicht oder internen Organisation.
+                    </p>
+                    <div class="bt-home-feature-meta">
+                        Schlank · Technisch · Zweckorientiert
+                    </div>
+                </article>
+
+                <article class="bt-card bt-home-feature-card">
+                    <h2>Portal &amp; Infrastruktur</h2>
+                    <p>
+                        Über das interne Portal werden Tools, Plattformen und Ressourcen gebündelt – als
+                        zentraler Einstiegspunkt für den täglichen Betrieb.
+                    </p>
+                    <div class="bt-home-feature-meta">
+                        Portal · Shortcuts · Übersicht
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <!-- Warum BraunTech? -->
+        <section class="bt-section">
+            <div class="bt-home-why">
+                <article class="bt-card bt-card-accent">
+                    <h2>Warum BraunTech?</h2>
+                    <ul class="bt-home-list">
+                        <li>Klare Ausrichtung auf Recycling &amp; Materialaufbereitung</li>
+                        <li>Moderne Maschinen &amp; saubere Prozessabläufe</li>
+                        <li>Hohe Reinheitsgrade der aufbereiteten Materialien</li>
+                        <li>Kurze Wege, direkte Entscheidungen, wenig Bürokratie</li>
+                        <li>Digitale Lösungen nur dort, wo sie echten Mehrwert bringen</li>
+                    </ul>
+                    <p class="bt-home-note">
+                        Kein Marketing-Blabla, keine großen Versprechungen – sondern greifbare Arbeit
+                        mit sichtbarem Ergebnis.
+                    </p>
+                </article>
+
+                <article class="bt-card">
+                    <h2>Wie geht es weiter?</h2>
+                    <p>
+                        Wenn Sie Materialien, Schrott oder Reststoffe haben, die professionell aufbereitet
+                        werden sollen – oder eine kleine digitale Lösung zur Unterstützung Ihrer Abläufe suchen –
+                        lohnt sich ein kurzer Austausch.
+                    </p>
+                    <ul class="bt-home-list">
+                        <li>
+                            <strong>Recycling-Projekt planen:</strong><br>
+                            Starten Sie auf der Seite
+                            <a href="recycling.html">Recycling &amp; Materialaufbereitung</a>.
+                        </li>
+                        <li>
+                            <strong>Überblick gewinnen:</strong><br>
+                            Alle Angebote finden Sie unter
+                            <a href="product.html">Produkte &amp; Dienstleistungen</a>.
+                        </li>
+                        <li>
+                            <strong>Direkter Kontakt:</strong><br>
+                            Schreiben Sie uns über die
+                            <a href="kontakt.html">Kontaktseite</a>
+                            für eine unverbindliche Anfrage.
+                        </li>
+                    </ul>
+                </article>
+            </div>
+        </section>
+
     </div>
 </main>
 
 <!-- FOOTER wird automatisch geladen -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
-<!-- ============================================
-     INCLUDE-SYSTEM FÜR NAVBAR + FOOTER
-=============================================== -->
 <script>
-document.querySelectorAll("[data-include]").forEach(async (el) => {
-    const file = el.getAttribute("data-include");
-    if (!file) return;
+    // Include-Loader für Navbar/Footer
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
-    try {
-        const response = await fetch(file);
-        if (!response.ok) {
-            console.error("Include failed:", file, response.status);
-            return;
-        }
-        const html = await response.text();
-        el.innerHTML = html;
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
+        });
+    });
 
-        // Jahr aktualisieren (falls Footer mit #bt-year geladen wurde)
-        const yearSpan = el.querySelector("#bt-year");
-        if (yearSpan) {
-            yearSpan.textContent = new Date().getFullYear();
+    // Footer-Jahr aktualisieren (falls im Footer vorhanden)
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
         }
-    } catch (e) {
-        console.error("Include error:", file, e);
-    }
-});
+    })();
+
+    // Slideshow-Script – stört nicht, wenn keine Slideshow auf der Seite ist
+    document.addEventListener('DOMContentLoaded', function () {
+        const slideshows = document.querySelectorAll('.bt-slideshow');
+
+        slideshows.forEach(function (slideshow) {
+            const images = slideshow.querySelectorAll('.bt-slideshow-images img');
+            const dots = slideshow.querySelectorAll('.bt-slideshow-dots button');
+            const prevBtn = slideshow.querySelector('.bt-slide-prev');
+            const nextBtn = slideshow.querySelector('.bt-slide-next');
+
+            if (!images.length) return;
+
+            let current = 0;
+            let autoTimer = null;
+
+            function setActive(index) {
+                images.forEach((img, i) => {
+                    img.classList.toggle('is-active', i === index);
+                });
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('is-active', i === index);
+                });
+                current = index;
+            }
+
+            function showNext(step) {
+                const count = images.length;
+                const newIndex = (current + step + count) % count;
+                setActive(newIndex);
+            }
+
+            function startAutoPlay() {
+                stopAutoPlay();
+                autoTimer = setInterval(function () {
+                    showNext(1);
+                }, 8000);
+            }
+
+            function stopAutoPlay() {
+                if (autoTimer) {
+                    clearInterval(autoTimer);
+                    autoTimer = null;
+                }
+            }
+
+            if (prevBtn) {
+                prevBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(-1);
+                    startAutoPlay();
+                });
+            }
+
+            if (nextBtn) {
+                nextBtn.addEventListener('click', function () {
+                    stopAutoPlay();
+                    showNext(1);
+                    startAutoPlay();
+                });
+            }
+
+            dots.forEach((dot, index) => {
+                dot.addEventListener('click', function () {
+                    stopAutoPlay();
+                    setActive(index);
+                    startAutoPlay();
+                });
+            });
+
+            setActive(0);
+            startAutoPlay();
+        });
+    });
 </script>
 
 </body>
