@@ -16,33 +16,174 @@
            App- & Webdesign – Zusatzstyles
         ============================ */
 
-        .bt-kicker {
+        .bt-main {
+            padding-top: 120px;
+            padding-bottom: 80px;
+        }
+
+        .bt-app-layout {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .bt-app-header {
+            max-width: 780px;
+        }
+
+        .bt-app-header h1 {
+            font-size: 2.4rem;
+            letter-spacing: 0.04em;
             text-transform: uppercase;
-            letter-spacing: 0.12em;
+            margin-bottom: 0.5rem;
+        }
+
+        .bt-app-subtitle {
+            color: var(--bt-text-muted);
+            font-size: 0.95rem;
+        }
+
+        .bt-app-tagline {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
             font-size: 0.8rem;
-            margin-bottom: 0.6rem;
-            color: var(--bt-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.18em;
+            color: var(--green-light);
+            opacity: 0.85;
+            margin-bottom: 0.5rem;
         }
 
-        .bt-lead {
-            font-size: 1.05rem;
+        .bt-app-tagline-dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 999px;
+            background: var(--green-neon);
+            box-shadow: 0 0 10px var(--green-neon);
+        }
+
+        .bt-app-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.5fr) minmax(0, 1.3fr);
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .bt-app-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
+
+        .bt-app-card {
+            position: relative;
+            padding: 1.6rem 1.8rem;
+            border-radius: var(--bt-radius);
+            border: 1px solid rgba(57, 255, 20, 0.16);
+            background:
+                radial-gradient(circle at top left, rgba(57, 255, 20, 0.08), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.05), transparent 55%),
+                var(--bt-bg-alt);
+            box-shadow:
+                0 0 24px rgba(0, 0, 0, 0.9),
+                0 0 28px var(--green-glow);
+            overflow: hidden;
+        }
+
+        .bt-app-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(57, 255, 20, 0.06);
+            pointer-events: none;
+        }
+
+        .bt-app-card h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            padding-left: 0.9rem;
+            border-left: 3px solid var(--green-light);
+        }
+
+        .bt-app-card p {
+            margin: 0.3rem 0;
             line-height: 1.6;
-            margin-bottom: 1rem;
         }
 
-        .bt-note-small {
-            font-size: 0.85rem;
+        .bt-app-muted {
             color: var(--bt-text-muted);
-            margin-top: 0.5rem;
+            font-size: 0.9rem;
         }
 
-        .bt-list-tight {
+        .bt-app-highlight {
+            font-family: var(--bt-font-mono);
+            font-size: 0.95rem;
+        }
+
+        .bt-app-list {
             margin: 0.4rem 0 0.6rem 1.2rem;
             padding: 0;
         }
 
-        .bt-list-tight li {
+        .bt-app-list li {
             margin-bottom: 0.25rem;
+        }
+
+        .bt-app-steps {
+            margin: 0.4rem 0 0.6rem 1.2rem;
+            padding: 0;
+        }
+
+        .bt-app-steps li {
+            margin-bottom: 0.45rem;
+        }
+
+        .bt-app-fullwidth-card {
+            position: relative;
+            padding: 1.8rem 2rem;
+            border-radius: var(--bt-radius);
+            border: 1px solid rgba(57, 255, 20, 0.16);
+            background:
+                radial-gradient(circle at top left, rgba(57, 255, 20, 0.08), transparent 55%),
+                radial-gradient(circle at bottom right, rgba(57, 255, 20, 0.05), transparent 55%),
+                var(--bt-bg-alt);
+            box-shadow:
+                0 0 24px rgba(0, 0, 0, 0.9),
+                0 0 28px var(--green-glow);
+            overflow: hidden;
+        }
+
+        .bt-app-fullwidth-card::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            border: 1px solid rgba(57, 255, 20, 0.06);
+            pointer-events: none;
+        }
+
+        .bt-app-fullwidth-card h2 {
+            font-size: 1.1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            margin-top: 0;
+            margin-bottom: 0.8rem;
+            padding-left: 0.9rem;
+            border-left: 3px solid var(--green-light);
+        }
+
+        .bt-app-cta-link {
+            color: var(--green-light);
+            text-decoration: none;
+            border-bottom: 1px dashed rgba(89, 255, 122, 0.6);
+        }
+
+        .bt-app-cta-link:hover {
+            border-bottom-style: solid;
         }
     </style>
 </head>
@@ -58,125 +199,135 @@
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <section class="bt-section">
-        <div class="bt-container">
+    <div class="bt-container bt-app-layout">
 
-            <!-- Hero-Box / Einleitung -->
-            <article class="bt-card bt-card-soft">
-                <p class="bt-kicker">Nebentätigkeit mit Fokus auf Praxis</p>
-                <h1>App- & Webdesign bei BraunTech Solutions</h1>
-                <p class="bt-lead">
-                    Der Schwerpunkt von BraunTech Solutions liegt klar im 
-                    <strong>Recycling von Materialien</strong> auf Schrottplätzen sowie in der 
-                    <strong>Veredelung von Müll</strong>. 
-                    Zusätzlich bieten wir im Rahmen einer <strong>Nebentätigkeit</strong> 
-                    individuelle Lösungen im Bereich <strong>App- & Webdesign</strong> an – 
-                    überall dort, wo digitale Werkzeuge Ihre Abläufe wirklich verbessern.
-                </p>
-                <p>
-                    Keine große Agentur, keine Massenwebseiten – sondern 
-                    <strong>maßgeschneiderte, technische Lösungen</strong>, die konkret zu Ihrem Betrieb, 
-                    Ihrem Team und Ihren Prozessen passen.
-                </p>
-            </article>
+        <!-- Kopfbereich -->
+        <section class="bt-app-header">
+            <div class="bt-app-tagline">
+                <span class="bt-app-tagline-dot"></span>
+                DIGITAL TOOL NODE
+            </div>
+            <h1>App- & Webdesign</h1>
+            <p class="bt-app-subtitle">
+                Individuelle, technische Lösungen als Nebentätigkeit – überall dort, wo digitale Werkzeuge
+                unsere Kernarbeit im Recycling sinnvoll ergänzen.
+            </p>
+        </section>
 
-            <!-- Leistungen App / Web -->
-            <article class="bt-card bt-card-soft">
-                <h2>Was wir im App-Bereich anbieten</h2>
+        <!-- Grid mit Boxen -->
+        <section class="bt-app-grid">
+            <!-- Linke Box: Leistungen -->
+            <div class="bt-app-card">
+                <h2>Leistungen im App-Bereich</h2>
                 <p>
-                    Unsere App-Lösungen sind klein, robust und auf den Alltag zugeschnitten – 
-                    besonders im Umfeld von Recycling, Lager und Logistik.
+                    Der Schwerpunkt von BraunTech Solutions liegt im
+                    <strong>Recycling und der Veredelung von Materialien</strong> auf Schrottplätzen.
+                    App-Entwicklung ist eine <strong>Nebentätigkeit</strong> – fokussiert auf
+                    <span class="bt-app-highlight">kleine, robuste Werkzeuge</span>, die Ihren Alltag vereinfachen.
                 </p>
-                <ul class="bt-list-tight">
-                    <li>Interne <strong>Erfassungs-Apps</strong> (Materialeingang, Fotos, Notizen)</li>
-                    <li>Kompakte <strong>Inventur-Tools</strong> für Schrottplätze</li>
+                <p class="bt-app-muted">
+                    Typische Beispiele:
+                </p>
+                <ul class="bt-app-list">
+                    <li>Interne <strong>Erfassungs-Apps</strong> für Materialeingang, Fotos & Notizen</li>
+                    <li>Schlanke <strong>Inventur- & Bestands-Tools</strong> für Lager und Schrottplätze</li>
                     <li>Einfache <strong>Mitarbeiter-Apps</strong> für wiederkehrende Aufgaben</li>
-                    <li>Webbasierte <strong>Dashboards & Übersichten</strong></li>
+                    <li>Webbasierte <strong>Dashboards & Auswertungen</strong></li>
                 </ul>
-                <p class="bt-note-small">
-                    Fokus: Funktion, Stabilität, einfache Bedienung – weniger „App-Store-Show“, 
-                    mehr praktischer Nutzen im täglichen Betrieb.
-                </p>
-
-                <hr class="bt-divider">
 
                 <h2>Individuelles Webdesign</h2>
                 <p>
-                    Wenn für ein Projekt eine passende Weboberfläche oder kleine Website benötigt wird, 
-                    entwickeln wir diese <strong>ohne Baukastensysteme</strong> und mit klarem Fokus auf Inhalt.
+                    Für ausgewählte Projekte erstellen wir passende Weboberflächen – ohne Baukastensysteme,
+                    mit Fokus auf Technik und klare Inhalte.
                 </p>
-                <ul class="bt-list-tight">
+                <ul class="bt-app-list">
                     <li>Schlanke <strong>Projekt- oder Produktseiten</strong></li>
-                    <li>Interne <strong>Portale und Übersichten</strong> für Teams</li>
-                    <li>Einfache <strong>Info-Seiten</strong> für Kunden und Partner</li>
+                    <li>Interne <strong>Portale & Übersichtsseiten</strong> für Teams</li>
+                    <li>Einfache <strong>Kunden- & Partnerinfos</strong></li>
                     <li>Saubere Umsetzung in <strong>HTML, CSS & JavaScript</strong></li>
                 </ul>
-                <p class="bt-note-small">
-                    Wir sehen Webdesign als technisches Werkzeug, nicht als Marketing-Showbühne.
+                <p class="bt-app-muted">
+                    Webdesign verstehen wir als <strong>Werkzeug</strong>, nicht als Marketing-Showbühne.
                 </p>
-            </article>
+            </div>
 
-            <!-- Passende Kunden / Nicht passend -->
-            <article class="bt-card bt-card-soft">
-                <h2>Wann BraunTech für App & Webdesign gut zu Ihnen passt</h2>
-                <p>Wir passen gut zu Ihnen, wenn Sie:</p>
-                <ul class="bt-list-tight">
-                    <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem lösen möchten,</li>
-                    <li>kleine, <strongpraxisnahe Tools</strong> statt großer Agenturprojekte suchen,</li>
-                    <li>Wert auf <strong>Nachhaltigkeit & Technik</strong> legen,</li>
-                    <li>direkten Kontakt zum Entwickler statt anonymer Projektteams bevorzugen.</li>
+            <!-- Rechte Box: Nebentätigkeit / Passend / Einsatz -->
+            <div class="bt-app-card">
+                <h2>Nebentätigkeit mit klarer Ausrichtung</h2>
+                <p>
+                    App- & Webdesign ist bei BraunTech Solutions <strong>kein Hauptgeschäft</strong>, sondern
+                    eine <strong>gezielte Ergänzung</strong> zu unserem Recycling-Fokus.
+                </p>
+                <p class="bt-app-muted">
+                    Wir passen gut zu Ihnen, wenn Sie:
+                </p>
+                <ul class="bt-app-list">
+                    <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem haben,</li>
+                    <li><strong>praxisnahe Tools</strong> statt großer Agentur-Projekte suchen,</li>
+                    <li>Wert auf <strong>Technik, Nachhaltigkeit und Robustheit</strong> legen,</li>
+                    <li>direkten Kontakt zum Entwickler bevorzugen.</li>
                 </ul>
 
-                <p>Wir sind eher nicht die richtige Wahl, wenn Sie:</p>
-                <ul class="bt-list-tight">
-                    <li>eine große <strong>Marketing- oder Werbeagentur</strong> mit Vollbetreuung suchen,</li>
+                <p class="bt-app-muted">
+                    Wir sind eher nicht die richtige Wahl, wenn Sie:
+                </p>
+                <ul class="bt-app-list">
+                    <li>eine große <strong>Marketing-/Werbeagentur</strong> mit Full-Service suchen,</li>
                     <li>laufendes <strong>Content-Management & Social Media</strong> erwarten,</li>
-                    <li>Standard-Baukasten-Websites mit ständig wechselnden Designs möchten.</li>
+                    <li>Standard-Baukasten-Websites in großer Anzahl benötigen.</li>
                 </ul>
-            </article>
 
-            <!-- Ablauf / CTA -->
-            <article class="bt-card bt-card-soft">
-                <h2>So läuft ein typisches Projekt ab</h2>
-                <ol class="bt-list-tight">
-                    <li>
-                        <strong>1. Kurzgespräch & Zielklärung</strong><br>
-                        Wir sprechen über Ihre Abläufe, Ihr Problem und welche Rolle eine App oder Website 
-                        dabei spielen soll.
-                    </li>
-                    <li>
-                        <strong>2. Einfaches Konzept</strong><br>
-                        In klaren Stichpunkten oder Skizzen halten wir fest, wie die Lösung aussehen kann – 
-                        reduziert auf das Wesentliche.
-                    </li>
-                    <li>
-                        <strong>3. Umsetzung & Test</strong><br>
-                        Wir entwickeln eine erste Version, die Sie im Alltag ausprobieren. 
-                        Ihr Feedback fließt direkt ein.
-                    </li>
-                    <li>
-                        <strong>4. Übergabe & Weiterentwicklung</strong><br>
-                        Nach der Fertigstellung kann die Lösung bei Bedarf angepasst und erweitert werden.
-                    </li>
-                </ol>
+                <h2>Typische Einsatzszenarien</h2>
+                <ul class="bt-app-list">
+                    <li><strong>Schrottplatz & Recycling</strong> – Materialbewegungen digital erfassen</li>
+                    <li><strong>Lager & Logistik</strong> – Bestände und Bewegungen im Blick behalten</li>
+                    <li><strong>Interne Tools</strong> – kleine Helfer für Teams & Mitarbeiter</li>
+                    <li><strong>Projektseiten</strong> – gezielte Infos für Kunden und Partner</li>
+                </ul>
+            </div>
+        </section>
 
-                <hr class="bt-divider">
+        <!-- Vollbreite Box: Ablauf & Kontakt -->
+        <section class="bt-app-fullwidth-card">
+            <h2>Projektablauf & Kontakt</h2>
+            <p>
+                App- & Webprojekte laufen bei uns bewusst schlank und direkt – ohne unnötigen Overhead.
+            </p>
+            <ol class="bt-app-steps">
+                <li>
+                    <strong>1. Kurzgespräch & Zieldefinition</strong><br>
+                    Sie schildern uns Ihr Vorhaben, Ihre Abläufe und was die digitale Lösung leisten soll.
+                </li>
+                <li>
+                    <strong>2. Grobes Konzept</strong><br>
+                    Wir skizzieren die Lösung in klaren Punkten – reduziert auf die Funktionen, die wirklich gebraucht werden.
+                </li>
+                <li>
+                    <strong>3. Umsetzung & Test im Alltag</strong><br>
+                    Eine erste Version wird umgesetzt und von Ihnen im Betrieb getestet. Feedback fließt direkt ein.
+                </li>
+                <li>
+                    <strong>4. Feinschliff & optionale Erweiterung</strong><br>
+                    Nach der Stabilisierung kann das System bei Bedarf erweitert oder angepasst werden.
+                </li>
+            </ol>
 
-                <h2>Nächster Schritt</h2>
-                <p>
-                    Wenn Sie eine Idee oder ein konkretes Problem haben, bei dem eine 
-                    <strong>kleine App</strong> oder ein <strong>schlankes Webfrontend</strong> helfen könnte, 
-                    senden Sie uns einfach ein paar Stichpunkte.
-                </p>
-                <p>
-                    Nutzen Sie dafür am besten unsere <a href="kontakt.html">Kontaktseite</a>. 
-                    Wir melden uns mit einer ehrlichen Einschätzung, ob und wie wir Sie im Rahmen 
-                    unserer Nebentätigkeit unterstützen können.
-                </p>
-            </article>
+            <p class="bt-app-muted">
+                Wenn Ihre Idee zu unserem technischen Profil passt, ist eine kleine, zielgerichtete Lösung meist
+                effizienter als ein großes Agenturprojekt.
+            </p>
 
-        </div>
-    </section>
+            <p>
+                Sie haben eine konkrete Idee oder ein Problem, bei dem eine
+                <strong>App</strong> oder ein <strong>Web-Tool</strong> helfen könnte?<br>
+                Schreiben Sie uns über die
+                <a href="kontakt.html" class="bt-app-cta-link">Kontaktseite</a>
+                einige Stichpunkte – wir melden uns mit einer ehrlichen Einschätzung, ob und wie wir Sie im Rahmen
+                unserer Nebentätigkeit unterstützen können.
+            </p>
+        </section>
+
+    </div>
 </main>
 
 <!-- FOOTER wird automatisch geladen -->
@@ -197,8 +348,8 @@
                 .then(function (html) {
                     el.innerHTML = html;
 
-                    // Jahr erst setzen, wenn Footer geladen ist
-                    var yearEl = document.getElementById('bt-year');
+                    // bt-year im geladenen Snippet aktualisieren (z.B. im Footer)
+                    const yearEl = el.querySelector('#bt-year');
                     if (yearEl) {
                         yearEl.textContent = new Date().getFullYear();
                     }
