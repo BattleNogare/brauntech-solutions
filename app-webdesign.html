@@ -2,9 +2,123 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>BraunTech Solutions – Startseite</title>
+    <title>BraunTech Solutions – App- & Webdesign</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hauptlayout -->
     <link rel="stylesheet" href="brauntech.css">
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="custom.d/background.css">
+    <script src="custom.d/background.js" defer></script>
+
+    <style>
+        /* ===========================
+           App- & Webdesign – Zusatzstyles
+        ============================ */
+
+        .bt-app-hero {
+            text-align: left;
+            max-width: 900px;
+            margin: 0 auto 2.5rem auto;
+        }
+
+        .bt-app-hero h1 {
+            margin-bottom: 0.75rem;
+        }
+
+        .bt-app-hero p.bt-lead {
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        .bt-kicker {
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+            font-size: 0.8rem;
+            margin-bottom: 0.6rem;
+            color: var(--bt-text-muted);
+        }
+
+        .bt-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        .bt-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 900px) {
+            .bt-grid-3,
+            .bt-grid-2 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .bt-card h2 {
+            margin-top: 0;
+        }
+
+        .bt-card ul {
+            margin: 0.5rem 0 0 1.2rem;
+            padding: 0;
+        }
+
+        .bt-pill-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+            margin: 0.75rem 0 0 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .bt-pill-list li {
+            border-radius: 999px;
+            border: 1px solid var(--bt-border);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+
+        .bt-steps {
+            counter-reset: step;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .bt-steps li {
+            position: relative;
+            padding-left: 2.2rem;
+            margin-bottom: 1.1rem;
+        }
+
+        .bt-steps li::before {
+            counter-increment: step;
+            content: counter(step);
+            position: absolute;
+            left: 0;
+            top: 0.1rem;
+            width: 1.6rem;
+            height: 1.6rem;
+            border-radius: 999px;
+            border: 1px solid var(--green-light);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+        }
+
+        .bt-note-small {
+            font-size: 0.85rem;
+            color: var(--bt-text-muted);
+            margin-top: 0.75rem;
+        }
+    </style>
 </head>
 <body>
 
@@ -14,175 +128,178 @@
 <!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<header class="bt-header">
-    <div class="bt-container bt-header-inner">
-        <a href="index.html" class="bt-logo">
-            <img src="bilder/brauntech-solutions-logo.png" alt="BraunTech Solutions Logo">
-        </a>
-
-        <nav class="bt-nav" aria-label="Hauptnavigation">
-            <ul class="bt-nav-list">
-                <li class="bt-nav-item">
-                    <a href="index.html" class="bt-nav-link">Startseite</a>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="product.html" class="bt-nav-link active">Produkte / Dienstleistungen</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="recycling.html" class="bt-dropdown-link">Recycling</a></li>
-                        <li><a href="app-webdesign.html" class="bt-dropdown-link active">App / Webdesign</a></li>
-						<li><a href="portal.html" class="bt-dropdown-link">Portal</a></li>
-                        <li><a href="faq.html" class="bt-dropdown-link">FAQ</a></li>
-                    </ul>
-                </li>
-
-                <li class="bt-nav-item bt-has-dropdown">
-                    <a href="about.html" class="bt-nav-link">Über uns</a>
-                    <ul class="bt-dropdown">
-                        <li><a href="standort.html" class="bt-dropdown-link">Standort</a></li>
-                        <li><a href="kontakt.html" class="bt-dropdown-link">Kontakt</a></li>
-                    </ul>
-                </li>
-            </ul>
-        </nav>
-    </div>
-</header>
+<!-- NAVBAR wird automatisch geladen -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-    <div class="bt-container">
-        <h1>Willkommen bei BraunTech Solutions</h1>
-        <p>
-            Dies ist ein Platzhaltertext für den Inhalt der Seite.
-            Du kannst dieses Grundgerüst auf alle Unterseiten übertragen.
-            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-        </p>
-    </div>
+    <section class="bt-section">
+        <div class="bt-container">
+            <div class="bt-app-hero">
+                <p class="bt-kicker">Digitale Lösungen als Ergänzung</p>
+                <h1>App- & Webdesign als individuelle Nebentätigkeit</h1>
+                <p class="bt-lead">
+                    Der Kern von BraunTech Solutions liegt im Recycling und in der Veredelung von Materialien von Schrottplätzen. 
+                    Für ausgewählte Kunden bieten wir zusätzlich eine <strong>kleine, sehr individuelle Nebentätigkeit</strong> an: 
+                    maßgeschneiderte App- und Weblösungen – genau dort, wo Standardlösungen nicht ausreichen.
+                </p>
+                <p>
+                    Statt „Agentur von der Stange“ verstehen wir uns als <strong>technischer Problemlöser</strong>: 
+                    Wenn ein digitales Werkzeug hilft, Ihre Recycling-, Logistik- oder Geschäftsprozesse smarter zu machen, 
+                    entwickeln wir gemeinsam eine schlanke, robuste Lösung.
+                </p>
+            </div>
+
+            <!-- Leistungen -->
+            <div class="bt-grid-3">
+                <section class="bt-card bt-card-soft">
+                    <h2>Was wir im App-Bereich machen</h2>
+                    <p>
+                        Wir realisieren kleine, praxisnahe Anwendungen, die direkt an Ihren Alltag andocken – 
+                        besonders im Umfeld von Recycling, Lager, Logistik und Technik.
+                    </p>
+                    <ul>
+                        <li>Interne <strong>Inventur- & Bestands-Apps</strong> für Schrottplätze</li>
+                        <li>Einfache <strong>Erfassungs-Apps</strong> (z. B. Materialeingang, Fotos, Notizen)</li>
+                        <li>Web-Dashboards für <strong>Auswertungen & Übersichten</strong></li>
+                        <li>Kleine <strong>Tools für Ihre Mitarbeiter</strong> (Mobil, Tablet, Desktop)</li>
+                    </ul>
+                    <p class="bt-note-small">
+                        Fokus liegt auf Funktion, Stabilität und einfacher Bedienung – nicht auf großen App-Stores oder Massen-Endkunden.
+                    </p>
+                </section>
+
+                <section class="bt-card bt-card-soft">
+                    <h2>Individuelles Webdesign</h2>
+                    <p>
+                        Wenn zu einem Projekt eine passende Weboberfläche oder eine kleine Website gehört, 
+                        entwickeln wir diese <strong>ohne Baukastensysteme</strong> und mit klarem Fokus auf Inhalt.
+                    </p>
+                    <ul>
+                        <li>Schlanke <strong>Landingpages</strong> für spezielle Projekte</li>
+                        <li>Interne <strong>Portale & Übersichtsseiten</strong></li>
+                        <li>Einfache <strong>Kunden- oder Partner-Infosites</strong></li>
+                        <li>Technisch saubere Umsetzung in HTML, CSS und JavaScript</li>
+                    </ul>
+                    <ul class="bt-pill-list">
+                        <li>keine Massen-Templates</li>
+                        <li>kein Agentur-Overhead</li>
+                        <li>direkter Kontakt zum Entwickler</li>
+                    </ul>
+                </section>
+
+                <section class="bt-card bt-card-soft">
+                    <h2>Wann wir gut passen – und wann nicht</h2>
+                    <p>
+                        Wir passen gut zu Ihnen, wenn Sie:
+                    </p>
+                    <ul>
+                        <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem haben</li>
+                        <li>kleine, <strong>praxisnahe Tools</strong> statt „großer Show-Webseite“ suchen</li>
+                        <li>Wert auf <strong>Nachhaltigkeit & Technik</strong> legen</li>
+                    </ul>
+                    <p>
+                        Wir sind <strong>nicht</strong> die richtige Wahl, wenn Sie:
+                    </p>
+                    <ul>
+                        <li>eine große Werbe-/Marketingagentur mit Full-Service suchen</li>
+                        <li>tägliche Content-Betreuung, Social Media etc. erwarten</li>
+                        <li>Standard-Baukastenwebsites möchten</li>
+                    </ul>
+                </section>
+            </div>
+
+            <!-- Vorgehen -->
+            <section class="bt-section">
+                <div class="bt-grid-2">
+                    <div class="bt-card bt-card-soft">
+                        <h2>So läuft ein Projekt ab</h2>
+                        <ol class="bt-steps">
+                            <li>
+                                <strong>Kurzgespräch & Zielklärung</strong><br>
+                                Wir sprechen über Ihr Problem, Ihre Abläufe und welche Rolle eine App oder Website 
+                                dabei spielen soll.
+                            </li>
+                            <li>
+                                <strong>Skizze & grobes Konzept</strong><br>
+                                In einfachen Mockups oder Beispielen halten wir fest, wie die Lösung aussehen könnte – 
+                                mit Fokus auf die wichtigsten Funktionen.
+                            </li>
+                            <li>
+                                <strong>Prototyp & Feinschliff</strong><br>
+                                Sie testen eine erste Version im Alltag, geben Feedback, wir justieren nach.
+                            </li>
+                            <li>
+                                <strong>Übergabe & Weiterentwicklung</strong><br>
+                                Nach der Fertigstellung kann die Lösung bei Bedarf erweitert oder angepasst werden – 
+                                immer entlang Ihrer Praxis.
+                            </li>
+                        </ol>
+                    </div>
+
+                    <div class="bt-card bt-card-soft">
+                        <h2>Typische Einsatzszenarien</h2>
+                        <ul>
+                            <li><strong>Schrottplatz digitalisieren</strong> – Materialbewegungen, Fotos, Notizen erfassen</li>
+                            <li><strong>Lager & Logistik</strong> – Bestände, Ein- und Ausgänge im Blick behalten</li>
+                            <li><strong>Interne Kommunikation</strong> – kleine Tools für Teams & Mitarbeiter</li>
+                            <li><strong>Projekt-Landingpages</strong> – spezifische Infos für Partner & Kunden</li>
+                        </ul>
+                        <p class="bt-note-small">
+                            App- & Webdesign verstehen wir als <strong>Werkzeugkasten</strong>, 
+                            um unsere Kernkompetenzen im Recycling-Bereich sinnvoll zu ergänzen.
+                        </p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Call to Action -->
+            <section class="bt-section">
+                <div class="bt-card bt-card-soft">
+                    <h2>Passt Ihre Idee zu BraunTech Solutions?</h2>
+                    <p>
+                        Wenn Sie eine konkrete Aufgabe haben, bei der eine <strong>kleine, robuste App</strong> 
+                        oder eine <strong>schlanke Weboberfläche</strong> helfen könnte, sprechen Sie uns einfach an.
+                    </p>
+                    <p>
+                        Am besten senden Sie uns ein paar Stichpunkte zu Ihrem Vorhaben über die 
+                        <a href="kontakt.html">Kontaktseite</a> oder per E-Mail. Wir melden uns mit einer ehrlichen Einschätzung, 
+                        ob und wie wir Sie im Rahmen unserer Nebentätigkeit unterstützen können.
+                    </p>
+                </div>
+            </section>
+        </div>
+    </section>
 </main>
 
-<footer class="bt-footer">
-    <div class="bt-container bt-footer-inner">
-        <small>© <span id="bt-year"></span> BraunTech Solutions – All systems operational.</small>
-        <a href="impressum.html" class="bt-footer-link">Impressum</a>
-    </div>
-</footer>
+<!-- FOOTER wird automatisch geladen -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <script>
-    // Aktuelles Jahr im Footer setzen
-    document.getElementById('bt-year').textContent = new Date().getFullYear();
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
-    (function () {
-        /* ================================
-           RANDOM PUNKTE + PARALLAX
-        ================================ */
-        const LAYER_COUNT = 8;        // Anzahl Punkt-Ebenen
-        const POINTS_PER_LAYER = 22;  // Punkte pro Ebene
-        const pointsContainer = document.getElementById("bt-points");
-        const pointLayers = [];
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
 
-        for (let i = 0; i < LAYER_COUNT; i++) {
-            const layer = document.createElement("div");
-            layer.classList.add("bt-points-layer");
-
-            // leichte Helligkeitsvariation pro Layer (falls du das später nutzen willst)
-            layer.style.setProperty('--layer-alpha', (0.5 + Math.random() * 0.5).toFixed(2));
-
-            // Delay – sorgt dafür, dass die Ebenen nicht gleichzeitig blinken
-            layer.style.animationDelay = (Math.random() * 8).toFixed(2) + "s";
-
-            const gradients = [];
-            for (let p = 0; p < POINTS_PER_LAYER; p++) {
-                const size = (Math.random() * 6 + 2).toFixed(1); // 2–8px
-                const x = (Math.random() * 100).toFixed(1) + "%";
-                const y = (Math.random() * 100).toFixed(1) + "%";
-                const alpha = (Math.random() * 0.6 + 0.4).toFixed(2);
-
-                gradients.push(
-                    `radial-gradient(${size}px ${size}px at ${x} ${y}, rgba(70,255,120,${alpha}), transparent)`
-                );
-            }
-
-            layer.style.backgroundImage = gradients.join(",");
-            // Tiefe für Parallax
-            layer.dataset.depth = (0.3 + (i / LAYER_COUNT) * 0.7).toFixed(2); // 0.3–1.0
-
-            pointsContainer.appendChild(layer);
-            pointLayers.push(layer);
-        }
-
-        // Parallax (Maus + Scroll)
-        let mouseX = 0.5;
-        let mouseY = 0.5;
-        let scrollY = 0;
-
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX / window.innerWidth;
-            mouseY = e.clientY / window.innerHeight;
+                    // Jahr erst setzen, wenn Footer geladen ist
+                    var yearEl = document.getElementById('bt-year');
+                    if (yearEl) {
+                        yearEl.textContent = new Date().getFullYear();
+                    }
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
         });
-
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY || window.pageYOffset || 0;
-        });
-
-        function animateParallax() {
-            const h = window.innerHeight || 1;
-            pointLayers.forEach((layer) => {
-                const depth = parseFloat(layer.dataset.depth || 0.5);
-                const offsetX = (mouseX - 0.5) * depth * 40;
-                const offsetY =
-                    (mouseY - 0.5) * depth * 20 +
-                    (scrollY / h) * depth * 30;
-
-                layer.style.transform = `translate3d(${offsetX}px, ${offsetY}px, 0)`;
-            });
-            requestAnimationFrame(animateParallax);
-        }
-        animateParallax();
-
-        /* ================================
-           RANDOM GLOW-KREISE
-           - min. 3 Kreise
-           - Zufallsanzahl, Position, Größe, Dauer
-        ================================ */
-        const orbitContainer = document.getElementById("bt-glow-orbits");
-        const ORBIT_MIN = 4;
-        const ORBIT_MAX = 15;
-        const orbitCount = ORBIT_MIN + Math.floor(Math.random() * (ORBIT_MAX - ORBIT_MIN + 1));
-
-        for (let i = 0; i < orbitCount; i++) {
-            const orbit = document.createElement("div");
-            orbit.classList.add("bt-orbit");
-
-            // Zufällige Größe
-            const size = Math.random() * 300 + 260; // 260–560px
-            orbit.style.width = size + "px";
-            orbit.style.height = size + "px";
-
-            // Zufällige Position irgendwo im Viewport (leicht außerhalb erlaubt)
-            const x = Math.random() * 80 + 5;  // 5%–85%
-            const y = Math.random() * 80 + 5;  // 5%–85%
-            orbit.style.left = x + "%";
-            orbit.style.top = y + "%";
-
-            // Zufällige Offsets für die Orbit-Animation
-            const offsetX = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            const offsetY = (Math.random() * 20 - 10).toFixed(1); // -10px bis 10px
-            orbit.style.setProperty('--orbit-offset-x', offsetX + "px");
-            orbit.style.setProperty('--orbit-offset-y', offsetY + "px");
-
-            // Zufällige Animationsdauer & Richtung
-            const duration = (Math.random() * 25 + 35).toFixed(1); // 35–60s
-            orbit.style.animationDuration = duration + "s";
-            orbit.style.animationDirection = Math.random() > 0.5 ? "normal" : "reverse";
-
-            // leichte Variation in der Intensität
-            const alphaBorder = (0.2 + Math.random() * 0.25).toFixed(2);
-            const alphaGlow = (0.25 + Math.random() * 0.3).toFixed(2);
-            orbit.style.borderColor = `rgba(57,255,20,${alphaBorder})`;
-            orbit.style.boxShadow = `0 0 18px rgba(57,255,20,${alphaGlow})`;
-
-            orbitContainer.appendChild(orbit);
-        }
-    })();
+    });
 </script>
 
 </body>
