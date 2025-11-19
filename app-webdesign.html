@@ -16,21 +16,6 @@
            App- & Webdesign – Zusatzstyles
         ============================ */
 
-        .bt-app-hero {
-            text-align: left;
-            max-width: 900px;
-            margin: 0 auto 2.5rem auto;
-        }
-
-        .bt-app-hero h1 {
-            margin-bottom: 0.75rem;
-        }
-
-        .bt-app-hero p.bt-lead {
-            font-size: 1.05rem;
-            line-height: 1.6;
-        }
-
         .bt-kicker {
             text-transform: uppercase;
             letter-spacing: 0.12em;
@@ -39,84 +24,25 @@
             color: var(--bt-text-muted);
         }
 
-        .bt-grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 1.5rem;
-        }
-
-        .bt-grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, minmax(0, 1fr));
-            gap: 1.5rem;
-        }
-
-        @media (max-width: 900px) {
-            .bt-grid-3,
-            .bt-grid-2 {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .bt-card h2 {
-            margin-top: 0;
-        }
-
-        .bt-card ul {
-            margin: 0.5rem 0 0 1.2rem;
-            padding: 0;
-        }
-
-        .bt-pill-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.4rem;
-            margin: 0.75rem 0 0 0;
-            padding: 0;
-            list-style: none;
-        }
-
-        .bt-pill-list li {
-            border-radius: 999px;
-            border: 1px solid var(--bt-border);
-            padding: 0.25rem 0.75rem;
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-
-        .bt-steps {
-            counter-reset: step;
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .bt-steps li {
-            position: relative;
-            padding-left: 2.2rem;
-            margin-bottom: 1.1rem;
-        }
-
-        .bt-steps li::before {
-            counter-increment: step;
-            content: counter(step);
-            position: absolute;
-            left: 0;
-            top: 0.1rem;
-            width: 1.6rem;
-            height: 1.6rem;
-            border-radius: 999px;
-            border: 1px solid var(--green-light);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
+        .bt-lead {
+            font-size: 1.05rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
         }
 
         .bt-note-small {
             font-size: 0.85rem;
             color: var(--bt-text-muted);
-            margin-top: 0.75rem;
+            margin-top: 0.5rem;
+        }
+
+        .bt-list-tight {
+            margin: 0.4rem 0 0.6rem 1.2rem;
+            padding: 0;
+        }
+
+        .bt-list-tight li {
+            margin-bottom: 0.25rem;
         }
     </style>
 </head>
@@ -134,139 +60,121 @@
 <main class="bt-main">
     <section class="bt-section">
         <div class="bt-container">
-            <div class="bt-app-hero">
-                <p class="bt-kicker">Digitale Lösungen als Ergänzung</p>
-                <h1>App- & Webdesign als individuelle Nebentätigkeit</h1>
+
+            <!-- Hero-Box / Einleitung -->
+            <article class="bt-card bt-card-soft">
+                <p class="bt-kicker">Nebentätigkeit mit Fokus auf Praxis</p>
+                <h1>App- & Webdesign bei BraunTech Solutions</h1>
                 <p class="bt-lead">
-                    Der Kern von BraunTech Solutions liegt im Recycling und in der Veredelung von Materialien von Schrottplätzen. 
-                    Für ausgewählte Kunden bieten wir zusätzlich eine <strong>kleine, sehr individuelle Nebentätigkeit</strong> an: 
-                    maßgeschneiderte App- und Weblösungen – genau dort, wo Standardlösungen nicht ausreichen.
+                    Der Schwerpunkt von BraunTech Solutions liegt klar im 
+                    <strong>Recycling von Materialien</strong> auf Schrottplätzen sowie in der 
+                    <strong>Veredelung von Müll</strong>. 
+                    Zusätzlich bieten wir im Rahmen einer <strong>Nebentätigkeit</strong> 
+                    individuelle Lösungen im Bereich <strong>App- & Webdesign</strong> an – 
+                    überall dort, wo digitale Werkzeuge Ihre Abläufe wirklich verbessern.
                 </p>
                 <p>
-                    Statt „Agentur von der Stange“ verstehen wir uns als <strong>technischer Problemlöser</strong>: 
-                    Wenn ein digitales Werkzeug hilft, Ihre Recycling-, Logistik- oder Geschäftsprozesse smarter zu machen, 
-                    entwickeln wir gemeinsam eine schlanke, robuste Lösung.
+                    Keine große Agentur, keine Massenwebseiten – sondern 
+                    <strong>maßgeschneiderte, technische Lösungen</strong>, die konkret zu Ihrem Betrieb, 
+                    Ihrem Team und Ihren Prozessen passen.
                 </p>
-            </div>
+            </article>
 
-            <!-- Leistungen -->
-            <div class="bt-grid-3">
-                <section class="bt-card bt-card-soft">
-                    <h2>Was wir im App-Bereich machen</h2>
-                    <p>
-                        Wir realisieren kleine, praxisnahe Anwendungen, die direkt an Ihren Alltag andocken – 
-                        besonders im Umfeld von Recycling, Lager, Logistik und Technik.
-                    </p>
-                    <ul>
-                        <li>Interne <strong>Inventur- & Bestands-Apps</strong> für Schrottplätze</li>
-                        <li>Einfache <strong>Erfassungs-Apps</strong> (z. B. Materialeingang, Fotos, Notizen)</li>
-                        <li>Web-Dashboards für <strong>Auswertungen & Übersichten</strong></li>
-                        <li>Kleine <strong>Tools für Ihre Mitarbeiter</strong> (Mobil, Tablet, Desktop)</li>
-                    </ul>
-                    <p class="bt-note-small">
-                        Fokus liegt auf Funktion, Stabilität und einfacher Bedienung – nicht auf großen App-Stores oder Massen-Endkunden.
-                    </p>
-                </section>
+            <!-- Leistungen App / Web -->
+            <article class="bt-card bt-card-soft">
+                <h2>Was wir im App-Bereich anbieten</h2>
+                <p>
+                    Unsere App-Lösungen sind klein, robust und auf den Alltag zugeschnitten – 
+                    besonders im Umfeld von Recycling, Lager und Logistik.
+                </p>
+                <ul class="bt-list-tight">
+                    <li>Interne <strong>Erfassungs-Apps</strong> (Materialeingang, Fotos, Notizen)</li>
+                    <li>Kompakte <strong>Inventur-Tools</strong> für Schrottplätze</li>
+                    <li>Einfache <strong>Mitarbeiter-Apps</strong> für wiederkehrende Aufgaben</li>
+                    <li>Webbasierte <strong>Dashboards & Übersichten</strong></li>
+                </ul>
+                <p class="bt-note-small">
+                    Fokus: Funktion, Stabilität, einfache Bedienung – weniger „App-Store-Show“, 
+                    mehr praktischer Nutzen im täglichen Betrieb.
+                </p>
 
-                <section class="bt-card bt-card-soft">
-                    <h2>Individuelles Webdesign</h2>
-                    <p>
-                        Wenn zu einem Projekt eine passende Weboberfläche oder eine kleine Website gehört, 
-                        entwickeln wir diese <strong>ohne Baukastensysteme</strong> und mit klarem Fokus auf Inhalt.
-                    </p>
-                    <ul>
-                        <li>Schlanke <strong>Landingpages</strong> für spezielle Projekte</li>
-                        <li>Interne <strong>Portale & Übersichtsseiten</strong></li>
-                        <li>Einfache <strong>Kunden- oder Partner-Infosites</strong></li>
-                        <li>Technisch saubere Umsetzung in HTML, CSS und JavaScript</li>
-                    </ul>
-                    <ul class="bt-pill-list">
-                        <li>keine Massen-Templates</li>
-                        <li>kein Agentur-Overhead</li>
-                        <li>direkter Kontakt zum Entwickler</li>
-                    </ul>
-                </section>
+                <hr class="bt-divider">
 
-                <section class="bt-card bt-card-soft">
-                    <h2>Wann wir gut passen – und wann nicht</h2>
-                    <p>
-                        Wir passen gut zu Ihnen, wenn Sie:
-                    </p>
-                    <ul>
-                        <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem haben</li>
-                        <li>kleine, <strong>praxisnahe Tools</strong> statt „großer Show-Webseite“ suchen</li>
-                        <li>Wert auf <strong>Nachhaltigkeit & Technik</strong> legen</li>
-                    </ul>
-                    <p>
-                        Wir sind <strong>nicht</strong> die richtige Wahl, wenn Sie:
-                    </p>
-                    <ul>
-                        <li>eine große Werbe-/Marketingagentur mit Full-Service suchen</li>
-                        <li>tägliche Content-Betreuung, Social Media etc. erwarten</li>
-                        <li>Standard-Baukastenwebsites möchten</li>
-                    </ul>
-                </section>
-            </div>
+                <h2>Individuelles Webdesign</h2>
+                <p>
+                    Wenn für ein Projekt eine passende Weboberfläche oder kleine Website benötigt wird, 
+                    entwickeln wir diese <strong>ohne Baukastensysteme</strong> und mit klarem Fokus auf Inhalt.
+                </p>
+                <ul class="bt-list-tight">
+                    <li>Schlanke <strong>Projekt- oder Produktseiten</strong></li>
+                    <li>Interne <strong>Portale und Übersichten</strong> für Teams</li>
+                    <li>Einfache <strong>Info-Seiten</strong> für Kunden und Partner</li>
+                    <li>Saubere Umsetzung in <strong>HTML, CSS & JavaScript</strong></li>
+                </ul>
+                <p class="bt-note-small">
+                    Wir sehen Webdesign als technisches Werkzeug, nicht als Marketing-Showbühne.
+                </p>
+            </article>
 
-            <!-- Vorgehen -->
-            <section class="bt-section">
-                <div class="bt-grid-2">
-                    <div class="bt-card bt-card-soft">
-                        <h2>So läuft ein Projekt ab</h2>
-                        <ol class="bt-steps">
-                            <li>
-                                <strong>Kurzgespräch & Zielklärung</strong><br>
-                                Wir sprechen über Ihr Problem, Ihre Abläufe und welche Rolle eine App oder Website 
-                                dabei spielen soll.
-                            </li>
-                            <li>
-                                <strong>Skizze & grobes Konzept</strong><br>
-                                In einfachen Mockups oder Beispielen halten wir fest, wie die Lösung aussehen könnte – 
-                                mit Fokus auf die wichtigsten Funktionen.
-                            </li>
-                            <li>
-                                <strong>Prototyp & Feinschliff</strong><br>
-                                Sie testen eine erste Version im Alltag, geben Feedback, wir justieren nach.
-                            </li>
-                            <li>
-                                <strong>Übergabe & Weiterentwicklung</strong><br>
-                                Nach der Fertigstellung kann die Lösung bei Bedarf erweitert oder angepasst werden – 
-                                immer entlang Ihrer Praxis.
-                            </li>
-                        </ol>
-                    </div>
+            <!-- Passende Kunden / Nicht passend -->
+            <article class="bt-card bt-card-soft">
+                <h2>Wann BraunTech für App & Webdesign gut zu Ihnen passt</h2>
+                <p>Wir passen gut zu Ihnen, wenn Sie:</p>
+                <ul class="bt-list-tight">
+                    <li>eine <strong>konkrete Aufgabe</strong> oder ein klares Problem lösen möchten,</li>
+                    <li>kleine, <strongpraxisnahe Tools</strong> statt großer Agenturprojekte suchen,</li>
+                    <li>Wert auf <strong>Nachhaltigkeit & Technik</strong> legen,</li>
+                    <li>direkten Kontakt zum Entwickler statt anonymer Projektteams bevorzugen.</li>
+                </ul>
 
-                    <div class="bt-card bt-card-soft">
-                        <h2>Typische Einsatzszenarien</h2>
-                        <ul>
-                            <li><strong>Schrottplatz digitalisieren</strong> – Materialbewegungen, Fotos, Notizen erfassen</li>
-                            <li><strong>Lager & Logistik</strong> – Bestände, Ein- und Ausgänge im Blick behalten</li>
-                            <li><strong>Interne Kommunikation</strong> – kleine Tools für Teams & Mitarbeiter</li>
-                            <li><strong>Projekt-Landingpages</strong> – spezifische Infos für Partner & Kunden</li>
-                        </ul>
-                        <p class="bt-note-small">
-                            App- & Webdesign verstehen wir als <strong>Werkzeugkasten</strong>, 
-                            um unsere Kernkompetenzen im Recycling-Bereich sinnvoll zu ergänzen.
-                        </p>
-                    </div>
-                </div>
-            </section>
+                <p>Wir sind eher nicht die richtige Wahl, wenn Sie:</p>
+                <ul class="bt-list-tight">
+                    <li>eine große <strong>Marketing- oder Werbeagentur</strong> mit Vollbetreuung suchen,</li>
+                    <li>laufendes <strong>Content-Management & Social Media</strong> erwarten,</li>
+                    <li>Standard-Baukasten-Websites mit ständig wechselnden Designs möchten.</li>
+                </ul>
+            </article>
 
-            <!-- Call to Action -->
-            <section class="bt-section">
-                <div class="bt-card bt-card-soft">
-                    <h2>Passt Ihre Idee zu BraunTech Solutions?</h2>
-                    <p>
-                        Wenn Sie eine konkrete Aufgabe haben, bei der eine <strong>kleine, robuste App</strong> 
-                        oder eine <strong>schlanke Weboberfläche</strong> helfen könnte, sprechen Sie uns einfach an.
-                    </p>
-                    <p>
-                        Am besten senden Sie uns ein paar Stichpunkte zu Ihrem Vorhaben über die 
-                        <a href="kontakt.html">Kontaktseite</a> oder per E-Mail. Wir melden uns mit einer ehrlichen Einschätzung, 
-                        ob und wie wir Sie im Rahmen unserer Nebentätigkeit unterstützen können.
-                    </p>
-                </div>
-            </section>
+            <!-- Ablauf / CTA -->
+            <article class="bt-card bt-card-soft">
+                <h2>So läuft ein typisches Projekt ab</h2>
+                <ol class="bt-list-tight">
+                    <li>
+                        <strong>1. Kurzgespräch & Zielklärung</strong><br>
+                        Wir sprechen über Ihre Abläufe, Ihr Problem und welche Rolle eine App oder Website 
+                        dabei spielen soll.
+                    </li>
+                    <li>
+                        <strong>2. Einfaches Konzept</strong><br>
+                        In klaren Stichpunkten oder Skizzen halten wir fest, wie die Lösung aussehen kann – 
+                        reduziert auf das Wesentliche.
+                    </li>
+                    <li>
+                        <strong>3. Umsetzung & Test</strong><br>
+                        Wir entwickeln eine erste Version, die Sie im Alltag ausprobieren. 
+                        Ihr Feedback fließt direkt ein.
+                    </li>
+                    <li>
+                        <strong>4. Übergabe & Weiterentwicklung</strong><br>
+                        Nach der Fertigstellung kann die Lösung bei Bedarf angepasst und erweitert werden.
+                    </li>
+                </ol>
+
+                <hr class="bt-divider">
+
+                <h2>Nächster Schritt</h2>
+                <p>
+                    Wenn Sie eine Idee oder ein konkretes Problem haben, bei dem eine 
+                    <strong>kleine App</strong> oder ein <strong>schlankes Webfrontend</strong> helfen könnte, 
+                    senden Sie uns einfach ein paar Stichpunkte.
+                </p>
+                <p>
+                    Nutzen Sie dafür am besten unsere <a href="kontakt.html">Kontaktseite</a>. 
+                    Wir melden uns mit einer ehrlichen Einschätzung, ob und wie wir Sie im Rahmen 
+                    unserer Nebentätigkeit unterstützen können.
+                </p>
+            </article>
+
         </div>
     </section>
 </main>
