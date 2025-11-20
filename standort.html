@@ -169,6 +169,40 @@
             margin: 0.2rem 0 0;
         }
 
+        /* Standort-Karte (SVG) */
+
+        .standort-map-card {
+            margin-bottom: 2.4rem;
+        }
+
+        .standort-map-frame {
+            margin-top: 1rem;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--bt-border, #1a2e1f);
+            box-shadow:
+                0 22px 50px rgba(0, 0, 0, 0.85),
+                0 0 0 1px rgba(255, 255, 255, 0.02);
+            background: #000;
+            cursor: grab;
+        }
+
+        .standort-map-frame:active {
+            cursor: grabbing;
+        }
+
+        .standort-map-frame svg {
+            display: block;
+            width: 100%;
+            height: 480px;
+        }
+
+        @media (max-width: 700px) {
+            .standort-map-frame svg {
+                height: 360px;
+            }
+        }
+
         /* Slideshow in Box */
 
         .bt-section-slideshow {
@@ -410,6 +444,68 @@
             </div>
         </section>
 
+        <!-- Standortkarte als SVG mit island.svg -->
+        <section class="bt-section">
+            <article class="bt-card bt-card-accent standort-map-card">
+                <h2>Standortkarte</h2>
+     <!--                <p>
+                    Interaktive Übersicht: Die Karte basiert auf einer SVG-Grafik. Sie können mit dem Mausrad
+                    hinein- und herauszoomen und die Ansicht mit gedrückter Maustaste verschieben.
+                </p>         -->
+                <div class="standort-map-frame">
+                    <!-- WICHTIG: viewBox 0 0 10000 10000 -->
+                    <svg id="bt-standort-svg" viewBox="0 0 10000 10000" xmlns="http://www.w3.org/2000/svg">
+                        <!-- Alles, was gezoomt/verschoben werden soll, liegt in diesem <g> -->
+                        <g id="bt-standort-map-inner">
+                            <!-- Deine große Karte als eingebettete SVG-Datei -->
+                            <image href="bilder/island.svg"
+                                   x="0" y="0"
+                                   width="10000" height="10000"
+                                   preserveAspectRatio="xMidYMid meet"></image>
+
+                            <!-- Marker an gewünschter Position (7970 / 4430) -->
+                            <g id="bt-standort-marker">
+                                <circle cx="7970" cy="4430" r="25"
+                                        fill="rgba(3,16,8,0.85)"
+                                        stroke="#39ff14"
+                                        stroke-width="6" />
+                   <!--             <circle cx="7970" cy="4430" r="26"
+                                        fill="#39ff14" />
+                                <circle cx="7970" cy="4430" r="46"
+                                        fill="none"
+                                        stroke="#39ff14"
+                                        stroke-width="4"
+                                        opacity="0.7" />         -->
+                            </g>
+
+                            <!-- Logo-Badge in der Nähe des Markers -->
+                            <!-- Logo-Größe -->
+                            <!-- Logo selbst: 420x140; Hintergrund mit Padding 20px -->
+                            <g id="bt-standort-logo">
+                                <!-- Position des Logos relativ zum Marker:
+                                     leicht rechts oberhalb -->
+                                <!-- Logo-Top-Left -->
+                                <!-- Wir setzen das Logo mit der linken oberen Ecke bei (logoX, logoY) -->
+                                <!-- logoX = markerX - 210 (halb Logo-Breite) -->
+                                <!-- logoY = markerY - 260 (etwas oberhalb) -->
+                                <rect x="7740" y="4130"
+                                      width="460" height="200"
+                                      rx="26" ry="26"
+                                      fill="rgba(0, 10, 4, 0.92)"
+                                      stroke="#39ff14"
+                                      stroke-width="5"
+                                      opacity="0.98" />
+                                <image href="bilder/brauntech-solutions-logo.png"
+                                       x="7760" y="4150"
+                                       width="420" height="160"
+                                       preserveAspectRatio="xMidYMid meet" />
+                            </g>
+                        </g>
+                    </svg>
+                </div>
+            </article>
+        </section>
+
         <!-- Diashow in moderner Box -->
         <section class="bt-section bt-section-slideshow">
             <div class="bt-card bt-slideshow-card">
@@ -565,6 +661,88 @@
             startAutoPlay();
         });
     });
+
+    // SVG Zoom & Pan (Mausrad + Drag) – initial auf Marker gezoomt
+    (function () {
+        const svg   = document.getElementById('bt-standort-svg');
+        const inner = document.getElementById('bt-standort-map-inner');
+        if (!svg || !inner) return;
+
+        // === Marker-Position in SVG-Koordinaten (0–10000) ===
+        const markerX = 7970; // neue Marker-Position X
+        const markerY = 4430; // neue Marker-Position Y
+
+        // viewBox auslesen, um die Mitte zu bestimmen
+        const vb = svg.viewBox.baseVal;
+        const centerX = vb.x + vb.width  / 2;
+        const centerY = vb.y + vb.height / 2;
+
+        // Initialer Zoomfaktor
+        let scale = 6; // höher = stärker gezoomt
+
+        // Initiale Verschiebung so berechnen, dass der Marker in der Mitte landet
+        let panX = centerX - markerX * scale;
+        let panY = centerY - markerY * scale;
+
+        function updateTransform() {
+            inner.setAttribute('transform', `translate(${panX} ${panY}) scale(${scale})`);
+        }
+
+        updateTransform();
+
+        // Zoom per Mausrad
+        svg.addEventListener('wheel', function (e) {
+            e.preventDefault();
+
+            const zoomIntensity = 0.0015;
+            const delta = -e.deltaY;
+            const zoomFactor = 1 + delta * zoomIntensity;
+
+            const newScale = Math.min(12, Math.max(0.5, scale * zoomFactor));
+            if (newScale === scale) return;
+
+            // Weltkoordinate unter dem Mauszeiger ermitteln
+            const pt = svg.createSVGPoint();
+            pt.x = e.clientX;
+            pt.y = e.clientY;
+            const cursor = pt.matrixTransform(inner.getScreenCTM().inverse()); // Koord. im inner-G-Koordinatensystem
+
+            // Pan so anpassen, dass der Punkt unter dem Cursor an der gleichen Stelle bleibt
+            panX += cursor.x * (scale - newScale);
+            panY += cursor.y * (scale - newScale);
+
+            scale = newScale;
+            updateTransform();
+        }, { passive: false });
+
+        // Pan per Drag
+        let isPanning = false;
+        let startX = 0;
+        let startY = 0;
+        let startPanX = 0;
+        let startPanY = 0;
+
+        svg.addEventListener('mousedown', function (e) {
+            isPanning = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            startPanX = panX;
+            startPanY = panY;
+        });
+
+        window.addEventListener('mousemove', function (e) {
+            if (!isPanning) return;
+            const dx = (e.clientX - startX) / scale;
+            const dy = (e.clientY - startY) / scale;
+            panX = startPanX + dx;
+            panY = startPanY + dy;
+            updateTransform();
+        });
+
+        window.addEventListener('mouseup', function () {
+            isPanning = false;
+        });
+    })();
 </script>
 
 </body>
