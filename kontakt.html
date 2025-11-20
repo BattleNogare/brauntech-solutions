@@ -37,7 +37,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
-            align-items: center;
+            align-items: mit flex-start;
         }
 
         .bt-page-contact-meta small {
@@ -440,7 +440,7 @@
         }
     })();
 
-    // Kontaktformular → Discord Webhook
+    // Kontaktformular → Discord Webhook (mit Embed)
     (function () {
         const form = document.getElementById('kontakt-form');
         const submitBtn = document.getElementById('kontakt-submit');
@@ -478,19 +478,37 @@
             submitBtn.textContent = "Wird gesendet …";
             setStatus("Nachricht wird an BraunTech Solutions übermittelt …", null);
 
-            // Einfaches Payload für Discord (vermeidet 400-Fehler)
-            const contentLines = [
-                "**Neue Kontaktanfrage von der Website brauntech-solutions/kontakt.html**",
-                "**Name:** " + (name || "–"),
-                "**Betreff:** " + (betreff || "–"),
-                
-                "**Nachricht:**",
-                nachricht || "–",
-                "",
-            ];
+            // Schöne Embed-Nachricht für Discord
+            const embed = {
+                title: "Neue Kontaktanfrage",
+                description: "Eine neue Nachricht wurde über das Kontaktformular der Website gesendet.",
+                color: 0x39ff14, // Grün in Hex
+                fields: [
+                    {
+                        name: "Name",
+                        value: name || "–",
+                        inline: false
+                    },
+                    {
+                        name: "Betreff",
+                        value: betreff || "–",
+                        inline: false
+                    },
+                    {
+                        name: "Nachricht",
+                        value: nachricht || "–",
+                        inline: false
+                    }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: {
+                    text: "BraunTech Solutions – Kontaktformular"
+                }
+            };
 
             const payload = {
-                content: contentLines.join("\n")
+                content: "📩 **Neue Kontaktanfrage eingegangen**",
+                embeds: [embed]
             };
 
             fetch(WEBHOOK_URL, {
