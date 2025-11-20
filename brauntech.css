@@ -552,3 +552,22 @@ body::after {
 .bt-text-muted {
     color: var(--bt-text-muted);
 }
+
+/* Globale Linkfarben */
+a {
+    color: var(--green-light);
+    text-decoration-color: rgba(89, 255, 122, 0.7);
+}
+
+a:visited {
+    color: var(--green-mid);
+}
+
+a:hover {
+    color: var(--green-neon);
+    text-decoration-color: rgba(57, 255, 20, 0.9);
+}
+
+a:active {
+    color: var(--green-mid);
+}
