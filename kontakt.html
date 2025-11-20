@@ -481,14 +481,12 @@
             // Einfaches Payload für Discord (vermeidet 400-Fehler)
             const contentLines = [
                 "**Neue Kontaktanfrage von der Website brauntech-solutions/kontakt.html**",
-                "",
                 "**Name:** " + (name || "–"),
                 "**Betreff:** " + (betreff || "–"),
-                "",
+                
                 "**Nachricht:**",
                 nachricht || "–",
                 "",
-                "Datenschutz: Akzeptiert ✅"
             ];
 
             const payload = {
