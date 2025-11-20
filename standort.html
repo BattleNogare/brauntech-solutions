@@ -463,21 +463,43 @@
                                    width="10000" height="10000"
                                    preserveAspectRatio="xMidYMid meet"></image>
 
-                            <!-- Marker an gewünschter Position -->
-                            <!-- Koordinaten später im Script anpassen (markerX, markerY) -->
+                            <!-- Marker an gewünschter Position (7970 / 4430) -->
                             <g id="bt-standort-marker">
-                                <circle cx="7970" cy="4430" r="25" fill="rgba(3,16,8,0.8)" stroke="#39ff14" stroke-width="6" />
-                           <!-- <circle cx="7970" cy="4430" r="26" fill="#39ff14" />
-                                <circle cx="7970" cy="4430" r="46" fill="none" stroke="#39ff14" stroke-width="4" opacity="0.7" />-->
+                                <circle cx="7970" cy="4430" r="80"
+                                        fill="rgba(3,16,8,0.85)"
+                                        stroke="#39ff14"
+                                        stroke-width="6" />
+                                <circle cx="7970" cy="4430" r="26"
+                                        fill="#39ff14" />
+                                <circle cx="7970" cy="4430" r="46"
+                                        fill="none"
+                                        stroke="#39ff14"
+                                        stroke-width="4"
+                                        opacity="0.7" />
                             </g>
 
-                            <!-- Optional: Beschriftung neben dem Marker -->
-                            <text x="8050" y="4470"
-                                  fill="#c8ffd5"
-                                  font-size="120"
-                                  font-family="system-ui, sans-serif">
-                                BraunTech Solutions
-                            </text>
+                            <!-- Logo-Badge in der Nähe des Markers -->
+                            <!-- Logo-Größe -->
+                            <!-- Logo selbst: 420x140; Hintergrund mit Padding 20px -->
+                            <g id="bt-standort-logo">
+                                <!-- Position des Logos relativ zum Marker:
+                                     leicht rechts oberhalb -->
+                                <!-- Logo-Top-Left -->
+                                <!-- Wir setzen das Logo mit der linken oberen Ecke bei (logoX, logoY) -->
+                                <!-- logoX = markerX - 210 (halb Logo-Breite) -->
+                                <!-- logoY = markerY - 260 (etwas oberhalb) -->
+                                <rect x="7740" y="4130"
+                                      width="460" height="200"
+                                      rx="26" ry="26"
+                                      fill="rgba(0, 10, 4, 0.92)"
+                                      stroke="#39ff14"
+                                      stroke-width="5"
+                                      opacity="0.98" />
+                                <image href="bilder/brauntech-solutions-logo.png"
+                                       x="7760" y="4150"
+                                       width="420" height="160"
+                                       preserveAspectRatio="xMidYMid meet" />
+                            </g>
                         </g>
                     </svg>
                 </div>
@@ -647,8 +669,8 @@
         if (!svg || !inner) return;
 
         // === Marker-Position in SVG-Koordinaten (0–10000) ===
-        const markerX = 7970; // HIER anpassen
-        const markerY = 4430; // HIER anpassen
+        const markerX = 7970; // neue Marker-Position X
+        const markerY = 4430; // neue Marker-Position Y
 
         // viewBox auslesen, um die Mitte zu bestimmen
         const vb = svg.viewBox.baseVal;
@@ -656,7 +678,7 @@
         const centerY = vb.y + vb.height / 2;
 
         // Initialer Zoomfaktor
-        let scale = 5; // höher = stärker gezoomt
+        let scale = 6; // höher = stärker gezoomt
 
         // Initiale Verschiebung so berechnen, dass der Marker in der Mitte landet
         let panX = centerX - markerX * scale;
