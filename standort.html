@@ -648,7 +648,7 @@
 
         // === Marker-Position in SVG-Koordinaten (0–10000) ===
         const markerX = 5200; // HIER anpassen
-        const markerY = 4300; // HIER anpassen
+        const markerY = 6300; // HIER anpassen
 
         // viewBox auslesen, um die Mitte zu bestimmen
         const vb = svg.viewBox.baseVal;
@@ -656,7 +656,7 @@
         const centerY = vb.y + vb.height / 2;
 
         // Initialer Zoomfaktor
-        let scale = 6; // höher = stärker gezoomt
+        let scale = 5; // höher = stärker gezoomt
 
         // Initiale Verschiebung so berechnen, dass der Marker in der Mitte landet
         let panX = centerX - markerX * scale;
