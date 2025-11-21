@@ -29,7 +29,7 @@ groups:
 
       - label: "Fahrzeughandel Sturmfels"
         url: "https://battlenogare.github.io/car_sturmfels/"
-        logo: "tickets-admin.png"
+        logo: "https://raw.githubusercontent.com/BattleNogare/lostparadise-herstellung/main/car-sturmfels-logo.png"
         colorStart: "#ff0088"
         colorEnd: "#ff55ff"
 
@@ -43,67 +43,67 @@ groups:
 
       - label: "Waffen-Crafting"
         url: "https://battlenogare.github.io/lostparadise-herstellung/waffen-crafting.html"
-        logo: "support.png"
+        logo: "https://raw.githubusercontent.com/BattleNogare/lostparadise-herstellung/main/Lostparadise-CraftingWaffen2.png"
         colorStart: "#00b894"
         colorEnd: "#0984e3"
 
       - label: "Produktions-Rechner"
         url: "https://battlenogare.github.io/lostparadise-herstellung/rohstoff-rechner.html"
-        logo: "faq.png"
+        logo: "https://raw.githubusercontent.com/BattleNogare/lostparadise-herstellung/main/logo-produktion.png"
         colorStart: "#fdcb6e"
         colorEnd: "#e17055"
         
   - title: "Routen"
     tiles:
       - label: "Legale Routen"
-        url: "https://battlenogare.github.io/lostparadise-herstellung/"
-        logo: "https://raw.githubusercontent.com/BattleNogare/lostparadise-herstellung/main/Lostparadise-Crafting2.png"
+        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+        logo: ""
         colorStart: "#8a2be2"
         colorEnd: "#4b0082"
 
       - label: "Illegale Routen"
-        url: "https://battlenogare.github.io/lostparadise-herstellung/waffen-crafting.html"
-        logo: "support.png"
+        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+        logo: ""
         colorStart: "#00b894"
         colorEnd: "#0984e3"
 
       - label: "Lizenzen"
-        url: "https://battlenogare.github.io/lostparadise-herstellung/rohstoff-rechner.html"
+        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
         logo: "faq.png"
         colorStart: "#fdcb6e"
         colorEnd: "#e17055"
         
-  - title: "Fraktionen"
-    tiles:
-      - label: "Bürgermeisteramt Hohenstein"
-        url: "https://battlenogare.github.io/lostparadise-herstellung/"
-        logo: "https://raw.githubusercontent.com/BattleNogare/lostparadise-herstellung/main/Lostparadise-Crafting2.png"
-        colorStart: "#8a2be2"
-        colorEnd: "#4b0082"
-
-      - label: "Justiz Hohenstein"
-        url: ""
-        logo: "support.png"
-        colorStart: "#00b894"
-        colorEnd: "#0984e3"
-
-      - label: "Schutzpolizei Hohenstein"
-        url: ""
-        logo: "faq.png"
-        colorStart: "#fdcb6e"
-        colorEnd: "#e17055"
-
-      - label: "Samtens Pannenservice"
-        url: ""
-        logo: "faq.png"
-        colorStart: "#fdcb6e"
-        colorEnd: "#e17055"
-
-      - label: "Rettungsdienst Hohenstein"
-        url: ""
-        logo: "faq.png"
-        colorStart: "#fdcb6e"
-        colorEnd: "#e17055"
+#  - title: "Fraktionen"
+#    tiles:
+#      - label: "Bürgermeisteramt Hohenstein"
+#        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+#        logo: ""
+#        colorStart: "#8a2be2"
+#        colorEnd: "#4b0082"
+#
+#      - label: "Justiz Hohenstein"
+#        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+#        logo: "support.png"
+#        colorStart: "#00b894"
+#        colorEnd: "#0984e3"
+#
+#      - label: "Schutzpolizei Hohenstein"
+#        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+#        logo: "faq.png"
+#        colorStart: "#fdcb6e"
+#        colorEnd: "#e17055"
+#
+#      - label: "Samtens Pannenservice"
+#        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+#        logo: "faq.png"
+#        colorStart: "#fdcb6e"
+#        colorEnd: "#e17055"
+#
+#      - label: "Rettungsdienst Hohenstein"
+#        url: "https://battlenogare.github.io/brauntech-solutions/404.html"
+#        logo: "faq.png"
+#        colorStart: "#fdcb6e"
+#        colorEnd: "#e17055"
 
   - title: "Admin"
     tiles:
