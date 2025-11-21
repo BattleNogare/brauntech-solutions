@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <title>BraunTech Solutions – Fehler 404</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Hauptlayout -->
+    <link rel="stylesheet" href="brauntech.css">
+    <!-- Hintergrund / Effekte -->
+    <link rel="stylesheet" href="custom.d/background.css">
+    <script src="custom.d/background.js" defer></script>
+
+    <style>
+        /* ===========================
+           404 – Zusatzstyles
+        ============================ */
+
+        .bt-404-wrapper {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+            background: var(--bt-bg-alt);
+            border: 1px solid var(--bt-border);
+            border-radius: var(--bt-radius);
+            box-shadow: 0 0 25px rgba(57,255,20,0.12);
+            text-align: center;
+        }
+
+        .bt-404-wrapper h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--green-neon);
+        }
+
+        .bt-404-wrapper p {
+            font-size: 1.2rem;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            color: var(--bt-text-muted);
+        }
+
+        .bt-404-img {
+            width: 100%;
+            max-width: 420px;
+            margin: 1.5rem auto 2.5rem auto;
+            display: block;
+            opacity: 0.9;
+            border-radius: var(--bt-radius);
+            border: 1px solid var(--bt-border);
+        }
+
+        .bt-404-back {
+            display: inline-block;
+            padding: 0.75rem 1.4rem;
+            background: var(--green-mid);
+            color: white;
+            text-decoration: none;
+            border-radius: var(--bt-radius);
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            transition: 0.2s;
+        }
+
+        .bt-404-back:hover {
+            background: var(--green-light);
+            color: black;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Rotierende Glow-Kreise -->
+<div id="bt-glow-orbits"></div>
+
+<!-- Random-Punkte -->
+<div id="bt-points"></div>
+
+<!-- NAVBAR -->
+<header class="bt-header" data-include="custom.d/navbar.html"></header>
+
+<main class="bt-main">
+    <div class="bt-404-wrapper">
+        <h1>404 – Bereich in Arbeit</h1>
+        <p>
+            Dieser Bereich ist derzeit noch nicht verfügbar oder befindet sich in der Entwicklung.<br>
+            BraunTech Solutions arbeitet bereits daran, diesen Abschnitt bereitzustellen.
+        </p>
+
+        <!-- Platzhalter-Bild (frei ersetzbar) -->
+        <img src="https://i.imgur.com/y8wQ2Qk.png" alt="In Arbeit" class="bt-404-img">
+
+        <a class="bt-404-back" href="index.html">Zurück zur Startseite</a>
+    </div>
+</main>
+
+<!-- FOOTER -->
+<footer class="bt-footer" data-include="custom.d/footer.html"></footer>
+
+<script src="custom.d/include.js"></script>
+
+</body>
+</html>
