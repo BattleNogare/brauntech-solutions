@@ -37,7 +37,7 @@
             display: flex;
             flex-wrap: wrap;
             gap: 0.75rem;
-            align-items: flex-start;
+            align-items: flex-start; /* FIX */
         }
 
         .bt-page-contact-meta small {
@@ -50,17 +50,19 @@
         }
 
         /* Layout: Infos + Formular */
-
         .bt-contact-grid {
             display: grid;
             grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.4fr);
             gap: 2rem;
-            align-items: flex-start;
+            align-items: stretch; /* gleicher Höhenstretch */
         }
 
+        /* Beide Boxen gleich hoch + Inhalt sauber verteilt */
         .bt-contact-panel,
         .bt-form-card {
-            /* nutzen das globale Card-Design */
+            height: 100%;
+            display: flex;
+            flex-direction: column;
         }
 
         .bt-contact-panel h2,
@@ -94,24 +96,24 @@
             opacity: 0.9;
         }
 
-        /* Bild mit Rahmen */
-
+        /* Bild mit Rahmen unter Kontaktinfos */
         .bt-contact-image-wrapper {
             margin-top: 1.4rem;
             border-radius: var(--bt-radius);
-            border: 1px solid rgba(57,255,20,0.35);
-            box-shadow: 
-                0 0 18px rgba(57,255,20,0.4),
-                0 0 35px rgba(0,0,0,0.9);
+            border: 1px solid rgba(57, 255, 20, 0.35);
+            box-shadow:
+                0 0 18px rgba(57, 255, 20, 0.4),
+                0 0 35px rgba(0, 0, 0, 0.9);
             overflow: hidden;
             background: radial-gradient(circle at top, #07150c, #020604);
         }
 
         .bt-contact-image-wrapper img {
-            width: 100%;
             display: block;
+            width: 100%;
+            height: auto;
             opacity: 0.95;
-            transition: 0.4s ease;
+            transition: transform 0.4s ease, opacity 0.2s ease;
         }
 
         .bt-contact-image-wrapper:hover img {
@@ -121,14 +123,17 @@
 
         .bt-contact-image-caption {
             padding: 0.5rem 0.75rem;
-            color: var(--bt-text-muted);
             font-size: 0.8rem;
+            color: var(--bt-text-muted);
             font-family: var(--bt-font-mono);
             text-transform: uppercase;
             letter-spacing: 0.06em;
         }
 
         /* Formular */
+        .bt-form-card h2 {
+            font-size: 1.2rem;
+        }
 
         .bt-form {
             margin-top: 1.1rem;
@@ -139,22 +144,56 @@
         }
 
         .bt-form-row label {
+            display: block;
             font-size: 0.85rem;
             text-transform: uppercase;
             letter-spacing: 0.06em;
+            font-family: var(--bt-font-mono);
             color: var(--bt-text-muted);
             margin-bottom: 0.3rem;
-            display: block;
         }
 
-        .bt-required {
+        .bt-form-row label span.bt-required {
             color: var(--green-light);
+            margin-left: 0.15rem;
+        }
+
+        .bt-input,
+        .bt-textarea {
+            width: 100%;
+            padding: 0.6rem 0.7rem;
+            border-radius: 4px;
+            border: 1px solid #163822;
+            background: #050b08;
+            color: var(--bt-text);
+            font: 0.95rem var(--bt-font-main);
+            outline: none;
+            transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+        }
+
+        .bt-input:focus,
+        .bt-textarea:focus {
+            border-color: var(--green-light);
+            box-shadow:
+                0 0 0 1px rgba(57, 255, 20, 0.35),
+                0 0 18px rgba(57, 255, 20, 0.22);
+            background: #06130b;
+        }
+
+        .bt-textarea {
+            min-height: 150px;
+            resize: vertical;
         }
 
         .bt-checkbox-row {
             display: flex;
-            gap: 0.6rem;
             align-items: flex-start;
+            gap: 0.6rem;
+            margin-top: 0.4rem;
+        }
+
+        .bt-checkbox-row input[type="checkbox"] {
+            margin-top: 0.08rem;
         }
 
         .bt-checkbox-label {
@@ -162,10 +201,211 @@
             color: var(--bt-text-muted);
         }
 
+        .bt-checkbox-label a {
+            text-decoration: underline;
+            text-underline-offset: 3px;
+        }
+
+        .bt-form-actions {
+            margin-top: 1.2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.9rem;
+            flex-wrap: wrap;
+        }
+
+        .bt-btn-primary {
+            border: none;
+            border-radius: 999px;
+            padding: 0.55rem 1.4rem;
+            font-family: var(--bt-font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            font-size: 0.8rem;
+            cursor: pointer;
+            background: radial-gradient(circle at top left, var(--green-light), var(--green-mid));
+            color: #021005;
+            box-shadow:
+                0 0 15px rgba(57, 255, 20, 0.5),
+                0 0 40px rgba(0, 0, 0, 0.9);
+            transition: transform 0.15s ease, box-shadow 0.15s ease, filter 0.15s ease;
+        }
+
+        .bt-btn-primary:hover:not(:disabled) {
+            transform: translateY(-1px);
+            box-shadow:
+                0 0 22px rgba(57, 255, 20, 0.7),
+                0 0 50px rgba(0, 0, 0, 1);
+            filter: brightness(1.05);
+        }
+
+        .bt-btn-primary:disabled {
+            cursor: wait;
+            opacity: 0.7;
+        }
+
+        .bt-form-status {
+            font-size: 0.8rem;
+            color: var(--bt-text-muted);
+            min-height: 1.1em;
+        }
+
+        .bt-form-status--success {
+            color: var(--green-light);
+        }
+
+        .bt-form-status--error {
+            color: #ff8f8f;
+        }
+
+        /* Termin-Box Layout + mehr Abstand nach oben */
+        .bt-appointment-card {
+            margin-top: 3rem; /* mehr Abstand zu "Direkter Kontakt" */
+        }
+
+        .bt-appointment-hint {
+            color: var(--bt-text-muted);
+            font-size: 0.9rem;
+            margin-top: 0.25rem;
+        }
+
+        .bt-appointment-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+            gap: 1rem;
+        }
+
+        /* ===========================
+           Animierter Neon-Kalender
+        ============================ */
+        .bt-cal {
+            margin-top: 0.35rem;
+            border: 1px solid rgba(57,255,20,0.25);
+            border-radius: 8px;
+            background: rgba(3, 12, 7, 0.92);
+            box-shadow:
+                0 0 14px rgba(57,255,20,0.18),
+                0 0 30px rgba(0,0,0,0.9);
+            overflow: hidden;
+        }
+
+        .bt-cal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.6rem 0.7rem;
+            background: linear-gradient(to right, #04150b, #062314, #04150b);
+            border-bottom: 1px solid rgba(57,255,20,0.18);
+        }
+
+        .bt-cal-title {
+            font-family: var(--bt-font-mono);
+            font-size: 0.95rem;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--green-light);
+            text-shadow: 0 0 8px var(--green-glow);
+        }
+
+        .bt-cal-nav {
+            display: flex;
+            gap: 0.4rem;
+        }
+
+        .bt-cal-btn {
+            appearance: none;
+            border: 1px solid rgba(57,255,20,0.35);
+            background: rgba(5, 11, 8, 0.9);
+            color: var(--bt-text);
+            font-family: var(--bt-font-mono);
+            font-size: 0.8rem;
+            padding: 0.25rem 0.5rem;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.15s ease;
+            box-shadow: 0 0 8px rgba(57,255,20,0.12);
+        }
+
+        .bt-cal-btn:hover {
+            border-color: var(--green-light);
+            color: var(--green-light);
+            box-shadow: 0 0 12px rgba(57,255,20,0.3);
+            transform: translateY(-1px);
+        }
+
+        .bt-cal-weekdays {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            padding: 0.5rem 0.6rem 0.25rem;
+            font-family: var(--bt-font-mono);
+            font-size: 0.75rem;
+            color: var(--bt-text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        .bt-cal-body { position: relative; min-height: 220px; }
+
+        .bt-cal-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 0.35rem;
+            padding: 0.5rem 0.6rem 0.8rem;
+        }
+
+        .bt-cal-cell {
+            border: 1px solid rgba(57,255,20,0.18);
+            background: rgba(2, 6, 4, 0.9);
+            border-radius: 6px;
+            padding: 0.45rem 0;
+            text-align: center;
+            font-family: var(--bt-font-mono);
+            font-size: 0.85rem;
+            color: var(--bt-text);
+            cursor: pointer;
+            transition: 0.12s ease;
+        }
+
+        .bt-cal-cell:hover {
+            border-color: rgba(57,255,20,0.5);
+            color: var(--green-light);
+            box-shadow: 0 0 10px rgba(57,255,20,0.25);
+            transform: translateY(-1px);
+        }
+
+        .bt-cal-cell.is-muted { opacity: 0.35; cursor: default; transform: none; }
+        .bt-cal-cell.is-today { border-color: rgba(57,255,20,0.6); box-shadow: 0 0 12px rgba(57,255,20,0.35); }
+
+        .bt-cal-cell.is-selected {
+            color: #021005;
+            background: radial-gradient(circle at top left, var(--green-light), var(--green-mid));
+            border-color: var(--green-neon);
+            box-shadow: 0 0 16px rgba(57,255,20,0.75);
+            transform: translateY(-1px);
+        }
+
+        .bt-cal-cell.is-disabled { opacity: 0.18; cursor: not-allowed; transform: none; }
+
+        .bt-cal-grid.anim-in { animation: bt-cal-in 180ms ease both; }
+        .bt-cal-grid.anim-out-left { animation: bt-cal-out-left 160ms ease both; }
+        .bt-cal-grid.anim-out-right { animation: bt-cal-out-right 160ms ease both; }
+
+        @keyframes bt-cal-in {
+            from { opacity: 0; transform: translateX(10px); }
+            to   { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes bt-cal-out-left {
+            from { opacity: 1; transform: translateX(0); }
+            to   { opacity: 0; transform: translateX(-10px); }
+        }
+        @keyframes bt-cal-out-right {
+            from { opacity: 1; transform: translateX(0); }
+            to   { opacity: 0; transform: translateX(10px); }
+        }
+
         /* ===========================
            Termin-Slots (Neon Buttons)
         ============================ */
-
         .bt-slots-wrap {
             margin-top: 0.4rem;
             display: grid;
@@ -173,8 +413,8 @@
         }
 
         .bt-slots-note {
-            color: var(--bt-text-muted);
             font-size: 0.8rem;
+            color: var(--bt-text-muted);
         }
 
         .bt-slots-grid {
@@ -185,386 +425,674 @@
 
         .bt-slot-btn {
             appearance: none;
-            border: 1px solid rgba(57,255,20,0.35);
-            background: rgba(3,12,7,0.9);
+            border: 1px solid rgba(57, 255, 20, 0.35);
+            background: rgba(3, 12, 7, 0.9);
             color: var(--bt-text);
             font-family: var(--bt-font-mono);
-            padding: 0.5rem;
+            font-size: 0.82rem;
+            letter-spacing: 0.05em;
+            padding: 0.5rem 0.2rem;
             border-radius: 6px;
             cursor: pointer;
+            text-align: center;
             transition: 0.15s ease;
+            box-shadow: 0 0 10px rgba(57, 255, 20, 0.12);
         }
 
         .bt-slot-btn:hover {
             transform: translateY(-1px);
             border-color: var(--green-light);
+            box-shadow:
+                0 0 14px rgba(57, 255, 20, 0.35),
+                0 0 28px rgba(57, 255, 20, 0.15);
             color: var(--green-light);
-            box-shadow: 
-                0 0 14px rgba(57,255,20,0.35),
-                0 0 28px rgba(57,255,20,0.15);
         }
 
         .bt-slot-btn.active {
-            background: radial-gradient(circle at top left, var(--green-light), var(--green-mid));
-            color: #021005;
             border-color: var(--green-neon);
-            transform: translateY(-1px);
+            color: #021005;
+            background: radial-gradient(circle at top left, var(--green-light), var(--green-mid));
             box-shadow:
-                0 0 18px rgba(57,255,20,0.75),
+                0 0 18px rgba(57, 255, 20, 0.75),
                 0 0 40px rgba(0, 0, 0, 0.9);
+            transform: translateY(-1px);
         }
 
         .bt-slot-empty {
+            font-size: 0.85rem;
             color: var(--bt-text-muted);
-            padding: 0.6rem;
-            text-align: center;
+            padding: 0.6rem 0.2rem;
             border: 1px dashed var(--bt-border);
             border-radius: 6px;
+            text-align: center;
         }
 
+        @media (max-width: 850px) {
+            .bt-contact-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+            .bt-appointment-grid {
+                grid-template-columns: minmax(0, 1fr);
+            }
+        }
     </style>
 </head>
 <body>
 
-<!-- Effekte -->
+<!-- Rotierende Glow-Kreise (werden per JS gefüllt) -->
 <div id="bt-glow-orbits"></div>
+
+<!-- Random-Punkte-Layer (werden per JS gefüllt) -->
 <div id="bt-points"></div>
 
-<!-- NAV -->
+<!-- NAVBAR wird automatisch geladen -->
 <header class="bt-header" data-include="custom.d/navbar.html"></header>
 
 <main class="bt-main">
-<div class="bt-container bt-page-contact">
+    <div class="bt-container bt-page-contact">
 
-    <!-- HEADER -->
-    <header class="bt-page-contact-header">
-        <div class="bt-page-contact-meta">
-            <span class="bt-pill">
-                <span class="bt-pill-dot"></span>
-                Kontakt · Anfrage
-            </span>
-            <small>BraunTech Solutions · Knuffingen</small>
-        </div>
-        <h1>So erreichen Sie BraunTech Solutions</h1>
-        <p class="bt-contact-intro">
-            Egal ob Recycling, Materialaufbereitung oder digitale Lösungen –  
-            über dieses Formular oder direkt per Telefon erreichen Sie uns.
-        </p>
-    </header>
+        <!-- Einheitlicher Header mit Pill -->
+        <header class="bt-page-contact-header">
+            <div class="bt-page-contact-meta">
+                <span class="bt-pill">
+                    <span class="bt-pill-dot"></span>
+                    Kontakt · Anfrage
+                </span>
+                <small>BraunTech Solutions · Knuffingen · Hohenstein</small>
+            </div>
+            <h1>So erreichen Sie BraunTech Solutions</h1>
+            <p class="bt-contact-intro">
+                Egal ob es um Recycling-Projekte, Materialaufbereitung oder digitale Lösungen geht –
+                über dieses Formular oder die Kontaktdaten erreichen Sie direkt BraunTech Solutions.
+            </p>
+        </header>
 
-    <!-- GRID -->
-    <section class="bt-section">
-        <div class="bt-contact-grid">
+        <!-- Kontakt-Grid: Infos + Formular -->
+        <section class="bt-section">
+            <div class="bt-contact-grid">
 
-            <!-- INFOCARD -->
-            <section class="bt-card bt-card-accent bt-contact-panel">
-                <h2>Direkter Kontakt</h2>
-                <p>Sie erreichen uns telefonisch oder über das Formular.</p>
+                <!-- Kontakt-Infos -->
+                <section class="bt-card bt-card-accent bt-contact-panel">
+                    <h2>Direkter Kontakt</h2>
+                    <p>Schreiben Sie eine Nachricht oder greifen Sie direkt zum Hörer.</p>
 
-                <ul class="bt-contact-list">
-                    <li>
-                        <span class="bt-contact-icon">🏢</span>
-                        <span>
-                            <strong>BraunTech Solutions</strong><br>
-                            Knuffingen, Hohenstein<br>
-                            Deutschland
-                        </span>
-                    </li>
-                    <li>
-                        <span class="bt-contact-icon">📞</span>
-                        <span>
-                            Telefon: <a href="tel:+491234567890">+49 1234 567890</a>
-                        </span>
-                    </li>
-                </ul>
+                    <ul class="bt-contact-list">
+                        <li>
+                            <span class="bt-contact-icon">🏢</span>
+                            <span>
+                                <strong>BraunTech Solutions</strong><br>
+                                Knuffingen, Hohenstein<br>
+                                Deutschland
+                            </span>
+                        </li>
+                        <li>
+                            <span class="bt-contact-icon">📞</span>
+                            <span>
+                                Telefon:
+                                <a href="tel:+491234567890">
+                                    +49&nbsp;1234&nbsp;567890
+                                </a>
+                            </span>
+                        </li>
+                    </ul>
 
-                <div class="bt-contact-image-wrapper">
-                    <img src="bilder/kontakt-bild.png" alt="Kontakt Bild">
-                    <div class="bt-contact-image-caption">Wir helfen Ihnen weiter</div>
-                </div>
-            </section>
-
-            <!-- KONTAKTFORMULAR -->
-            <section class="bt-card bt-form-card" aria-labelledby="kontakt-heading">
-                <h2 id="kontakt-heading">Wie dürfen wir Ihnen helfen?</h2>
-
-                <form id="kontakt-form" class="bt-form" novalidate>
-
-                    <div class="bt-form-row">
-                        <label for="kontakt-name">Name<span class="bt-required">*</span></label>
-                        <input class="bt-input" id="kontakt-name" required>
+                    <!-- Bild mit Rahmen -->
+                    <div class="bt-contact-image-wrapper">
+                        <img src="bilder/kontakt-bild.png" alt="BraunTech Solutions Kontakt Bild">
+                        <div class="bt-contact-image-caption">
+                            Wir helfen Ihnen weiter
+                        </div>
                     </div>
+                </section>
 
-                    <div class="bt-form-row">
-                        <label for="kontakt-betreff">Betreff<span class="bt-required">*</span></label>
-                        <input class="bt-input" id="kontakt-betreff" required>
-                    </div>
+                <!-- Kontaktformular -->
+                <section class="bt-card bt-form-card" aria-labelledby="kontakt-heading">
+                    <h2 id="kontakt-heading">Wie dürfen wir Ihnen helfen?</h2>
 
-                    <div class="bt-form-row">
-                        <label for="kontakt-nachricht">Nachricht<span class="bt-required">*</span></label>
-                        <textarea class="bt-textarea" id="kontakt-nachricht" required></textarea>
-                    </div>
-
-                    <div class="bt-form-row">
-                        <div class="bt-checkbox-row">
-                            <input type="checkbox" id="kontakt-datenschutz" required>
-                            <label class="bt-checkbox-label">
-                                Ich akzeptiere die <a href="datenschutz.html">Datenschutzbestimmungen</a>.
-                                <span class="bt-required">*</span>
+                    <form id="kontakt-form" class="bt-form" novalidate>
+                        <div class="bt-form-row">
+                            <label for="kontakt-name">
+                                Name<span class="bt-required">*</span>
                             </label>
+                            <input
+                                type="text"
+                                id="kontakt-name"
+                                name="name"
+                                class="bt-input"
+                                required
+                                autocomplete="name"
+                                placeholder="Ihr Name">
+                        </div>
+
+                        <div class="bt-form-row">
+                            <label for="kontakt-betreff">
+                                Betreff<span class="bt-required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="kontakt-betreff"
+                                name="betreff"
+                                class="bt-input"
+                                required
+                                placeholder="Worum geht es?">
+                        </div>
+
+                        <div class="bt-form-row">
+                            <label for="kontakt-nachricht">
+                                Nachricht<span class="bt-required">*</span>
+                            </label>
+                            <textarea
+                                id="kontakt-nachricht"
+                                name="nachricht"
+                                class="bt-textarea"
+                                required
+                                placeholder="Beschreiben Sie kurz Ihr Anliegen – je genauer, desto besser."></textarea>
+                        </div>
+
+                        <div class="bt-form-row">
+                            <div class="bt-checkbox-row">
+                                <input
+                                    type="checkbox"
+                                    id="kontakt-datenschutz"
+                                    name="datenschutz"
+                                    required>
+                                <label for="kontakt-datenschutz" class="bt-checkbox-label">
+                                    Ich habe die
+                                    <a href="datenschutz.html" target="_blank" rel="noopener">
+                                        Datenschutzbestimmungen
+                                    </a>
+                                    gelesen und akzeptiere diese.<span class="bt-required">*</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="bt-form-actions">
+                            <button type="submit" class="bt-btn-primary" id="kontakt-submit">
+                                Senden
+                            </button>
+                            <div id="form-status" class="bt-form-status" aria-live="polite"></div>
+                        </div>
+                    </form>
+                </section>
+
+            </div>
+        </section>
+
+        <!-- Termin vereinbaren -->
+        <section class="bt-section">
+            <section class="bt-card bt-appointment-card" aria-labelledby="termin-heading">
+                <h2 id="termin-heading">Termin vereinbaren</h2>
+                <p class="bt-appointment-hint">
+                    Termine dauern 15 Minuten. Erlaubte Zeiten:<br>
+                    <strong>Di–Fr: 18:30–22:00</strong> · <strong>Sa–So: 11:00–22:00</strong>
+                </p>
+
+                <form id="termin-form" class="bt-form" novalidate>
+                    <div class="bt-appointment-grid">
+                        <div class="bt-form-row">
+                            <label for="termin-name">
+                                Name<span class="bt-required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="termin-name"
+                                name="termin_name"
+                                class="bt-input"
+                                required
+                                autocomplete="name"
+                                placeholder="Ihr Name">
+                        </div>
+
+                        <div class="bt-form-row">
+                            <label for="termin-grund">
+                                Grund des Termins<span class="bt-required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="termin-grund"
+                                name="termin_grund"
+                                class="bt-input"
+                                required
+                                placeholder="z.B. Recycling-Beratung">
+                        </div>
+
+                        <!-- Datum via animiertem Kalender -->
+                        <div class="bt-form-row">
+                            <label>
+                                Datum<span class="bt-required">*</span>
+                            </label>
+
+                            <!-- Hidden echtes Date-Input für Validierung/Submit -->
+                            <input
+                                type="date"
+                                id="termin-datum"
+                                name="termin_datum"
+                                class="bt-input"
+                                required
+                                style="position:absolute; left:-9999px; width:1px; height:1px; opacity:0;"
+                            >
+
+                            <!-- Animierter Kalender -->
+                            <div class="bt-cal" id="bt-cal">
+                                <div class="bt-cal-header">
+                                    <div class="bt-cal-title" id="bt-cal-title">Monat Jahr</div>
+                                    <div class="bt-cal-nav">
+                                        <button type="button" class="bt-cal-btn" id="bt-cal-prev">‹</button>
+                                        <button type="button" class="bt-cal-btn" id="bt-cal-today">Heute</button>
+                                        <button type="button" class="bt-cal-btn" id="bt-cal-next">›</button>
+                                    </div>
+                                </div>
+
+                                <div class="bt-cal-weekdays">
+                                    <div>Mo</div><div>Di</div><div>Mi</div><div>Do</div><div>Fr</div><div>Sa</div><div>So</div>
+                                </div>
+
+                                <div class="bt-cal-body">
+                                    <div class="bt-cal-grid" id="bt-cal-grid"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Slots -->
+                        <div class="bt-form-row">
+                            <label>
+                                Uhrzeit (15-Min-Slots)<span class="bt-required">*</span>
+                            </label>
+
+                            <input type="hidden" id="termin-uhrzeit" name="termin_uhrzeit" required>
+
+                            <div class="bt-slots-wrap">
+                                <span class="bt-slots-note" id="slots-note">
+                                    Bitte zuerst ein Datum wählen.
+                                </span>
+                                <div class="bt-slots-grid" id="slots-grid"></div>
+                            </div>
                         </div>
                     </div>
 
                     <div class="bt-form-actions">
-                        <button class="bt-btn-primary" id="kontakt-submit">Senden</button>
-                        <div id="form-status" class="bt-form-status"></div>
+                        <button type="submit" class="bt-btn-primary" id="termin-submit">
+                            Termin anfragen
+                        </button>
+                        <div id="termin-status" class="bt-form-status" aria-live="polite"></div>
                     </div>
-
                 </form>
             </section>
-
-        </div>
-    </section>
-
-    <!-- TERMIN-BUCHUNG -->
-    <section class="bt-section">
-        <section class="bt-card bt-appointment-card" aria-labelledby="termin-heading">
-            <h2 id="termin-heading">Termin vereinbaren</h2>
-            <p class="bt-appointment-hint">
-                Slots à 15 Minuten:  
-                <strong>Di–Fr 18:30–22:00</strong> · <strong>Sa–So 11:00–22:00</strong>
-            </p>
-
-            <form id="termin-form" class="bt-form" novalidate>
-
-                <div class="bt-appointment-grid">
-                    <div class="bt-form-row">
-                        <label for="termin-name">Name<span class="bt-required">*</span></label>
-                        <input class="bt-input" id="termin-name" required>
-                    </div>
-
-                    <div class="bt-form-row">
-                        <label for="termin-grund">Grund des Termins<span class="bt-required">*</span></label>
-                        <input class="bt-input" id="termin-grund" required>
-                    </div>
-
-                    <div class="bt-form-row">
-                        <label for="termin-datum">Datum<span class="bt-required">*</span></label>
-                        <input type="date" class="bt-input" id="termin-datum" required>
-                    </div>
-
-                    <div class="bt-form-row">
-                        <label>Uhrzeit (15-Min)</label>
-
-                        <!-- Hidden Value -->
-                        <input type="hidden" id="termin-uhrzeit" required>
-
-                        <div class="bt-slots-wrap">
-                            <span id="slots-note" class="bt-slots-note">
-                                Bitte zuerst ein Datum wählen.
-                            </span>
-
-                            <div id="slots-grid" class="bt-slots-grid"></div>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="bt-form-actions">
-                    <button class="bt-btn-primary" id="termin-submit">Termin anfragen</button>
-                    <div id="termin-status" class="bt-form-status"></div>
-                </div>
-
-            </form>
         </section>
-    </section>
 
-</div>
+    </div>
 </main>
 
-<!-- FOOTER -->
+<!-- FOOTER wird automatisch geladen -->
 <footer class="bt-footer" data-include="custom.d/footer.html"></footer>
 
 <script>
-/* HEADER + FOOTER Loader */
-document.addEventListener("DOMContentLoaded", () => {
-    document.querySelectorAll("[data-include]").forEach(el => {
-        fetch(el.getAttribute("data-include"))
-            .then(r => r.text())
-            .then(html => el.innerHTML = html);
-    });
-});
+    // --- Einfacher Include-Loader für Header/Footer ---
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll("[data-include]").forEach(function (el) {
+            const file = el.getAttribute("data-include");
+            if (!file) return;
 
-/* YEAR FIX */
-setTimeout(() => {
-    let y = document.getElementById("bt-year");
-    if (y) y.textContent = new Date().getFullYear();
-}, 500);
-
-/* DISCORD WEBHOOK */
-const WEBHOOK_URL = "https://discord.com/api/webhooks/1441017696643715225/Gi1xR16YB1hj_JjXwcjmcSu6d0kbIHd5JM0BxYy3fnjJ5NG54LGAifL2V6xUg4diTRIQ";
-
-/* ===========================================
-   KONTAKTFORMULAR
-=========================================== */
-(function () {
-    const form = document.getElementById("kontakt-form");
-    const btn = document.getElementById("kontakt-submit");
-    const status = document.getElementById("form-status");
-
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-
-        if (!form.checkValidity()) return form.reportValidity();
-
-        const name = kontakt-name.value.trim();
-        const betreff = kontakt-betreff.value.trim();
-        const nachricht = kontakt-nachricht.value.trim();
-
-        btn.disabled = true;
-        btn.textContent = "Senden…";
-
-        const embed = {
-            title: "Neue Kontaktanfrage",
-            color: 0x39ff14,
-            fields: [
-                { name: "Name", value: name },
-                { name: "Betreff", value: betreff },
-                { name: "Nachricht", value: nachricht }
-            ],
-            timestamp: new Date()
-        };
-
-        fetch(WEBHOOK_URL, {
-            method: "POST",
-            headers: {"Content-Type":"application/json"},
-            body: JSON.stringify({content:"📩 Neue Kontaktanfrage", embeds:[embed]})
-        }).then(() => {
-            form.reset();
-            status.textContent = "Nachricht gesendet!";
-            status.style.color = "#39ff14";
-        }).catch(() => {
-            status.textContent = "Fehler beim Senden!";
-            status.style.color = "#ff4444";
-        }).finally(() => {
-            btn.disabled = false;
-            btn.textContent = "Senden";
+            fetch(file)
+                .then(function (response) {
+                    if (!response.ok) throw new Error("Include konnte nicht geladen werden: " + file);
+                    return response.text();
+                })
+                .then(function (html) {
+                    el.innerHTML = html;
+                })
+                .catch(function (err) {
+                    console.error(err);
+                });
         });
     });
-})();
 
-/* ===========================================
-   TERMIN – SLOT GENERATOR
-=========================================== */
-(function () {
-    const dateInput = document.getElementById("termin-datum");
-    const timeHidden = document.getElementById("termin-uhrzeit");
-    const slotsGrid = document.getElementById("slots-grid");
-    const slotsNote = document.getElementById("slots-note");
-    const form = document.getElementById("termin-form");
-    const btn = document.getElementById("termin-submit");
-    const status = document.getElementById("termin-status");
+    // Falls dein footer.html ein <span id="bt-year"> enthält:
+    (function () {
+        var yearEl = document.getElementById('bt-year');
+        if (yearEl) {
+            yearEl.textContent = new Date().getFullYear();
+        }
+    })();
 
-    function pad(n){return String(n).padStart(2,"0");}
+    // Globaler Webhook (einmal definiert für beide Formulare)
+    const WEBHOOK_URL = "https://discord.com/api/webhooks/1441017696643715225/Gi1xR16YB1hj_JjXwcjmcSu6d0kbIHd5JM0BxYy3fnjJ5NG54LGAifL2V6xUg4diTRIQ";
 
-    function buildSlots(dateStr) {
-        slotsGrid.innerHTML = "";
-        timeHidden.value = "";
+    // Kontaktformular → Discord Webhook (mit Embed)
+    (function () {
+        const form = document.getElementById('kontakt-form');
+        const submitBtn = document.getElementById('kontakt-submit');
+        const statusEl = document.getElementById('form-status');
 
-        if (!dateStr) {
-            slotsNote.textContent = "Bitte zuerst ein Datum wählen.";
-            return;
+        if (!form) return;
+
+        function setStatus(message, type) {
+            statusEl.textContent = message || "";
+            statusEl.classList.remove('bt-form-status--success', 'bt-form-status--error');
+            if (type) {
+                statusEl.classList.add(
+                    type === 'success' ? 'bt-form-status--success' : 'bt-form-status--error'
+                );
+            }
         }
 
-        const d = new Date(dateStr+"T00:00:00");
-        const day = d.getDay();
+        form.addEventListener('submit', function (e) {
+            e.preventDefault();
+            setStatus("", null);
 
-        let start = null, end = null;
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
 
-        if (day >= 2 && day <= 5) { start = 18*60+30; end = 22*60; }
-        if (day === 6 || day === 0) { start = 11*60; end = 22*60; }
+            const name = document.getElementById('kontakt-name').value.trim();
+            const betreff = document.getElementById('kontakt-betreff').value.trim();
+            const nachricht = document.getElementById('kontakt-nachricht').value.trim();
 
-        if (start === null) {
-            slotsNote.textContent = "Keine Termine an diesem Tag.";
-            slotsGrid.innerHTML = `<div class="bt-slot-empty">Keine Slots</div>`;
-            return;
-        }
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Wird gesendet …";
+            setStatus("Nachricht wird übermittelt …", null);
 
-        slotsNote.textContent = "Wähle einen freien Zeit-Slot:";
+            const embed = {
+                title: "Neue Kontaktanfrage",
+                description: "Eine neue Nachricht wurde über das Kontaktformular gesendet.",
+                color: 0x39ff14,
+                fields: [
+                    { name: "Name", value: name || "–", inline: false },
+                    { name: "Betreff", value: betreff || "–", inline: false },
+                    { name: "Nachricht", value: nachricht || "–", inline: false }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: { text: "BraunTech Solutions – Kontaktformular" }
+            };
 
-        for (let m = start; m <= end; m += 15) {
-            let hh = pad(Math.floor(m/60));
-            let mm = pad(m%60);
-            let time = `${hh}:${mm}`;
+            const payload = {
+                content: "📩 **Neue Kontaktanfrage eingegangen**",
+                embeds: [embed]
+            };
 
-            let btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "bt-slot-btn";
-            btn.textContent = time;
-
-            btn.addEventListener("click", () => {
-                slotsGrid.querySelectorAll(".bt-slot-btn.active")
-                    .forEach(b => b.classList.remove("active"));
-                btn.classList.add("active");
-                timeHidden.value = time;
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(function (response) {
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                setStatus("Vielen Dank! Ihre Nachricht wurde übermittelt.", "success");
+                form.reset();
+            })
+            .catch(function (err) {
+                console.error(err);
+                setStatus("Fehler beim Senden. Bitte später erneut versuchen.", "error");
+            })
+            .finally(function () {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Senden";
             });
-
-            slotsGrid.appendChild(btn);
-        }
-    }
-
-    dateInput.addEventListener("change", () => buildSlots(dateInput.value));
-
-    /* Termin senden */
-    form.addEventListener("submit", e => {
-        e.preventDefault();
-        if (!form.checkValidity()) return form.reportValidity();
-        if (!timeHidden.value) {
-            status.textContent = "Bitte einen Slot wählen!";
-            status.style.color = "#ff4444";
-            return;
-        }
-
-        const name = termin-name.value.trim();
-        const grund = termin-grund.value.trim();
-        const datum = termin-datum.value;
-        const uhrzeit = timeHidden.value;
-
-        btn.disabled = true;
-        btn.textContent = "Senden…";
-
-        const embed = {
-            title: "Neue Terminanfrage",
-            color: 0x39ff14,
-            fields: [
-                {name:"Name", value:name},
-                {name:"Grund", value:grund},
-                {name:"Datum", value:datum, inline:true},
-                {name:"Uhrzeit", value:uhrzeit, inline:true},
-                {name:"Dauer", value:"15 Minuten", inline:true}
-            ],
-            timestamp: new Date()
-        };
-
-        fetch(WEBHOOK_URL, {
-            method:"POST",
-            headers:{"Content-Type":"application/json"},
-            body:JSON.stringify({content:"📅 Neue Terminanfrage", embeds:[embed]})
-        }).then(() => {
-            form.reset();
-            slotsGrid.innerHTML = "";
-            timeHidden.value = "";
-            status.textContent = "Terminanfrage gesendet!";
-            status.style.color = "#39ff14";
-        }).catch(() => {
-            status.textContent = "Fehler beim Senden!";
-            status.style.color = "#ff4444";
-        }).finally(() => {
-            btn.disabled = false;
-            btn.textContent = "Termin anfragen";
         });
-    });
+    })();
 
-})();
+    // Terminformular → Discord Webhook (Kalender + Slots + Embed)
+    (function () {
+        const form = document.getElementById('termin-form');
+        const submitBtn = document.getElementById('termin-submit');
+        const statusEl = document.getElementById('termin-status');
+
+        const dateInput = document.getElementById('termin-datum');
+        const hiddenTimeInput = document.getElementById('termin-uhrzeit');
+        const slotsGrid = document.getElementById('slots-grid');
+        const slotsNote = document.getElementById('slots-note');
+
+        // Kalender-Elemente
+        const cal = document.getElementById('bt-cal');
+        const calTitle = document.getElementById('bt-cal-title');
+        const calGrid = document.getElementById('bt-cal-grid');
+        const calPrev = document.getElementById('bt-cal-prev');
+        const calNext = document.getElementById('bt-cal-next');
+        const calTodayBtn = document.getElementById('bt-cal-today');
+
+        if (!form || !dateInput || !hiddenTimeInput || !slotsGrid || !slotsNote || !cal || !calGrid) return;
+
+        function setStatus(message, type) {
+            statusEl.textContent = message || "";
+            statusEl.classList.remove('bt-form-status--success', 'bt-form-status--error');
+            if (type) {
+                statusEl.classList.add(
+                    type === 'success' ? 'bt-form-status--success' : 'bt-form-status--error'
+                );
+            }
+        }
+
+        const MONTHS_DE = [
+            "Januar","Februar","März","April","Mai","Juni",
+            "Juli","August","September","Oktober","November","Dezember"
+        ];
+
+        function pad(n){ return String(n).padStart(2,"0"); }
+        function toISODate(d){
+            return `${d.getFullYear()}-${pad(d.getMonth()+1)}-${pad(d.getDate())}`;
+        }
+
+        // --- Kalender Logik ---
+        let viewDate = new Date();
+        viewDate.setDate(1);
+        let selectedISO = dateInput.value || "";
+
+        function renderCalendar(direction /* -1 prev, +1 next, 0 init */) {
+            const now = new Date();
+            const year = viewDate.getFullYear();
+            const month = viewDate.getMonth();
+
+            calTitle.textContent = `${MONTHS_DE[month]} ${year}`;
+
+            if (direction === -1) calGrid.classList.add("anim-out-right");
+            if (direction === 1) calGrid.classList.add("anim-out-left");
+
+            const build = () => {
+                calGrid.className = "bt-cal-grid anim-in";
+                calGrid.innerHTML = "";
+
+                const firstDay = new Date(year, month, 1);
+                let startWeekday = firstDay.getDay(); // So=0..Sa=6
+                startWeekday = (startWeekday + 6) % 7; // Mo=0..So=6
+
+                const daysInMonth = new Date(year, month+1, 0).getDate();
+
+                for (let i=0; i<startWeekday; i++){
+                    const cell = document.createElement("div");
+                    cell.className = "bt-cal-cell is-muted";
+                    cell.textContent = "·";
+                    calGrid.appendChild(cell);
+                }
+
+                for (let day=1; day<=daysInMonth; day++){
+                    const d = new Date(year, month, day);
+                    const iso = toISODate(d);
+
+                    const cell = document.createElement("button");
+                    cell.type = "button";
+                    cell.className = "bt-cal-cell";
+                    cell.textContent = day;
+
+                    if (iso === toISODate(now)) cell.classList.add("is-today");
+                    if (iso === selectedISO) cell.classList.add("is-selected");
+
+                    const isPast = d.setHours(0,0,0,0) < now.setHours(0,0,0,0);
+                    if (isPast) {
+                        cell.classList.add("is-disabled");
+                    } else {
+                        cell.addEventListener("click", () => {
+                            selectedISO = iso;
+                            dateInput.value = iso;
+                            dateInput.dispatchEvent(new Event("change"));
+                            renderCalendar(0);
+                            setStatus("", null);
+                        });
+                    }
+
+                    calGrid.appendChild(cell);
+                }
+            };
+
+            if (direction === -1 || direction === 1){
+                setTimeout(build, 160);
+            } else {
+                build();
+            }
+        }
+
+        calPrev.addEventListener("click", () => {
+            viewDate.setMonth(viewDate.getMonth() - 1);
+            renderCalendar(-1);
+        });
+
+        calNext.addEventListener("click", () => {
+            viewDate.setMonth(viewDate.getMonth() + 1);
+            renderCalendar(1);
+        });
+
+        calTodayBtn.addEventListener("click", () => {
+            const today = new Date();
+            viewDate = new Date(today.getFullYear(), today.getMonth(), 1);
+            selectedISO = toISODate(today);
+            dateInput.value = selectedISO;
+            dateInput.dispatchEvent(new Event("change"));
+            renderCalendar(0);
+        });
+
+        // --- Slots (nur erlaubte) ---
+        function buildSlotsForDate(dateStr) {
+            slotsGrid.innerHTML = "";
+            hiddenTimeInput.value = "";
+
+            if (!dateStr) {
+                slotsNote.textContent = "Bitte zuerst ein Datum wählen.";
+                return;
+            }
+
+            const d = new Date(dateStr + "T00:00:00");
+            const day = d.getDay(); // 0=So,1=Mo,2=Di,3=Mi,4=Do,5=Fr,6=Sa
+
+            let startMins = null;
+            let endMins = null;
+
+            if (day >= 2 && day <= 5) { // Di–Fr 18:30–22:00
+                startMins = 18 * 60 + 30;
+                endMins = 22 * 60;
+            } else if (day === 6 || day === 0) { // Sa–So 11:00–22:00
+                startMins = 11 * 60;
+                endMins = 22 * 60;
+            }
+
+            if (startMins === null) {
+                slotsNote.textContent = "Für diesen Tag sind keine Termine verfügbar (Mo gesperrt).";
+                slotsGrid.innerHTML = `<div class="bt-slot-empty">Keine erlaubten Slots</div>`;
+                return;
+            }
+
+            slotsNote.textContent = "Wähle einen freien 15-Minuten-Slot:";
+
+            for (let m=startMins; m<=endMins; m+=15) {
+                const hh = Math.floor(m/60);
+                const mm = m%60;
+                const timeStr = `${pad(hh)}:${pad(mm)}`;
+
+                const btn = document.createElement("button");
+                btn.type = "button";
+                btn.className = "bt-slot-btn";
+                btn.textContent = timeStr;
+
+                btn.addEventListener("click", () => {
+                    slotsGrid.querySelectorAll(".bt-slot-btn.active").forEach(b => b.classList.remove("active"));
+                    btn.classList.add("active");
+                    hiddenTimeInput.value = timeStr;
+                    setStatus("", null);
+                });
+
+                slotsGrid.appendChild(btn);
+            }
+        }
+
+        dateInput.addEventListener("change", () => buildSlotsForDate(dateInput.value));
+
+        // Initial render
+        renderCalendar(0);
+        if (dateInput.value) buildSlotsForDate(dateInput.value);
+
+        // --- Submit Termin ---
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+            setStatus("", null);
+
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return;
+            }
+
+            const name = document.getElementById("termin-name").value.trim();
+            const grund = document.getElementById("termin-grund").value.trim();
+            const datum = dateInput.value;
+            const uhrzeit = hiddenTimeInput.value;
+
+            if (!datum) {
+                setStatus("Bitte ein Datum im Kalender wählen.", "error");
+                return;
+            }
+            if (!uhrzeit) {
+                setStatus("Bitte einen Uhrzeit-Slot auswählen.", "error");
+                return;
+            }
+
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Wird gesendet …";
+            setStatus("Termin wird übermittelt …", null);
+
+            const embed = {
+                title: "Neue Terminanfrage",
+                description: "Ein neuer Termin wurde über die Website angefragt.",
+                color: 0x39ff14,
+                fields: [
+                    { name: "Name", value: name || "–", inline: false },
+                    { name: "Grund", value: grund || "–", inline: false },
+                    { name: "Datum", value: datum || "–", inline: true },
+                    { name: "Uhrzeit", value: uhrzeit || "–", inline: true },
+                    { name: "Dauer", value: "15 Minuten", inline: true }
+                ],
+                timestamp: new Date().toISOString(),
+                footer: { text: "BraunTech Solutions – Terminanfrage" }
+            };
+
+            const payload = {
+                content: "📅 **Neue Terminanfrage eingegangen**",
+                embeds: [embed]
+            };
+
+            fetch(WEBHOOK_URL, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(payload)
+            })
+            .then(function (response) {
+                if (!response.ok) throw new Error("HTTP " + response.status);
+                setStatus("Danke! Ihre Terminanfrage wurde gesendet.", "success");
+                form.reset();
+
+                selectedISO = "";
+                dateInput.value = "";
+                buildSlotsForDate("");
+                renderCalendar(0);
+            })
+            .catch(function (err) {
+                console.error(err);
+                setStatus("Fehler beim Senden. Bitte später erneut versuchen.", "error");
+            })
+            .finally(function () {
+                submitBtn.disabled = false;
+                submitBtn.textContent = "Termin anfragen";
+            });
+        });
+    })();
 </script>
+
 </body>
 </html>
