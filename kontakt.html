@@ -1074,7 +1074,7 @@
             })
             .then(function (response) {
                 if (!response.ok) throw new Error("HTTP " + response.status);
-                setStatus("Danke! Ihre Terminanfrage wurde gesendet.", "success");
+                setStatus("Danke! Ihre Terminanfrage wurde angefragt. Dieser wird von uns so schnell wie möglich bestätigt.", "success");
                 form.reset();
 
                 selectedISO = "";
